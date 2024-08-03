@@ -27,11 +27,11 @@ const Home = () => {
     fetchProduct();
     console.log(products);
   }, {});
-
+  const handlecClick = () => {};
   return (
     <div>
       <Hero />
-      <h1>wwhat now</h1>
+      <h1>What Now</h1>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
         {products.map((product) => {
           return (
@@ -39,12 +39,13 @@ const Home = () => {
               name={product.name}
               image={product.images[0].src}
               price={product.price}
+              click={handlecClick}
             />
           );
         })}
       </div>
 
-      <h1>wwhat Next</h1>
+      <h1>What Next</h1>
     </div>
   );
 };

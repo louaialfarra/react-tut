@@ -4,7 +4,7 @@ const Item = (props) => {
   return (
     <div className="container">
       <div className="image-container">
-        <img src={props.image} />
+        <img onClick={props.click} src={props.image} />
       </div>
       <div className="text">
         <h4>{props.name}</h4>
