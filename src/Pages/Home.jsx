@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Hero from "../Components/Hero/Hero";
 import axios from "axios";
 import { useState } from "react";
+import Item from "../Components/Item/Item";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
@@ -31,14 +32,18 @@ const Home = () => {
     <div>
       <Hero />
       <h1>wwhat now</h1>
-      {products.map((product) => {
-        return (
-          <h4>
-            {product.name} PRICE : {product.price} and
-            {product.sale_price}
-          </h4>
-        );
-      })}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
+        {products.map((product) => {
+          return (
+            <Item
+              name={product.name}
+              image={product.images[0].src}
+              price={product.price}
+            />
+          );
+        })}
+      </div>
+
       <h1>wwhat Next</h1>
     </div>
   );
