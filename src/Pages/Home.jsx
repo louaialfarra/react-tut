@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Hero from "../Components/Hero/Hero";
 import axios from "axios";
 import { useState } from "react";
 import Item from "../Components/Item/Item";
+import { ProductContext } from "../Context/ShopContext";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
 
-  const [products, setProducts] = useState([]);
+  const { products, setProducts } = useContext(ProductContext);
 
   useEffect(() => {
     const fetchProduct = async () => {

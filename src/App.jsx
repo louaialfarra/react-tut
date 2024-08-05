@@ -8,10 +8,10 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Shopcategory from "./Pages/Shopcategory";
 import Product from "./Pages/Product";
-
+import ShopContextProvider from "./Context/ShopContext";
 function App() {
   return (
-    <div>
+    <ShopContextProvider>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -26,7 +26,7 @@ function App() {
           <Route />
         </Routes>
       </BrowserRouter>
-    </div>
+    </ShopContextProvider>
   );
 }
 

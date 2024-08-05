@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
 import "./Item.css";
 
 const Item = (props) => {
   return (
     <div className="container">
       <div className="image-container">
-        <img onClick={props.click} src={props.image} />
+        <Link to={`/product/${props.id}`}>
+          <img src={props.image} />
+        </Link>
       </div>
       <div className="text">
         <h4>{props.name}</h4>
