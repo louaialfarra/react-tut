@@ -1,10 +1,7 @@
 const Breadcrum = (props) => {
-  const { product } = props;
-
   return (
     <div>
-      HOME {product.id}
-      {product.name}
+      HOME ID {props.product.id} Name {props.product.name}
     </div>
   );
 };

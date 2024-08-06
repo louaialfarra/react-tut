@@ -27,7 +27,7 @@ const Home = () => {
 
     fetchProduct();
     console.log(products);
-  }, {});
+  }, []);
   const handlecClick = () => {};
   return (
     <div>
@@ -37,6 +37,8 @@ const Home = () => {
         {products.map((product) => {
           return (
             <Item
+              key={product.id}
+              id={product.id}
               name={product.name}
               image={product.images[0].src}
               price={product.price}
