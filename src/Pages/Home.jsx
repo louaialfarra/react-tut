@@ -19,6 +19,8 @@ const Home = () => {
           params: {
             consumer_key: CONSUMER_KEY,
             consumer_secret: CONSUMER_SECRET,
+            status: "publish",
+            per_page: 20,
           },
         });
         setProducts(response.data);

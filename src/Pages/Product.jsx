@@ -14,9 +14,18 @@ const Product = () => {
   if (!product) {
     return <div>Loading...</div>; // Show a loading indicator or fallback UI
   }
+
+  const attributes = product.attributes[0]?.options.map((att) => {
+    return (
+      <ul>
+        <li>{att}</li>
+      </ul>
+    );
+  });
+  console.log(product.attributes);
   return (
     <div>
-      <h1>THIS IS PRODUCT PAGE </h1>
+      <h1>THIS IS PRODUCT PAGE {attributes} </h1>
       <ProductDisplay
         name={product.name}
         image={product.images[0]?.src}
