@@ -15,9 +15,9 @@ const Product = () => {
     return <div>Loading...</div>; // Show a loading indicator or fallback UI
   }
 
-  const attributes = product.attributes[0]?.options.map((att) => {
+  const attributes = product.attributes[0]?.options.map((att, i) => {
     return (
-      <ul>
+      <ul key={i}>
         <li>{att}</li>
       </ul>
     );
@@ -27,6 +27,7 @@ const Product = () => {
     <div>
       <h1>THIS IS PRODUCT PAGE {attributes} </h1>
       <ProductDisplay
+        key={product.id}
         name={product.name}
         image={product.images[0]?.src}
         price={product.price}

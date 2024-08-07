@@ -45,6 +45,7 @@ const Home = () => {
               image={product.images[0].src}
               price={product.price}
               click={handlecClick}
+              product={product}
             />
           );
         })}

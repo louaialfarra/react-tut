@@ -60,7 +60,19 @@ function Header() {
             </li>
           </ul>
         </div>
-        <div className="cart">Cart</div>
+        <div
+          onClick={() => {
+            setMenu("cart");
+          }}
+          className="cart"
+        >
+          <Link
+            style={{ textDecoration: "none", color: "unset" }}
+            to={"./cart"}
+          >
+            Cart
+          </Link>
+        </div>
       </div>
     </div>
   );
