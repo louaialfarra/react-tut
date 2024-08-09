@@ -23,14 +23,48 @@ const Home = () => {
             per_page: 20,
           },
         });
-        setProducts(response.data);
-      } catch {}
+
+        const products1 = response.data;
+
+        const productVariations = await Promise.all(
+          products1.map(async (product) => {
+            if (product.on_sale === true && product.type === "variable") {
+              const variationRes = await axios.get(
+                `${WOO_URL}/products/${product.id}/variations`,
+                {
+                  params: {
+                    consumer_key: CONSUMER_KEY,
+                    consumer_secret: CONSUMER_SECRET,
+                  },
+                }
+              );
+              const variations = variationRes.data;
+              const salePrice = variations[0]?.sale_price;
+              const regularPrice = variations[0]?.regular_price;
+
+              console.log("sale price is" + salePrice);
+              console.log("sale price is" + regularPrice);
+              return {
+                ...product,
+                variations,
+                salePrice,
+                regularPrice,
+              };
+            } else {
+              return { ...product };
+            }
+          })
+        );
+        setProducts(productVariations);
+        console.log("this is porduc tvarioans" + productVariations);
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     fetchProduct();
     console.log(products);
   }, []);
-  const handlecClick = () => {};
   return (
     <div>
       <Hero />
@@ -42,10 +76,10 @@ const Home = () => {
               key={product.id}
               id={product.id}
               name={product.name}
-              image={product.images[0].src}
+              image={product.images[0]?.src}
               price={product.price}
-              click={handlecClick}
               product={product}
+              saleprice={product.salePrice}
             />
           );
         })}
