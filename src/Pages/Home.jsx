@@ -11,9 +11,13 @@ const Home = () => {
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
 
   const { products, setProducts } = useContext(ProductContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${WOO_URL}/products`, {
           params: {
@@ -21,6 +25,7 @@ const Home = () => {
             consumer_secret: CONSUMER_SECRET,
             status: "publish",
             per_page: 20,
+            page: currentPage,
           },
         });
 
@@ -56,36 +61,66 @@ const Home = () => {
           })
         );
         setProducts(productVariations);
+
+        setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
+
         console.log("this is porduc tvarioans" + productVariations);
       } catch (e) {
         console.log(e);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProduct();
     console.log(products);
-  }, []);
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const handlBackPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
     <div>
       <Hero />
       <h1>What Now</h1>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
-        {products.map((product) => {
-          return (
-            <Item
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              image={product.images[0]?.src}
-              price={product.price}
-              product={product}
-              saleprice={product.salePrice}
-            />
-          );
-        })}
-      </div>
+      {loading ? (
+        <h1>LOADING .....</h1>
+      ) : (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
+          {products.map((product) => {
+            return (
+              <Item
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                image={product.images[0]?.src}
+                price={product.price}
+                product={product}
+                saleprice={product.salePrice}
+              />
+            );
+          })}
+        </div>
+      )}
 
       <h1>What Next</h1>
+      <div>
+        <button onClick={handlBackPage}>PREV PAGE</button>
+        <span>
+          {currentPage} of {totalPages}
+        </span>
+        <button on onClick={handleNextPage}>
+          NEXT PAGE
+        </button>
+      </div>
     </div>
   );
 };
