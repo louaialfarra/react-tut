@@ -117,9 +117,7 @@ const Home = () => {
         <span>
           {currentPage} of {totalPages}
         </span>
-        <button on onClick={handleNextPage}>
-          NEXT PAGE
-        </button>
+        <button onClick={handleNextPage}>NEXT PAGE</button>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useState } from "react";
 import logo from "../../assets/hooboo-logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import Search from "../Search/Search";
 
 function Header() {
   const [menu, setMenu] = useState("home");
@@ -12,7 +13,7 @@ function Header() {
         <div className="logo">
           <img src={logo} />
         </div>
-
+        <Search />
         <div className="Text">
           <h3>Online Shop</h3>
         </div>
