@@ -11,12 +11,16 @@ const Home = () => {
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
 
   const { products, setProducts } = useContext(ProductContext);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const { currentPage, setCurrentPage } = useContext(ProductContext);
+  const { totalPages, setTotalPages } = useContext(ProductContext);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
+      if (products[currentPage]) {
+        // If products for the current page are already cached, no need to fetch
+        return;
+      }
       setLoading(true);
       try {
         const response = await axios.get(`${WOO_URL}/products`, {
@@ -60,7 +64,7 @@ const Home = () => {
             }
           })
         );
-        setProducts(productVariations);
+        setProducts((p) => ({ ...p, [currentPage]: productVariations }));
 
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
 
@@ -95,7 +99,7 @@ const Home = () => {
         <h1>LOADING .....</h1>
       ) : (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
-          {products.map((product) => {
+          {products[currentPage]?.map((product) => {
             return (
               <Item
                 key={product.id}

@@ -6,6 +6,8 @@ export const ProductContext = createContext();
 const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const addToCart = (product) => {
     setCart((c) => {
@@ -39,7 +41,18 @@ const ShopContextProvider = (props) => {
 
   return (
     <ProductContext.Provider
-      value={{ products, setProducts, cart, addToCart, increment, decrement }}
+      value={{
+        products,
+        setProducts,
+        cart,
+        addToCart,
+        increment,
+        decrement,
+        currentPage,
+        setCurrentPage,
+        totalPages,
+        setTotalPages,
+      }}
     >
       {props.children}
     </ProductContext.Provider>
