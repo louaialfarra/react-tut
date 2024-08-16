@@ -3,6 +3,7 @@ import logo from "../../assets/hooboo-logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
+import cartImage from "../../assets/cart.png";
 
 function Header() {
   const [menu, setMenu] = useState("home");
@@ -67,11 +68,8 @@ function Header() {
           }}
           className="cart"
         >
-          <Link
-            style={{ textDecoration: "none", color: "unset" }}
-            to={"./cart"}
-          >
-            Cart
+          <Link to={"./cart"}>
+            <img src={cartImage} />
           </Link>
         </div>
       </div>

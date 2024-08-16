@@ -43,3 +43,9 @@
 .header-right .cart {
   margin-left: 10px;
 }
+.cart {
+  padding-right: 20px;
+}
+.cart img {
+  height: 24px;
+}

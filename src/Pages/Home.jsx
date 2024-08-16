@@ -28,14 +28,14 @@ const Home = () => {
             consumer_key: CONSUMER_KEY,
             consumer_secret: CONSUMER_SECRET,
             status: "publish",
-            per_page: 20,
+            per_page: 100,
             page: currentPage,
           },
         });
 
         const products1 = response.data;
 
-        const productVariations = await Promise.all(
+        /* const productVariations = await Promise.all(
           products1.map(async (product) => {
             if (product.on_sale === true && product.type === "variable") {
               const variationRes = await axios.get(
@@ -63,12 +63,12 @@ const Home = () => {
               return { ...product };
             }
           })
-        );
-        setProducts((p) => ({ ...p, [currentPage]: productVariations }));
+        );*/
+        setProducts((p) => ({ ...p, [currentPage]: products1 }));
 
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
 
-        console.log("this is porduc tvarioans" + productVariations);
+        console.log("this is product varioans" + products1);
       } catch (e) {
         console.log(e);
       } finally {
@@ -108,7 +108,7 @@ const Home = () => {
                 image={product.images[0]?.src}
                 price={product.price}
                 product={product}
-                saleprice={product.salePrice}
+                saleprice={product.regular_price}
               />
             );
           })}
