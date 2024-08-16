@@ -5,10 +5,10 @@ import Breadcrum from "../Components/Breadcrum/Breadcrum";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 
 const Product = () => {
-  const { products } = useContext(ProductContext);
+  const { products, currentPage } = useContext(ProductContext);
 
   const { productId } = useParams();
-  const product = products.find((e) => {
+  const product = products[currentPage].find((e) => {
     return e.id === Number(productId);
   });
   if (!product) {
