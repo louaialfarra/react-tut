@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ProductContext } from "../Context/ShopContext";
 import "../CSS/Cart.css";
+import { Link } from "react-router-dom";
 const Cart = () => {
   const { cart, increment, decrement } = useContext(ProductContext);
   console.log(cart);
@@ -18,6 +19,10 @@ const Cart = () => {
           <button onClick={() => decrement(item.id)}>Decriment - </button>
         </div>
       ))}
+      <Link className="style-button" to={"./checkout"}>
+        {" "}
+        chckout
+      </Link>
     </div>
   );
 };

@@ -9,6 +9,7 @@ import About from "./Pages/About";
 import Shopcategory from "./Pages/Shopcategory";
 import Product from "./Pages/Product";
 import ShopContextProvider from "./Context/ShopContext";
+import Checkout from "./Pages/Checkout";
 function App() {
   return (
     <ShopContextProvider>
@@ -17,6 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/checkout" element={<Checkout />} />
+
           <Route path="/shopcategory" element={<Shopcategory />} />
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />}>

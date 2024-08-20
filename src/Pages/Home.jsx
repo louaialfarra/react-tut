@@ -108,7 +108,12 @@ const Home = () => {
                 image={product.images[0]?.src}
                 price={product.price}
                 product={product}
-                saleprice={product.regular_price}
+                saleprice={product.price}
+                regularprice={product.meta_data
+                  .filter((data) => data.key === "custom_price")
+                  .map((data, index) => {
+                    return <>{data.value}</>;
+                  })}
               />
             );
           })}
