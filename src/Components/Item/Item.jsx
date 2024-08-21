@@ -20,12 +20,8 @@ const Item = (props) => {
       <div className="text">
         <h4>{props.name}</h4>
         <h4>{props.price}</h4>
-        <h4>
-          sale price: <h1>{props.saleprice}</h1>
-        </h4>
-        <h4>
-          regular price: <h1>{props.regularprice}</h1>
-        </h4>
+        <h4>sale price: {props.saleprice}</h4>
+        <h4>regular price: {props.regularprice}</h4>
       </div>
       <button onClick={() => handleOnClick()}>Add to Cart</button>
     </div>

@@ -15,14 +15,26 @@ const Product = () => {
     return <div>Loading...</div>; // Show a loading indicator or fallback UI
   }
 
-  const attributes = product.attributes[0]?.options.map((att, i) => {
+  const attributes = product.attributes.map((att, i) => {
     return (
-      <ul key={i}>
-        <li>{att}</li>
-      </ul>
+      <div key={i}>
+        <h2>{att.name}</h2>
+        <ul
+          style={{
+            paddingLeft: 0,
+            gap: 20,
+            display: "flex",
+            listStyleType: "none",
+          }}
+        >
+          {att.options.map((op, i) => {
+            return <li>{op}</li>;
+          })}
+        </ul>
+      </div>
     );
   });
-  console.log(product.attributes);
+
   return (
     <div>
       <h1>THIS IS PRODUCT PAGE {attributes} </h1>
@@ -31,6 +43,7 @@ const Product = () => {
         name={product.name}
         image={product.images[0]?.src}
         price={product.price}
+        details={attributes}
       />
     </div>
   );

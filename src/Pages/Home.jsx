@@ -35,35 +35,6 @@ const Home = () => {
 
         const products1 = response.data;
 
-        /* const productVariations = await Promise.all(
-          products1.map(async (product) => {
-            if (product.on_sale === true && product.type === "variable") {
-              const variationRes = await axios.get(
-                `${WOO_URL}/products/${product.id}/variations`,
-                {
-                  params: {
-                    consumer_key: CONSUMER_KEY,
-                    consumer_secret: CONSUMER_SECRET,
-                  },
-                }
-              );
-              const variations = variationRes.data;
-              const salePrice = variations[0]?.sale_price;
-              const regularPrice = variations[0]?.regular_price;
-
-              console.log("sale price is" + salePrice);
-              console.log("sale price is" + regularPrice);
-              return {
-                ...product,
-                variations,
-                salePrice,
-                regularPrice,
-              };
-            } else {
-              return { ...product };
-            }
-          })
-        );*/
         setProducts((p) => ({ ...p, [currentPage]: products1 }));
 
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
@@ -112,7 +83,7 @@ const Home = () => {
                 regularprice={product.meta_data
                   .filter((data) => data.key === "custom_price")
                   .map((data, index) => {
-                    return <>{data.value}</>;
+                    return <div key={index}>{data.value}</div>;
                   })}
               />
             );
