@@ -1,20 +1,26 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../Context/ShopContext";
 import Breadcrum from "../Components/Breadcrum/Breadcrum";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 
 const Product = () => {
-  const { products, currentPage } = useContext(ProductContext);
-
+  const { products, currentPage, addToCart } = useContext(ProductContext);
   const { productId } = useParams();
+  const [selectedAttribute, setSelectedAttribute] = useState({});
+
   const product = products[currentPage].find((e) => {
     return e.id === Number(productId);
   });
   if (!product) {
     return <div>Loading...</div>; // Show a loading indicator or fallback UI
   }
-
+  const handleSelectedAttribute = (attname, option) => {
+    setSelectedAttribute({
+      ...selectedAttribute,
+      [attname]: option,
+    });
+  };
   const attributes = product.attributes.map((att, i) => {
     return (
       <div key={i}>
@@ -28,16 +34,26 @@ const Product = () => {
           }}
         >
           {att.options.map((op, i) => {
-            return <li>{op}</li>;
+            return (
+              <li key={i}>
+                <button onClick={() => handleSelectedAttribute(att.name, op)}>
+                  {op}
+                </button>
+              </li>
+            );
           })}
         </ul>
       </div>
     );
   });
 
+  const handleAddtoCart = () => {
+    addToCart({ ...product, selectedAttribute });
+  };
+
   return (
     <div>
-      <h1>THIS IS PRODUCT PAGE {attributes} </h1>
+      <h1>THIS IS PRODUCT PAGE</h1>
       <ProductDisplay
         key={product.id}
         name={product.name}
@@ -45,6 +61,9 @@ const Product = () => {
         price={product.price}
         details={attributes}
       />
+      <div>
+        <button onClick={handleAddtoCart}>ADDto cart</button>
+      </div>
     </div>
   );
 };

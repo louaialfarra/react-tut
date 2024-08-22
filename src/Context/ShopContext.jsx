@@ -11,14 +11,23 @@ const ShopContextProvider = (props) => {
 
   const addToCart = (product) => {
     setCart((c) => {
-      const existingProduct = c.find((item) => item.id === product.id);
+      const existingProduct = c.find(
+        (item) =>
+          item.id === product.id &&
+          JSON.stringify(item.selectedAttribute) ===
+            JSON.stringify(product.selectedAttribute)
+      );
       if (existingProduct) {
         return c.map((item) => {
-          return item.id === product.id
+          return item.id === product.id &&
+            JSON.stringify(item.selectedAttribute) ===
+              JSON.stringify(product.selectedAttribute)
             ? { ...item, quantity: item.quantity + 1 }
             : item;
         });
-      } else return [...c, { ...product, quantity: 1 }];
+      } else {
+        return [...c, { ...product, quantity: 1 }];
+      }
     });
   };
 
@@ -29,6 +38,7 @@ const ShopContextProvider = (props) => {
       );
     });
   };
+
   const decrement = (productId) => {
     setCart((c) => {
       return c.map((item) =>
