@@ -46,7 +46,9 @@ const Product = () => {
       </div>
     );
   });
-
+  const allAttributesSelected = product.attributes.every((att) =>
+    selectedAttribute.hasOwnProperty(att.name)
+  );
   const handleAddtoCart = () => {
     addToCart({ ...product, selectedAttribute });
   };
@@ -62,7 +64,9 @@ const Product = () => {
         details={attributes}
       />
       <div>
-        <button onClick={handleAddtoCart}>ADDto cart</button>
+        <button onClick={handleAddtoCart} disabled={!allAttributesSelected}>
+          ADDto cart
+        </button>
       </div>
     </div>
   );

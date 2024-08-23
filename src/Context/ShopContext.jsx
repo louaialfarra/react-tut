@@ -31,18 +31,22 @@ const ShopContextProvider = (props) => {
     });
   };
 
-  const increment = (productId) => {
+  const increment = (productId, selectedAtt) => {
     setCart((c) => {
       return c.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === productId &&
+        JSON.stringify(item.selectedAttribute) === JSON.stringify(selectedAtt)
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       );
     });
   };
 
-  const decrement = (productId) => {
+  const decrement = (productId, selectedAtt) => {
     setCart((c) => {
       return c.map((item) =>
-        item.id === productId
+        item.id === productId &&
+        JSON.stringify(item.selectedAttribute) === JSON.stringify(selectedAtt)
           ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
           : item
       );

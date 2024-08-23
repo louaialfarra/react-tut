@@ -27,8 +27,12 @@ const Cart = () => {
 
             <h1>{item.quantity}</h1>
 
-            <button onClick={() => increment(item.id)}>Incriment +</button>
-            <button onClick={() => decrement(item.id)}>Decriment - </button>
+            <button onClick={() => increment(item.id, item.selectedAttribute)}>
+              Incriment +
+            </button>
+            <button onClick={() => decrement(item.id, item.selectedAttribute)}>
+              Decriment -{" "}
+            </button>
           </div>
         );
       })}
