@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ProductContext } from "../../Context/ShopContext";
 
 const Item = (props) => {
-  const { addToCart } = useContext(ProductContext);
+  const { addToCart, currency } = useContext(ProductContext);
 
   const handleOnClick = () => {
     addToCart(props.product);
@@ -19,8 +19,8 @@ const Item = (props) => {
       </div>
       <div className="text">
         <h4>{props.name}</h4>
-        <h4>{props.price}</h4>
-        <h4>sale price: {props.saleprice}</h4>
+        <h4>{props.price * currency}</h4>
+        <h4>sale price: {props.saleprice * currency}</h4>
         <h4>regular price: {props.regularprice}</h4>
       </div>
       <button onClick={() => handleOnClick()}>Add to Cart</button>

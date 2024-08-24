@@ -9,11 +9,32 @@ const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
+  const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
 
   const { products, setProducts } = useContext(ProductContext);
   const { currentPage, setCurrentPage } = useContext(ProductContext);
   const { totalPages, setTotalPages } = useContext(ProductContext);
+  const { currency, setCurrency } = useContext(ProductContext);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+      try {
+        const response = await axios.get(`${CURRENCY}`, {
+          params: {
+            consumer_key: CONSUMER_KEY,
+            consumer_secret: CONSUMER_SECRET,
+          },
+        });
+        const currencyData = response.data;
+        setCurrency(currencyData.SYP.rate);
+        console.log("this is curency" + currencyData.SYP.rate);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchCurrency();
+  }, []);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -83,7 +104,7 @@ const Home = () => {
                 regularprice={product.meta_data
                   .filter((data) => data.key === "custom_price")
                   .map((data, index) => {
-                    return <div key={index}>{data.value}</div>;
+                    return <div key={index}>{data.value * currency}</div>;
                   })}
               />
             );

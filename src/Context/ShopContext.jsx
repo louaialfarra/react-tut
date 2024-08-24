@@ -8,6 +8,7 @@ const ShopContextProvider = (props) => {
   const [cart, setCart] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [currency, setCurrency] = useState("");
 
   const addToCart = (product) => {
     setCart((c) => {
@@ -66,6 +67,8 @@ const ShopContextProvider = (props) => {
         setCurrentPage,
         totalPages,
         setTotalPages,
+        currency,
+        setCurrency,
       }}
     >
       {props.children}

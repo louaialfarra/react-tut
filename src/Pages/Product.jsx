@@ -5,7 +5,8 @@ import Breadcrum from "../Components/Breadcrum/Breadcrum";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 
 const Product = () => {
-  const { products, currentPage, addToCart } = useContext(ProductContext);
+  const { products, currentPage, addToCart, currency } =
+    useContext(ProductContext);
   const { productId } = useParams();
   const [selectedAttribute, setSelectedAttribute] = useState({});
 
@@ -62,6 +63,11 @@ const Product = () => {
         image={product.images[0]?.src}
         price={product.price}
         details={attributes}
+        regularprice={product.meta_data
+          .filter((data) => data.key === "custom_price")
+          .map((data, index) => {
+            return <div key={index}>{data.value * currency}</div>;
+          })}
       />
       <div>
         <button onClick={handleAddtoCart} disabled={!allAttributesSelected}>

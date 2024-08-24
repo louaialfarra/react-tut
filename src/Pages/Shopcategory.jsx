@@ -4,7 +4,6 @@ import { ProductContext } from "../Context/ShopContext";
 const Shopcategory = () => {
   const { products } = useContext(ProductContext);
   let { currentPage } = useContext(ProductContext);
-  currentPage = 3;
 
   return (
     <div>
