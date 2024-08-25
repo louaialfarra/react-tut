@@ -6,7 +6,7 @@ import Item from "../Components/Item/Item";
 import { ProductContext } from "../Context/ShopContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import Item2 from "../Components/Item/Item3";
+import Item2 from "../Components/Item/Item2";
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
