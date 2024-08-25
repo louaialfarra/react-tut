@@ -4,7 +4,9 @@ import axios from "axios";
 import { useState } from "react";
 import Item from "../Components/Item/Item";
 import { ProductContext } from "../Context/ShopContext";
-
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import Item2 from "../Components/Item/Item3";
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
@@ -84,43 +86,54 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <Hero />
-      <h1>What Now</h1>
-      {loading ? (
-        <h1>LOADING .....</h1>
-      ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
-          {products[currentPage]?.map((product) => {
-            return (
-              <Item
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                image={product.images[0]?.src}
-                price={product.price}
-                product={product}
-                saleprice={product.price}
-                regularprice={product.meta_data
-                  .filter((data) => data.key === "custom_price")
-                  .map((data, index) => {
-                    return <div key={index}>{data.value * currency}</div>;
-                  })}
-              />
-            );
-          })}
-        </div>
-      )}
-
-      <h1>What Next</h1>
+    <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>
-        <button onClick={handlBackPage}>PREV PAGE</button>
-        <span>
-          {currentPage} of {totalPages}
-        </span>
-        <button onClick={handleNextPage}>NEXT PAGE</button>
+        <Item2 />
+        <Hero />
+        <h1>What Now</h1>
+        {loading ? (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
+            {[...Array(9)].map((_, index) => (
+              <div key={index}>
+                <Skeleton height={200} />
+                <Skeleton width={150} />
+                <Skeleton width={100} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
+            {products[currentPage]?.map((product) => {
+              return (
+                <Item2
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  image={product.images[0]?.src}
+                  price={product.price}
+                  product={product}
+                  saleprice={product.price}
+                  regularprice={product.meta_data
+                    .filter((data) => data.key === "custom_price")
+                    .map((data, index) => {
+                      return <div key={index}>{data.value * currency}</div>;
+                    })}
+                />
+              );
+            })}
+          </div>
+        )}
+
+        <h1>What Next</h1>
+        <div>
+          <button onClick={handlBackPage}>PREV PAGE</button>
+          <span>
+            {currentPage} of {totalPages}
+          </span>
+          <button onClick={handleNextPage}>NEXT PAGE</button>
+        </div>
       </div>
-    </div>
+    </SkeletonTheme>
   );
 };
 export default Home;
