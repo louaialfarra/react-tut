@@ -120,6 +120,7 @@ const Home = () => {
                     .map((data, index) => {
                       return <div key={index}>{data.value * currency}</div>;
                     })}
+                  onsale={product.on_sale ? <div>SALE</div> : null}
                 />
               );
             })}
