@@ -7,6 +7,8 @@ import { ProductContext } from "../Context/ShopContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Item2 from "../Components/Item/Item2";
+
+import "../CSS/Home.css";
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
@@ -102,7 +104,7 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
+          <div className="grid-container">
             {products[currentPage]?.map((product) => {
               return (
                 <Item2
@@ -133,6 +135,20 @@ const Home = () => {
           <button onClick={handleNextPage}>NEXT PAGE</button>
         </div>
       </div>
+      <style>
+        {`
+            @media (max-width: 1200px) {
+              div {
+                grid-template-columns: 1fr 1fr;
+              }
+            }
+            @media (max-width: 768px) {
+              div {
+                grid-template-columns: 1fr;
+              }
+            }
+          `}
+      </style>
     </SkeletonTheme>
   );
 };
