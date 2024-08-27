@@ -136,20 +136,6 @@ const Home = () => {
           <button onClick={handleNextPage}>NEXT PAGE</button>
         </div>
       </div>
-      <style>
-        {`
-            @media (max-width: 1200px) {
-              div {
-                grid-template-columns: 1fr 1fr;
-              }
-            }
-            @media (max-width: 768px) {
-              div {
-                grid-template-columns: 1fr;
-              }
-            }
-          `}
-      </style>
     </SkeletonTheme>
   );
 };
