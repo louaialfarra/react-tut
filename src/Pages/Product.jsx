@@ -56,19 +56,48 @@ const Product = () => {
 
   return (
     <div>
-      <h1>THIS IS PRODUCT PAGE</h1>
-      <ProductDisplay
-        key={product.id}
-        name={product.name}
-        image={product.images[0]?.src}
-        price={product.price}
-        details={attributes}
-        regularprice={product.meta_data
-          .filter((data) => data.key === "custom_price")
-          .map((data, index) => {
-            return <div key={index}>{data.value * currency}</div>;
+      <div style={{ display: "flex" }}>
+        <ProductDisplay
+          key={product.id}
+          name={product.name}
+          image={product.images[0]?.src}
+          price={product.price}
+          details={attributes}
+          regularprice={product.meta_data
+            .filter((data) => data.key === "custom_price")
+            .map((data, index) => {
+              return <div key={index}>{data.value * currency}</div>;
+            })}
+        />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            maxHeight: "600px",
+            flexWrap: "wrap",
+            gap: "10px",
+            justifyContent: "space-between",
+            overflowY: "auto", // Enable vertical scrolling
+          }}
+        >
+          {product.images.map((image, index) => {
+            return (
+              <div key={index} style={{ display: "flex" }}>
+                <img
+                  src={image.src}
+                  style={{
+                    height: "75px",
+                    width: "75px",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+            );
           })}
-      />
+        </div>
+      </div>
+      <h1>THIS IS PRODUCT PAGE</h1>
+
       <div>
         <button onClick={handleAddtoCart} disabled={!allAttributesSelected}>
           ADDto cart
