@@ -1,4 +1,23 @@
+.container-image {
+  display: flex;
+}
 .container-image img {
   height: 600px;
   width: 500px;
+}
+.image-gallery-container {
+  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  max-height: 600px;
+  gap: 10px;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+.image-gallery {
+  display: flex;
+}
+.image-gallery img {
+  height: 75px;
+  width: 75px;
 }
