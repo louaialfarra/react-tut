@@ -1,31 +1,57 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./ProductDisplay.css";
 import { ProductContext } from "../../Context/ShopContext";
 
 const ProductDisplay = (props) => {
   const { currency } = useContext(ProductContext);
+  const [mainImage, setMainImage] = useState(props.image);
   return (
     <div>
-      <div className="container-image">
-        <img src={props.image} />
-        <div className="image-gallery-container">
-          {props.images.map((image, index) => (
-            <div className="image-gallery" key={index}>
-              <img src={image.src} />
+      <div style={{ display: "flex" }}>
+        <div className="container-image">
+          <div className="image-gallery-container">
+            {props.images.map((image, index) => (
+              <div
+                className="image-gallery"
+                key={index}
+                onClick={() => {
+                  setMainImage(image.src);
+                }}
+              >
+                <img src={image.src} />
+              </div>
+            ))}
+          </div>
+
+          {/* this is  the big image  */}
+          <img src={mainImage} />
+        </div>
+        <div>
+          <div className="product-title">{props.name}</div>
+          <div className="price-container">
+            <div className="new-price">
+              {(props.price * currency).toLocaleString()}&nbsp; S.P
             </div>
-          ))}
+            <div className="old-price">
+              {props.regularprice
+                .filter((data) => data.key === "custom_price")
+                .map((data, index) => {
+                  return (
+                    <span key={index}>
+                      {(data.value * currency).toLocaleString()} &nbsp;S.p
+                    </span>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="button-container">
+            <button onClick={props.addtocart} disabled={!props.attcheck}>
+              ADD to cart
+            </button>
+          </div>
         </div>
       </div>
-      <h1>{props.name}</h1>
-      <h3>
-        old Price is
-        {props.regularprice
-          .filter((data) => data.key === "custom_price")
-          .map((data, index) => {
-            return <div key={index}>{data.value * currency}</div>;
-          })}
-      </h3>
-      <h3> the Price is {props.price * currency}</h3>
+      <h3> </h3>
       <h2> this is details{props.details}</h2>
       this is product display
     </div>

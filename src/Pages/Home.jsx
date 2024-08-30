@@ -90,9 +90,8 @@ const Home = () => {
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>
-        <Item2 />
         <Hero />
-        <h1>What Now</h1>
+        <h1> NEW PRODUCTS</h1>
         {loading ? (
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
             {[...Array(9)].map((_, index) => (
