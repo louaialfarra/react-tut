@@ -22,31 +22,6 @@ const Product = () => {
       [attname]: option,
     });
   };
-  const attributes = product.attributes.map((att, i) => {
-    return (
-      <div key={i}>
-        <h2>{att.name}</h2>
-        <ul
-          style={{
-            paddingLeft: 0,
-            gap: 20,
-            display: "flex",
-            listStyleType: "none",
-          }}
-        >
-          {att.options.map((op, i) => {
-            return (
-              <li key={i}>
-                <button onClick={() => handleSelectedAttribute(att.name, op)}>
-                  {op}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  });
 
   const allAttributesSelected = product.attributes.every((att) =>
     selectedAttribute.hasOwnProperty(att.name)
@@ -64,11 +39,12 @@ const Product = () => {
           name={product.name}
           image={product.images[0]?.src}
           price={product.price}
-          details={attributes}
           regularprice={product.meta_data}
           images={product.images}
           attcheck={allAttributesSelected}
           addtocart={handleAddtoCart}
+          attnew={product.attributes}
+          handleattclick={handleSelectedAttribute}
         />
       </div>
       <h1>THIS IS PRODUCT PAGE</h1>

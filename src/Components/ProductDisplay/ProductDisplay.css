@@ -30,7 +30,7 @@
 .price-container .old-price {
   margin-left: 18px;
 
-  font-size: 1.5em;
+  font-size: 1.2em;
   text-decoration: line-through;
   color: gray;
 }
@@ -73,4 +73,15 @@
 
 .button-container button:hover {
   background-position: 100% 100%;
+}
+.att-container {
+  display: flex;
+  justify-content: center;
+}
+.att-container .att-name ul {
+  display: flex;
+  gap: 20px;
+}
+.att-container .att-name ul li button {
+  font-size: 3em;
 }

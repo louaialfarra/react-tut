@@ -44,6 +44,29 @@ const ProductDisplay = (props) => {
                 })}
             </div>
           </div>
+          <div className="att-container">
+            {props.attnew.map((att, i) => {
+              return (
+                <div className="att-name" key={i}>
+                  <h2>{att.name}</h2>
+                  <ul>
+                    {att.options.map((op, i) => {
+                      return (
+                        <li key={i}>
+                          <button
+                            onClick={() => props.handleattclick(att.name, op)}
+                          >
+                            {op}
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+
           <div className="button-container">
             <button onClick={props.addtocart} disabled={!props.attcheck}>
               ADD to cart
@@ -53,6 +76,7 @@ const ProductDisplay = (props) => {
       </div>
       <h3> </h3>
       <h2> this is details{props.details}</h2>
+      <h1> this is new attr</h1>
       this is product display
     </div>
   );
