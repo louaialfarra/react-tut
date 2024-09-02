@@ -10,6 +10,7 @@ import Shopcategory from "./Pages/Shopcategory";
 import Product from "./Pages/Product";
 import ShopContextProvider from "./Context/ShopContext";
 import Checkout from "./Pages/Checkout";
+import Footer from "./Components/Footer/Footer";
 function App() {
   return (
     <ShopContextProvider>
@@ -28,6 +29,7 @@ function App() {
 
           <Route />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </ShopContextProvider>
   );
