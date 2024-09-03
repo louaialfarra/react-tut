@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createContext } from "react";
 
 export const ProductContext = createContext();
 
 const ShopContextProvider = (props) => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [currency, setCurrency] = useState("");
 
+  useEffect(() => {
+    // Save cart to localStorage whenever it changes
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
   const addToCart = (product) => {
     setCart((c) => {
       const existingProduct = c.find(

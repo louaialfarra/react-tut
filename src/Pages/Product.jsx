@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../Context/ShopContext";
-import Breadcrum from "../Components/Breadcrum/Breadcrum";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 
 const Product = () => {
@@ -9,10 +8,25 @@ const Product = () => {
     useContext(ProductContext);
   const { productId } = useParams();
   const [selectedAttribute, setSelectedAttribute] = useState({});
+  const [product, setProduct] = useState(null);
 
-  const product = products[currentPage].find((e) => {
-    return e.id === Number(productId);
-  });
+  useEffect(() => {
+    const fetchProductFromLocalStorage = () => {
+      const storedProducts = JSON.parse(localStorage.getItem("products"));
+
+      if (storedProducts && storedProducts[currentPage]) {
+        const product = storedProducts[currentPage].find(
+          (e) => e.id === Number(productId)
+        );
+
+        if (product) {
+          setProduct(product); // Set the product from localStorage
+        }
+      }
+    };
+
+    fetchProductFromLocalStorage();
+  }, [productId, currentPage, currency]);
   if (!product) {
     return <div>Loading...</div>; // Show a loading indicator or fallback UI
   }

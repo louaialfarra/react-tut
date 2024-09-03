@@ -12,7 +12,7 @@ const Item2 = (props) => {
   };
   return (
     <div className="card">
-      <Link to={`/product/${props.id}`}>
+      <Link to={`/product/${props.id}`} state={props.product}>
         <img
           className="card-image"
           height={70}

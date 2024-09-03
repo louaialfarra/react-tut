@@ -42,6 +42,15 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
+      const storedProducts = JSON.parse(localStorage.getItem("products"));
+
+      if (storedProducts && storedProducts[currentPage]) {
+        setProducts((prevProducts) => ({
+          ...prevProducts,
+          [currentPage]: storedProducts[currentPage],
+        }));
+        return;
+      }
       if (products[currentPage]) {
         // If products for the current page are already cached, no need to fetch
         return;
@@ -60,8 +69,11 @@ const Home = () => {
 
         const products1 = response.data;
 
-        setProducts((p) => ({ ...p, [currentPage]: products1 }));
-
+        setProducts((prevProducts) => {
+          const updatedProducts = { ...prevProducts, [currentPage]: products1 };
+          localStorage.setItem("products", JSON.stringify(updatedProducts)); // Store in localStorage
+          return updatedProducts;
+        });
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
 
         console.log("this is product varioans" + products1);
