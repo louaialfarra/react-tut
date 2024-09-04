@@ -4,7 +4,7 @@ import { ProductContext } from "../Context/ShopContext";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 
 const Product = () => {
-  const { products, currentPage, addToCart, currency } =
+  const { products, currentPage, addToCart, currency, setCurrency } =
     useContext(ProductContext);
   const { productId } = useParams();
   const [selectedAttribute, setSelectedAttribute] = useState({});
@@ -13,6 +13,11 @@ const Product = () => {
   useEffect(() => {
     const fetchProductFromLocalStorage = () => {
       const storedProducts = JSON.parse(localStorage.getItem("products"));
+      const storedCurrency = JSON.parse(localStorage.getItem("currency"));
+
+      if (storedCurrency) {
+        setCurrency(storedCurrency);
+      }
 
       if (storedProducts && storedProducts[currentPage]) {
         const product = storedProducts[currentPage].find(

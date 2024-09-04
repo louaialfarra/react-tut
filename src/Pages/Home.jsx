@@ -32,6 +32,7 @@ const Home = () => {
         });
         const currencyData = response.data;
         setCurrency(currencyData.SYP.rate);
+        localStorage.setItem("currency", JSON.stringify(currencyData.SYP.rate));
         console.log("this is curency" + currencyData.SYP.rate);
       } catch (e) {
         console.error(e);
@@ -42,15 +43,6 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const storedProducts = JSON.parse(localStorage.getItem("products"));
-
-      if (storedProducts && storedProducts[currentPage]) {
-        setProducts((prevProducts) => ({
-          ...prevProducts,
-          [currentPage]: storedProducts[currentPage],
-        }));
-        return;
-      }
       if (products[currentPage]) {
         // If products for the current page are already cached, no need to fetch
         return;
@@ -71,7 +63,7 @@ const Home = () => {
 
         setProducts((prevProducts) => {
           const updatedProducts = { ...prevProducts, [currentPage]: products1 };
-          localStorage.setItem("products", JSON.stringify(updatedProducts)); // Store in localStorage
+
           return updatedProducts;
         });
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
