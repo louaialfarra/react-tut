@@ -4,7 +4,8 @@ import "../CSS/Cart.css";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, increment, decrement } = useContext(ProductContext);
+  const { cart, increment, decrement, removeFromCart } =
+    useContext(ProductContext);
 
   if (cart.length === 0) return <div>Your cart is empty.</div>;
   return (
@@ -31,7 +32,14 @@ const Cart = () => {
               Incriment +
             </button>
             <button onClick={() => decrement(item.id, item.selectedAttribute)}>
-              Decriment -{" "}
+              Decriment -
+            </button>
+            <button
+              onClick={() => {
+                removeFromCart(item.id, item.selectedAttribute);
+              }}
+            >
+              REMOVE ITEM
             </button>
           </div>
         );

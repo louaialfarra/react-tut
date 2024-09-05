@@ -4,9 +4,11 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
 import cartImage from "../../assets/cart.png";
+import Dropdown from "../Dropdown/Dropdown";
 
 function Header() {
   const [menu, setMenu] = useState("home");
+  const subcat = ["Top", "Jacket", "Dress"];
 
   return (
     <div className="header-container">
@@ -45,6 +47,9 @@ function Header() {
                 Shop
               </Link>
               {menu === "shop" ? <hr /> : <></>}
+            </li>
+            <li className="exclude">
+              <Dropdown subcat={subcat} />
             </li>
 
             <li

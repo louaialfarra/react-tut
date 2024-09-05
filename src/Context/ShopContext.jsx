@@ -60,7 +60,15 @@ const ShopContextProvider = (props) => {
       );
     });
   };
-
+  const removeFromCart = (productId, selectedAtt) => {
+    setCart((c) => {
+      return c.filter(
+        (item) =>
+          item.id !== productId ||
+          JSON.stringify(item.selectedAttribute) !== JSON.stringify(selectedAtt)
+      );
+    });
+  };
   return (
     <ProductContext.Provider
       value={{
@@ -76,6 +84,7 @@ const ShopContextProvider = (props) => {
         setTotalPages,
         currency,
         setCurrency,
+        removeFromCart,
       }}
     >
       {props.children}
