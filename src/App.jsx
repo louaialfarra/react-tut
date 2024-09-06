@@ -26,8 +26,6 @@ function App() {
           <Route path="/product" element={<Product />}>
             <Route path=":productId" element={<Product />} />
           </Route>
-
-          <Route />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -7,7 +7,7 @@ const ProductDisplay = (props) => {
   const [mainImage, setMainImage] = useState(props.image);
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", gap: 50, marginTop: 50 }}>
         <div className="container-image">
           <div className="image-gallery-container">
             {props.images.map((image, index) => (
