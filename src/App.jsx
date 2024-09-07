@@ -11,6 +11,7 @@ import Product from "./Pages/Product";
 import ShopContextProvider from "./Context/ShopContext";
 import Checkout from "./Pages/Checkout";
 import Footer from "./Components/Footer/Footer";
+import Category from "./Pages/Category";
 function App() {
   return (
     <ShopContextProvider>
@@ -22,6 +23,11 @@ function App() {
           <Route path="/cart/checkout" element={<Checkout />} />
 
           <Route path="/shopcategory" element={<Shopcategory />} />
+          <Route
+            path="shopcategory/dress"
+            element={<Category category="dresses" />}
+          />
+
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />}>
             <Route path=":productId" element={<Product />} />

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { ProductContext } from "../Context/ShopContext";
-
 const Shopcategory = () => {
   const { products } = useContext(ProductContext);
   let { currentPage } = useContext(ProductContext);

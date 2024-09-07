@@ -2,7 +2,9 @@
   position: relative;
   display: inline-block;
 }
-
+.header-right .menu ul .dropdown-menu {
+  gap: 0px;
+}
 .dropdown-menu {
   display: flex;
   flex-direction: column;

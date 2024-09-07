@@ -8,7 +8,7 @@ import Dropdown from "../Dropdown/Dropdown";
 
 function Header() {
   const [menu, setMenu] = useState("home");
-  const subcat = ["Top", "Jacket", "Dress"];
+  const subcat = ["Dress", "Jacket", "Top"];
 
   return (
     <div className="header-container">
