@@ -19,6 +19,7 @@ const Home = () => {
   const { currentPage, setCurrentPage } = useContext(ProductContext);
   const { totalPages, setTotalPages } = useContext(ProductContext);
   const { currency, setCurrency } = useContext(ProductContext);
+  const { category, setCategory } = useContext(ProductContext);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -39,6 +40,24 @@ const Home = () => {
       }
     };
     fetchCurrency();
+  }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${WOO_URL}/products/categories`, {
+          params: {
+            consumer_key: CONSUMER_KEY,
+            consumer_secret: CONSUMER_SECRET,
+            per_page: 100,
+          },
+        });
+
+        setCategory(response.data);
+        console.log(response.data);
+      } catch (e) {}
+    };
+    fetchCategories();
   }, []);
 
   useEffect(() => {

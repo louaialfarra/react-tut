@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../../assets/hooboo-logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
 import cartImage from "../../assets/cart.png";
 import Dropdown from "../Dropdown/Dropdown";
+import { ProductContext } from "../../Context/ShopContext";
 
 function Header() {
   const [menu, setMenu] = useState("home");
   const subcat = ["Dress", "Jacket", "Top"];
+
+  const { category } = useContext(ProductContext);
 
   return (
     <div className="header-container">
@@ -49,7 +52,13 @@ function Header() {
               {menu === "shop" ? <hr /> : <></>}
             </li>
             <li className="exclude">
-              <Dropdown subcat={subcat} />
+              <Dropdown
+                subcat={category
+                  .filter(
+                    (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
+                  )
+                  .map((cat, i) => cat.name)}
+              />
             </li>
 
             <li

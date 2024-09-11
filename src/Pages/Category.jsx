@@ -1,16 +1,18 @@
 import { useContext } from "react";
 import { ProductContext } from "../Context/ShopContext";
 import Item2 from "../Components/Item/Item2";
+import { useParams } from "react-router-dom";
 
 const Category = (props) => {
   const { products } = useContext(ProductContext);
   let { currentPage } = useContext(ProductContext);
+  const { category } = useParams();
 
   return (
     <div>
       THIS IS CAT
       {products[currentPage]
-        .filter((product) => product.categories[0].slug === props.category)
+        .filter((product) => product.categories[0].slug === category)
         .map((product, i) => {
           return (
             <Item2

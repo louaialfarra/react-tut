@@ -10,6 +10,7 @@ const ShopContextProvider = (props) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [category, setCategory] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currency, setCurrency] = useState("");
 
@@ -85,6 +86,8 @@ const ShopContextProvider = (props) => {
         currency,
         setCurrency,
         removeFromCart,
+        category,
+        setCategory,
       }}
     >
       {props.children}

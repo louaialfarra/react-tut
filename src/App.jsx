@@ -1,4 +1,3 @@
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import Header from "./Components/Header/Header";
@@ -23,10 +22,7 @@ function App() {
           <Route path="/cart/checkout" element={<Checkout />} />
 
           <Route path="/shopcategory" element={<Shopcategory />} />
-          <Route
-            path="shopcategory/dress"
-            element={<Category category="dresses" />}
-          />
+          <Route path="shopcategory/:category" element={<Category />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />}>
