@@ -54,6 +54,7 @@ const Home = () => {
         });
 
         setCategory(response.data);
+        localStorage.setItem("categories", JSON.stringify(response.data));
         console.log(response.data);
       } catch (e) {}
     };

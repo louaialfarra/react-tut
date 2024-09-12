@@ -7,7 +7,7 @@ const Dropdown = (props) => {
   const navigate = useNavigate();
 
   const handlNavigation = (category) => {
-    navigate(`/shopcategory/${category.toLowerCase()}`); // Navigate to the dynamic path
+    navigate(`/shopcategory/${category.toLowerCase().replace(/\s+/g, "-")}`);
     setOpend(false); // Close the dropdown after navigation
   };
 

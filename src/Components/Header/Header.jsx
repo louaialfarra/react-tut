@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import logo from "../../assets/hooboo-logo.png";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import Search from "../Search/Search";
 import cartImage from "../../assets/cart.png";
 import Dropdown from "../Dropdown/Dropdown";
@@ -9,9 +9,19 @@ import { ProductContext } from "../../Context/ShopContext";
 
 function Header() {
   const [menu, setMenu] = useState("home");
-  const subcat = ["Dress", "Jacket", "Top"];
+  const [storedCategory, setStoredCategory] = useState([]);
 
   const { category } = useContext(ProductContext);
+
+  useEffect(() => {
+    const savedCategories = localStorage.getItem("categories");
+    if (savedCategories) {
+      setStoredCategory(JSON.parse(savedCategories));
+    } else if (category && category.length > 0) {
+      setStoredCategory(category);
+      localStorage.setItem("categories", JSON.stringify(category));
+    }
+  }, [category]);
 
   return (
     <div className="header-container">
@@ -53,7 +63,7 @@ function Header() {
             </li>
             <li className="exclude">
               <Dropdown
-                subcat={category
+                subcat={storedCategory
                   .filter(
                     (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
                   )

@@ -1,19 +1,45 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../Context/ShopContext";
 import Item2 from "../Components/Item/Item2";
 import { useParams } from "react-router-dom";
 
 const Category = (props) => {
-  const { products } = useContext(ProductContext);
+  const { products, currency, setCurrency } = useContext(ProductContext);
   let { currentPage } = useContext(ProductContext);
   const { category } = useParams();
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
+  useEffect(() => {
+    const savedProducts = localStorage.getItem(`filteredProducts_${category}`);
+    const storedCurrency = JSON.parse(localStorage.getItem("currency"));
+
+    if (storedCurrency) {
+      setCurrency(storedCurrency);
+    }
+
+    if (savedProducts) {
+      setFilteredProducts(JSON.parse(savedProducts));
+    } else if (products[currentPage]) {
+      const filter = products[currentPage].filter(
+        (product) => product.categories[0].slug === category
+      );
+      setFilteredProducts(filter);
+    }
+  }, [category, products, currentPage]);
+
+  useEffect(() => {
+    if (filteredProducts.length > 0) {
+      localStorage.setItem(
+        "filteredProducts",
+        JSON.stringify(filteredProducts)
+      );
+    }
+  }, [filteredProducts, category]);
   return (
     <div>
-      THIS IS CAT
-      {products[currentPage]
-        .filter((product) => product.categories[0].slug === category)
-        .map((product, i) => {
+      <h1>{category.toLocaleUpperCase()}</h1>
+      <div className="grid-container">
+        {filteredProducts.map((product, i) => {
           return (
             <Item2
               key={i}
@@ -27,6 +53,7 @@ const Category = (props) => {
             />
           );
         })}
+      </div>
     </div>
   );
 };
