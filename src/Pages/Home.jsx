@@ -61,45 +61,68 @@ const Home = () => {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      if (products[currentPage]) {
-        // If products for the current page are already cached, no need to fetch
-        return;
-      }
-      setLoading(true);
-      try {
-        const response = await axios.get(`${WOO_URL}/products`, {
-          params: {
-            consumer_key: CONSUMER_KEY,
-            consumer_secret: CONSUMER_SECRET,
-            status: "publish",
-            per_page: 100,
-            page: currentPage,
-          },
-        });
+  const fetchProduct = async (page = 1) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${WOO_URL}/products`, {
+        params: {
+          consumer_key: CONSUMER_KEY,
+          consumer_secret: CONSUMER_SECRET,
+          status: "publish",
+          per_page: 50,
+          page,
+        },
+      });
 
-        const products1 = response.data;
-        localStorage.setItem("products", JSON.stringify(response.data));
+      const products1 = response.data;
 
-        setProducts((prevProducts) => {
-          const updatedProducts = { ...prevProducts, [currentPage]: products1 };
-
-          return updatedProducts;
-        });
+      /*if (!totalPages) {
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
+      }*/
+      const totalPagesFromHeader = parseInt(
+        response.headers["x-wp-totalpages"]
+      );
+      if (!totalPages || totalPages !== totalPagesFromHeader) {
+        setTotalPages(totalPagesFromHeader);
+      }
+      if (page === 1) {
+        setProducts(products1);
+      } else {
+        setProducts((prevProducts) => {
+          return [...prevProducts, ...products1];
+        });
+      }
 
-        console.log("this is product varioans" + products1);
-      } catch (e) {
-        console.log(e);
-      } finally {
-        setLoading(false);
+      localStorage.setItem("products", JSON.stringify(response.data));
+
+      console.log("this is product varioans" + products1);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    // Clear the products and fetch the first page only once on initial render
+    if (currentPage === 1 && products.length === 0) {
+      fetchProduct(1);
+    }
+  }, [currentPage]);
+  // here need some update or delets figure new way  write the way then ask gpt
+  useEffect(() => {
+    const fetchRemainingPages = async () => {
+      if (totalPages > 1 && currentPage === 1) {
+        for (let page = 2; page <= totalPages; page++) {
+          await fetchProduct(page); // Fetch remaining pages sequentially
+        }
       }
     };
 
-    fetchProduct();
-    console.log(products);
-  }, [currentPage]);
+    // Start fetching the remaining pages only after page 1 is loaded
+    if (totalPages > 1 && products.length > 0) {
+      fetchRemainingPages();
+    }
+  }, [totalPages]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -129,7 +152,7 @@ const Home = () => {
           </div>
         ) : (
           <div className="grid-container">
-            {products[currentPage]?.map((product) => {
+            {products?.map((product) => {
               return (
                 <Item2
                   key={product.id}
