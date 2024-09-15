@@ -19,22 +19,33 @@ const Product = () => {
         setCurrency(storedCurrency);
       }
 
-      if (storedProducts && storedProducts[currentPage]) {
-        const product = storedProducts[currentPage].find(
+      if (products[currentPage]) {
+        const foundProduct = products[currentPage].find(
+          (e) => e.id === Number(productId)
+        );
+        if (foundProduct) {
+          setProduct(foundProduct);
+          localStorage.setItem("products", JSON.stringify(products));
+        }
+      } else if (storedProducts && storedProducts[currentPage]) {
+        const foundproduct = storedProducts[currentPage].find(
           (e) => e.id === Number(productId)
         );
 
-        if (product) {
-          setProduct(product); // Set the product from localStorage
+        if (foundproduct) {
+          setProduct(foundproduct); // Set the product from localStorage
+          return;
         }
       }
     };
 
     fetchProductFromLocalStorage();
-  }, [productId, currentPage, currency]);
+  }, [productId, currentPage, currency, products]);
+
   if (!product) {
     return <div>Loading...</div>; // Show a loading indicator or fallback UI
   }
+
   const handleSelectedAttribute = (attname, option) => {
     setSelectedAttribute({
       ...selectedAttribute,

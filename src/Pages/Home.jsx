@@ -80,6 +80,7 @@ const Home = () => {
         });
 
         const products1 = response.data;
+        localStorage.setItem("products", JSON.stringify(response.data));
 
         setProducts((prevProducts) => {
           const updatedProducts = { ...prevProducts, [currentPage]: products1 };
