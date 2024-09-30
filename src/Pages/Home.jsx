@@ -62,7 +62,9 @@ const Home = () => {
   }, []);
 
   const fetchProduct = async (page = 1) => {
-    setLoading(true);
+    if (page === 1) {
+      setLoading(true);
+    }
     try {
       const response = await axios.get(`${WOO_URL}/products`, {
         params: {
@@ -82,9 +84,8 @@ const Home = () => {
       const totalPagesFromHeader = parseInt(
         response.headers["x-wp-totalpages"]
       );
-      if (!totalPages || totalPages !== totalPagesFromHeader) {
-        setTotalPages(totalPagesFromHeader);
-      }
+      setTotalPages(totalPagesFromHeader);
+
       if (page === 1) {
         setProducts(products1);
       } else {
@@ -102,15 +103,15 @@ const Home = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
-    // Clear the products and fetch the first page only once on initial render
-    if (currentPage === 1 && products.length === 0) {
-      fetchProduct(1);
-    }
-  }, [currentPage]);
-  // here need some update or delets figure new way  write the way then ask gpt
-  useEffect(() => {
-    const fetchRemainingPages = async () => {
+    const fetchProducts = async () => {
+      // Fetch page 1 first
+      if (currentPage === 1 && products.length === 0) {
+        await fetchProduct(1);
+      }
+
+      // Fetch remaining pages
       if (totalPages > 1 && currentPage === 1) {
         for (let page = 2; page <= totalPages; page++) {
           await fetchProduct(page); // Fetch remaining pages sequentially
@@ -118,11 +119,10 @@ const Home = () => {
       }
     };
 
-    // Start fetching the remaining pages only after page 1 is loaded
-    if (totalPages > 1 && products.length > 0) {
-      fetchRemainingPages();
-    }
-  }, [totalPages]);
+    fetchProducts();
+  }, [currentPage, totalPages]); // Add necessary dependencies
+
+  // here need some update or delets figure new way  write the way then ask gpt
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {

@@ -19,16 +19,14 @@ const Product = () => {
         setCurrency(storedCurrency);
       }
 
-      if (products[currentPage]) {
-        const foundProduct = products[currentPage].find(
-          (e) => e.id === Number(productId)
-        );
+      if (products) {
+        const foundProduct = products.find((e) => e.id === Number(productId));
         if (foundProduct) {
           setProduct(foundProduct);
           localStorage.setItem("products", JSON.stringify(products));
         }
-      } else if (storedProducts && storedProducts[currentPage]) {
-        const foundproduct = storedProducts[currentPage].find(
+      } else if (storedProducts && storedProducts) {
+        const foundproduct = storedProducts.find(
           (e) => e.id === Number(productId)
         );
 

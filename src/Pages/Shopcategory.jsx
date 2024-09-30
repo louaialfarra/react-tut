@@ -7,7 +7,7 @@ const Shopcategory = () => {
   return (
     <div>
       <h1>This is Categoory</h1>
-      {products[currentPage]?.map((product, i) => {
+      {products?.map((product, i) => {
         return (
           <ul>
             <li>{product.name}</li>
