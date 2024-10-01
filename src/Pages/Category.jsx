@@ -19,8 +19,8 @@ const Category = (props) => {
 
     if (savedProducts) {
       setFilteredProducts(JSON.parse(savedProducts));
-    } else if (products[currentPage]) {
-      const filter = products[currentPage].filter(
+    } else if (products) {
+      const filter = products.filter(
         (product) => product.categories[0].slug === category
       );
       setFilteredProducts(filter);

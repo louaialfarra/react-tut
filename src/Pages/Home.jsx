@@ -111,19 +111,21 @@ const Home = () => {
     if (products.length === 0) {
       fetchProduct(1);
     }
+    setContinueFetch(true);
   }, []);
 
   useEffect(() => {
-    // Fetch remaining pages
     if (continueFetch && totalPages > 1) {
-      if (totalPages > 1) {
+      // after to many tsst  the promble with fetch that it need to be synch and awaited
+      const fetchRemainingPages = async () => {
         for (let page = 2; page <= totalPages; page++) {
-          fetchProduct(page); // Fetch remaining pages sequentially
+          await fetchProduct(page);
         }
-        setContinueFetch(false);
-      }
+      };
+      fetchRemainingPages();
     }
-  }, [totalPages]);
+    setContinueFetch(false); // Stop fetching once all pages are fetched
+  }, [totalPages]); // Runs when totalPages or continueFetch changes
 
   // here need some update or delets figure new way  write the way then ask gpt
 
