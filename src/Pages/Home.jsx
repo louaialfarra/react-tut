@@ -21,6 +21,7 @@ const Home = () => {
   const { currency, setCurrency } = useContext(ProductContext);
   const { category, setCategory } = useContext(ProductContext);
   const [loading, setLoading] = useState(false);
+  const [continueFetch, setContinueFetch] = useState(false);
 
   useEffect(() => {
     const fetchCurrency = async () => {
@@ -93,6 +94,7 @@ const Home = () => {
           return [...prevProducts, ...products1];
         });
       }
+      setContinueFetch(true);
 
       localStorage.setItem("products", JSON.stringify(response.data));
 
@@ -105,22 +107,23 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      // Fetch page 1 first
-      if (currentPage === 1 && products.length === 0) {
-        await fetchProduct(1);
-      }
+    // Fetch page 1 first
+    if (products.length === 0) {
+      fetchProduct(1);
+    }
+  }, []);
 
-      // Fetch remaining pages
-      if (totalPages > 1 && currentPage === 1) {
+  useEffect(() => {
+    // Fetch remaining pages
+    if (continueFetch && totalPages > 1) {
+      if (totalPages > 1) {
         for (let page = 2; page <= totalPages; page++) {
-          await fetchProduct(page); // Fetch remaining pages sequentially
+          fetchProduct(page); // Fetch remaining pages sequentially
         }
+        setContinueFetch(false);
       }
-    };
-
-    fetchProducts();
-  }, [currentPage, totalPages]); // Add necessary dependencies
+    }
+  }, [totalPages]);
 
   // here need some update or delets figure new way  write the way then ask gpt
 
