@@ -14,7 +14,11 @@ const Product = () => {
     const fetchProductFromLocalStorage = () => {
       const storedProducts = JSON.parse(localStorage.getItem("products"));
       const storedCurrency = JSON.parse(localStorage.getItem("currency"));
+      const storedProduct = JSON.parse(localStorage.getItem("product"));
 
+      if (storedProduct && storedProduct.id === Number(productId)) {
+        setProduct(storedProduct);
+      }
       if (storedCurrency) {
         setCurrency(storedCurrency);
       }
@@ -23,9 +27,9 @@ const Product = () => {
         const foundProduct = products.find((e) => e.id === Number(productId));
         if (foundProduct) {
           setProduct(foundProduct);
-          localStorage.setItem("products", JSON.stringify(products));
+          localStorage.setItem("product", JSON.stringify(foundProduct));
         }
-      } else if (storedProducts && storedProducts) {
+      } else if (storedProducts) {
         const foundproduct = storedProducts.find(
           (e) => e.id === Number(productId)
         );
