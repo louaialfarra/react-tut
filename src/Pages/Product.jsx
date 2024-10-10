@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../Context/ShopContext";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
+import axios from "axios";
 
 const Product = () => {
   const { products, currentPage, addToCart, currency, setCurrency } =
@@ -10,15 +11,26 @@ const Product = () => {
   const [selectedAttribute, setSelectedAttribute] = useState({});
   const [product, setProduct] = useState(null);
 
+  const WOO_URL = import.meta.env.VITE_WOO_API_URL;
+  const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
+  const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
+  const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
+  const fetchProduct = async () => {
+    try {
+      const response = await axios.get(`${WOO_URL}/products/${productId}`, {
+        params: {
+          consumer_key: CONSUMER_KEY,
+          consumer_secret: CONSUMER_SECRET,
+        },
+      });
+      const result = response.data;
+      setProduct(result);
+    } catch (e) {}
+  };
   useEffect(() => {
     const fetchProductFromLocalStorage = () => {
-      const storedProducts = JSON.parse(localStorage.getItem("products"));
       const storedCurrency = JSON.parse(localStorage.getItem("currency"));
-      const storedProduct = JSON.parse(localStorage.getItem("product"));
 
-      if (storedProduct && storedProduct.id === Number(productId)) {
-        setProduct(storedProduct);
-      }
       if (storedCurrency) {
         setCurrency(storedCurrency);
       }
@@ -27,25 +39,17 @@ const Product = () => {
         const foundProduct = products.find((e) => e.id === Number(productId));
         if (foundProduct) {
           setProduct(foundProduct);
-          localStorage.setItem("product", JSON.stringify(foundProduct));
         }
-      } else if (storedProducts) {
-        const foundproduct = storedProducts.find(
-          (e) => e.id === Number(productId)
-        );
-
-        if (foundproduct) {
-          setProduct(foundproduct); // Set the product from localStorage
-          return;
-        }
+      } else {
+        fetchProduct();
       }
     };
-
     fetchProductFromLocalStorage();
   }, [productId, currentPage, currency, products]);
 
   if (!product) {
-    return <div>Loading...</div>; // Show a loading indicator or fallback UI
+    fetchProduct();
+    return <div>Loading...</div>;
   }
 
   const handleSelectedAttribute = (attname, option) => {
