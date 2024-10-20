@@ -9,16 +9,14 @@ const Category = () => {
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
   const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
 
-  const { products, currency, setCurrency, setProducts } =
-    useContext(ProductContext);
+  const { products, setProducts } = useContext(ProductContext);
   const { category } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const { totalPages, setTotalPages } = useContext(ProductContext);
   const [loading, setLoading] = useState(false);
   const [continueFetch, setContinueFetch] = useState(false);
-  const { totalPages, setTotalPages } = useContext(ProductContext);
 
-  const fetchProduct = async (page) => {
-    console.log("page number is " + page);
+  const fetchProduct = async (page = 1) => {
     if (page === 1) {
       setLoading(true);
     }
@@ -28,13 +26,16 @@ const Category = () => {
           consumer_key: CONSUMER_KEY,
           consumer_secret: CONSUMER_SECRET,
           status: "publish",
-          per_page: 100,
+          per_page: 50,
           page,
         },
       });
 
       const products1 = response.data;
 
+      /*if (!totalPages) {
+        setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
+      }*/
       const totalPagesFromHeader = parseInt(
         response.headers["x-wp-totalpages"]
       );
@@ -49,6 +50,8 @@ const Category = () => {
       }
       setContinueFetch(true);
 
+      localStorage.setItem("products", JSON.stringify(response.data));
+
       console.log("this is product varioans" + products1);
     } catch (e) {
       console.log(e);
@@ -58,40 +61,29 @@ const Category = () => {
   };
 
   useEffect(() => {
-    const storedCurrency = JSON.parse(localStorage.getItem("currency"));
-
-    if (storedCurrency) {
-      setCurrency(storedCurrency);
-    }
-
-    if (products && products.length > 0) {
-      // If products exist, filter based on category
-      const filter = products.filter(
-        (product) => product.categories[0].slug === category
-      );
-      setFilteredProducts(filter);
-    }
+    // Fetch page 1 first
     if (products.length === 0) {
-      fetchProduct();
-
-      setContinueFetch(true);
+      fetchProduct(1);
     }
-  }, [category, products]);
-  /*
+    const filter = products.filter(
+      (product) => product.categories[0].slug === category
+    );
+    setFilteredProducts(filter);
+    setContinueFetch(true);
+  }, [products, category]);
+
   useEffect(() => {
     if (continueFetch && totalPages > 1) {
       // after to many tsst  the promble with fetch that it need to be synch and awaited
       const fetchRemainingPages = async () => {
         for (let page = 2; page <= totalPages; page++) {
           await fetchProduct(page);
-          console.log("page number is in contins " + page);
         }
       };
       fetchRemainingPages();
     }
     setContinueFetch(false); // Stop fetching once all pages are fetched
   }, [totalPages]); // Runs when totalPages or continueFetch changes
-*/
   return (
     <div>
       <h1>{category.toUpperCase()}</h1>
