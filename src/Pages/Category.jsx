@@ -9,7 +9,8 @@ const Category = () => {
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
   const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
 
-  const { products, setProducts } = useContext(ProductContext);
+  const { products, setProducts, setCurrency, currency } =
+    useContext(ProductContext);
   const { category } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const { totalPages, setTotalPages } = useContext(ProductContext);
@@ -59,12 +60,19 @@ const Category = () => {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    const storedCurrency = JSON.parse(localStorage.getItem("currency"));
 
+    if (storedCurrency) {
+      setCurrency(storedCurrency);
+    }
+  }, []);
   useEffect(() => {
     // Fetch page 1 first
     if (products.length === 0) {
       fetchProduct(1);
     }
+    // the issue of fetchin category was the filter the product inside the if
     const filter = products.filter(
       (product) => product.categories[0].slug === category
     );
