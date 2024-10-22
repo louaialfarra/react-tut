@@ -66,6 +66,7 @@ const Category = () => {
     if (storedCurrency) {
       setCurrency(storedCurrency);
     }
+    // Need to add else fetch the currency
   }, []);
   useEffect(() => {
     // Fetch page 1 first

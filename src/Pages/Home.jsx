@@ -56,7 +56,7 @@ const Home = () => {
 
         setCategory(response.data);
         localStorage.setItem("categories", JSON.stringify(response.data));
-        console.log(response.data);
+        console.log("this is category" + response.data);
       } catch (e) {}
     };
     fetchCategories();
