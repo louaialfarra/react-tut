@@ -18,6 +18,9 @@ const Dropdown = (props) => {
   const handleMouseLeave = () => {
     setSubOpend(null);
   };
+  const getSubCat = (parentId) => {
+    return props.allCategory.filter((cat, i) => cat.parent === parentId);
+  };
 
   return (
     <div className="dropdown-container">
@@ -30,13 +33,13 @@ const Dropdown = (props) => {
               onMouseEnter={() => handleMouseEnter(i)}
               onMouseLeave={handleMouseLeave}
             >
-              <span onClick={() => handleNavigation(cat)}>{cat}</span>
+              <span onClick={() => handleNavigation(cat.name)}>{cat.name}</span>
 
-              {subOpend === i && cat.parent === 0 && (
+              {subOpend === i && getSubCat(cat.id).length > 0 && (
                 <ul className="submenu">
-                  {props.subcategories.map((subcat, j) => (
-                    <li key={j} onClick={() => handleNavigation(subcat)}>
-                      {subcat}
+                  {getSubCat(cat.id).map((subcat, j) => (
+                    <li key={j} onClick={() => handleNavigation(subcat.name)}>
+                      {subcat.name}
                     </li>
                   ))}
                 </ul>

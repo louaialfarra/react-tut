@@ -63,12 +63,13 @@ function Header() {
             </li>
             <li className="exclude">
               <Dropdown
-                subcat={storedCategory
-                  .filter(
-                    (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
-                  )
-                  .map((cat, i) => cat.name)}
+                subcat={storedCategory.filter(
+                  (cat, i) => cat.parent === 0 && cat.name !== "Uncategorized"
+                )}
+                allCategory={storedCategory}
               />
+
+              {console.log("this is stored cat" + storedCategory)}
             </li>
 
             <li

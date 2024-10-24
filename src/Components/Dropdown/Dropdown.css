@@ -18,8 +18,24 @@
   padding: 8px 16px;
   cursor: pointer;
   color: black;
+  position: relative; /* Important for submenu positioning */
 }
 
 .dropdown-menu li:hover {
   background-color: #ddd;
+}
+.submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 150px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.dropdown-menu li:hover .submenu {
+  display: block; /* Show the submenu when hovering over the parent item */
 }
