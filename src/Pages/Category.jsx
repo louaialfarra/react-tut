@@ -74,9 +74,19 @@ const Category = () => {
       fetchProduct(1);
     }
     // the issue of fetchin category was the filter the product inside the if
-    const filter = products.filter(
-      (product) => product.categories[0].slug === category
-    );
+    // Filter products based on category or specific ID for "bottoms"
+    const filter = products.filter((product) => {
+      if (category === "bottoms") {
+        return product.categories.some((cat) => cat.id === 50);
+        console.log(" category bottom");
+      } else {
+        console.log("  no id category ");
+
+        return product.categories.some((cat) => cat.slug === category);
+      }
+    });
+    console.log("  the filter is " + filter);
+
     setFilteredProducts(filter);
     setContinueFetch(true);
   }, [products, category]);
