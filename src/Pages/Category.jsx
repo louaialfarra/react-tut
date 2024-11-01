@@ -72,22 +72,37 @@ const Category = () => {
     // Fetch page 1 first
     if (products.length === 0) {
       fetchProduct(1);
+    } else {
+      const filter = products.filter((product) => {
+        if (category === "bottoms") {
+          const bottomCategory = [
+            "pants",
+            "jeans",
+            "legging",
+            "shorts",
+            "skirt",
+          ];
+          return product.categories.some((cat) =>
+            bottomCategory.includes(cat.slug)
+          );
+        }
+        if (category === "tops") {
+          const topCategory = ["t-shirt", "hoodies", "sweater", "shirt"];
+          return product.categories.some((cat) =>
+            topCategory.includes(cat.slug)
+          );
+        } else {
+          console.log("  no id category ");
+
+          return product.categories.some((cat) => cat.slug === category);
+        }
+      });
+      console.log("  the filter is " + filter);
+
+      setFilteredProducts(filter);
+      // the issue of fetchin category was the filter the product inside the if
+      // Filter products based on category or specific ID for "bottoms"
     }
-    // the issue of fetchin category was the filter the product inside the if
-    // Filter products based on category or specific ID for "bottoms"
-    const filter = products.filter((product) => {
-      if (category === "bottoms") {
-        return product.categories.some((cat) => cat.id === 50);
-        console.log(" category bottom");
-      } else {
-        console.log("  no id category ");
-
-        return product.categories.some((cat) => cat.slug === category);
-      }
-    });
-    console.log("  the filter is " + filter);
-
-    setFilteredProducts(filter);
     setContinueFetch(true);
   }, [products, category]);
 
