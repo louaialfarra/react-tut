@@ -144,40 +144,55 @@ const Home = () => {
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>
         <Hero />
-        <h1> NEW PRODUCTS</h1>
-        {loading ? (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}>
-            {[...Array(9)].map((_, index) => (
-              <div key={index}>
-                <Skeleton height={200} />
-                <Skeleton width={150} />
-                <Skeleton width={100} />
-              </div>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ flex: "1" }}>
+            this is the new filter
+            <button style={{ padding: "24px", fontSize: "1.2rem" }}>
+              Filter me
+            </button>
+            {products.map((p) => (
+              <li>{p.attributes[0]?.options}</li>
             ))}
           </div>
-        ) : (
-          <div className="grid-container">
-            {products?.map((product) => {
-              return (
-                <Item2
-                  key={product.id}
-                  id={product.id}
-                  name={product.name}
-                  image={product.images[0]?.src}
-                  price={product.price}
-                  product={product}
-                  saleprice={product.price}
-                  regularprice={product.meta_data
-                    .filter((data) => data.key === "custom_price")
-                    .map((data, index) => {
-                      return <div key={index}>{data.value * currency}</div>;
-                    })}
-                  onsale={product.on_sale ? <div>SALE</div> : null}
-                />
-              );
-            })}
+          <div style={{ flex: "6" }}>
+            <h1> NEW PRODUCTS</h1>
+            {loading ? (
+              <div
+                style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}
+              >
+                {[...Array(9)].map((_, index) => (
+                  <div key={index}>
+                    <Skeleton height={200} />
+                    <Skeleton width={150} />
+                    <Skeleton width={100} />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid-container">
+                {products?.map((product) => {
+                  return (
+                    <Item2
+                      key={product.id}
+                      id={product.id}
+                      name={product.name}
+                      image={product.images[0]?.src}
+                      price={product.price}
+                      product={product}
+                      saleprice={product.price}
+                      regularprice={product.meta_data
+                        .filter((data) => data.key === "custom_price")
+                        .map((data, index) => {
+                          return <div key={index}>{data.value * currency}</div>;
+                        })}
+                      onsale={product.on_sale ? <div>SALE</div> : null}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
         <h1>What Next</h1>
         <div>
