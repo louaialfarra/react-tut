@@ -7,8 +7,9 @@ import { ProductContext } from "../Context/ShopContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Item2 from "../Components/Item/Item2";
-
+import FilterComponent from "../Components/Filter/Filter";
 import "../CSS/Home.css";
+
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
@@ -22,6 +23,8 @@ const Home = () => {
   const { category, setCategory } = useContext(ProductContext);
   const [loading, setLoading] = useState(false);
   const [continueFetch, setContinueFetch] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [selectedFilters, setSelectedFilters] = useState({});
 
   useEffect(() => {
     const fetchCurrency = async () => {
@@ -140,6 +143,83 @@ const Home = () => {
     }
   };
 
+  useEffect(() => {
+    // Filter products based on selectedFilters
+    const filterProducts = () => {
+      if (Object.keys(selectedFilters).length === 0) {
+        setFilteredProducts(products);
+        return;
+      }
+
+      const filtered = products.filter((product) => {
+        return Object.entries(selectedFilters).some(
+          ([attributeName, selectedOptions]) => {
+            return product.attributes.some((attr) => {
+              return (
+                attr.name === attributeName &&
+                attr.options.some((option) => selectedOptions.includes(option))
+              );
+            });
+          }
+        );
+      });
+
+      setFilteredProducts(filtered);
+    };
+
+    filterProducts();
+  }, [selectedFilters, products]);
+
+  const handleFilterChange = (selectedOptions) => {
+    const filteredProducts = products.filter((product) => {
+      // Check if the product matches all selected filters across attributes
+      return Object.keys(selectedOptions).every((attributeName) => {
+        if (!selectedOptions[attributeName].length) return true; // Skip if no options selected for this attribute
+
+        const productAttribute = product.attributes.find(
+          (attr) => attr.name === attributeName
+        );
+
+        // Ensure the product has the attribute and matches at least one of the selected options
+        return (
+          productAttribute &&
+          selectedOptions[attributeName].some((option) =>
+            productAttribute.options.includes(option)
+          )
+        );
+      });
+    });
+
+    setFilteredProducts(filteredProducts);
+    setSelectedFilters(selectedOptions); // Update state with the current selected filters
+  };
+
+  /**const handleFilterChange = (attributeName, option) => {
+  setSelectedFilters((prevFilters) => {
+    const updatedFilters = { ...prevFilters };
+
+    if (!updatedFilters[attributeName]) {
+      updatedFilters[attributeName] = [];
+    }
+
+    if (updatedFilters[attributeName].includes(option)) {
+      // Remove the option if it's already selected
+      updatedFilters[attributeName] = updatedFilters[attributeName].filter(
+        (opt) => opt !== option
+      );
+
+      // If the attribute has no options selected, remove it from the filters
+      if (updatedFilters[attributeName].length === 0) {
+        delete updatedFilters[attributeName];
+      }
+    } else {
+      // Add the option if it's not selected
+      updatedFilters[attributeName].push(option);
+    }
+
+    return updatedFilters;
+  });
+};new one */
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>
@@ -147,6 +227,7 @@ const Home = () => {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ flex: "1" }}>
             this is the new filter
+            <FilterComponent onFilterChange={handleFilterChange} />
             <button style={{ padding: "24px", fontSize: "1.2rem" }}>
               Filter me
             </button>
@@ -170,7 +251,7 @@ const Home = () => {
               </div>
             ) : (
               <div className="grid-container">
-                {products?.map((product) => {
+                {filteredProducts?.map((product) => {
                   return (
                     <Item2
                       key={product.id}
