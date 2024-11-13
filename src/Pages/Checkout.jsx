@@ -13,13 +13,19 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
 
-  const { cart } = useContext(ProductContext);
+  const { cart, currency } = useContext(ProductContext);
 
   const handleSubmite = async () => {
     const lineItems = cart.map((item) => {
+      //the .tofixed is very important to let  the price  be passed to  woocomerce wesbite
+      const priceInCurrency = (item.price * currency).toFixed(2); // Convert to two decimal places
+      const totalInCurrency = (priceInCurrency * item.quantity).toFixed(2);
       return {
         product_id: item.id,
         quantity: item.quantity,
+        price: priceInCurrency,
+        total: totalInCurrency,
+
         meta_data: Object.keys(item.selectedAttribute).map((key) => ({
           key: key,
           value: item.selectedAttribute[key],
@@ -30,12 +36,13 @@ const Checkout = () => {
       payment_method: "cod",
       payment_method_title: "Cash on Delivery",
       status: "processing",
+
       billing: {
         first_name: firstname,
         last_name: lastname,
         address_1: address,
       },
-      shippping: {
+      shipping: {
         first_name: firstname,
         last_name: lastname,
         address_1: address,
@@ -47,6 +54,7 @@ const Checkout = () => {
         },
       ],
       line_items: lineItems, // thsi is where u have to list cart porducts
+      currency: "SYP",
     };
     try {
       setLoading(true);
@@ -64,13 +72,14 @@ const Checkout = () => {
       setLoading(false);
     }
   };
-
+  console.log("this is checkout" + cart);
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       {orderSuccess ? (
         <p>Your order was placed successfully!</p>
       ) : (
         <div>
+          {cart.map((item) => item.price)}
           NAME :
           <input
             type="text"

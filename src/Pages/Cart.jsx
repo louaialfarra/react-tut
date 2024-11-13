@@ -4,9 +4,13 @@ import "../CSS/Cart.css";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, increment, decrement, removeFromCart } =
+  const { cart, increment, decrement, removeFromCart, currency, setCurrency } =
     useContext(ProductContext);
+  const storedCurrency = JSON.parse(localStorage.getItem("currency"));
 
+  if (storedCurrency) {
+    setCurrency(storedCurrency);
+  }
   if (cart.length === 0) return <div>Your cart is empty.</div>;
   return (
     <div className="cart-container">
@@ -16,7 +20,7 @@ const Cart = () => {
         return (
           <div key={index}>
             <h4>{item.name}</h4>
-            <p>{item.price}</p>
+            <p>{item.price * currency}</p>
             <img src={item.images[0].src} alt={item.name} />
 
             {item.selectedAttribute &&
@@ -45,7 +49,6 @@ const Cart = () => {
         );
       })}
       <Link className="style-button" to={"./checkout"}>
-        {" "}
         chckout
       </Link>
     </div>
