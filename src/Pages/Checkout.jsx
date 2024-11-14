@@ -12,6 +12,9 @@ const Checkout = () => {
   const [address, SetAddress] = useState("");
   const [loading, setLoading] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(null);
+  const [couponError, setCouponError] = useState("");
 
   const { cart, currency } = useContext(ProductContext);
 
@@ -54,6 +57,8 @@ const Checkout = () => {
         },
       ],
       line_items: lineItems, // thsi is where u have to list cart porducts
+      coupon_lines: coupon ? [{ code: coupon, discount: discount }] : [], // Add coupon code here
+
       currency: "SYP",
     };
     try {
@@ -72,6 +77,32 @@ const Checkout = () => {
       setLoading(false);
     }
   };
+
+  const applyCoupon = async () => {
+    try {
+      const response = await axios.get(`${WOO_URL}/coupons?code=${coupon}`, {
+        params: {
+          consumer_key: CONSUMER_KEY,
+          consumer_secret: CONSUMER_SECRET,
+        },
+      });
+
+      if (response.data.length > 0) {
+        const couponData = response.data[0];
+        const discountAmount = couponData.meta_data[0].value;
+        setDiscount(discountAmount);
+        setCouponError("");
+      } else {
+        setDiscount(null);
+        setCouponError("Invalid coupon code");
+      }
+    } catch (error) {
+      console.error(error);
+      setDiscount(null);
+      setCouponError("Error validating coupon");
+    }
+  };
+
   console.log("this is checkout" + cart);
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -99,6 +130,18 @@ const Checkout = () => {
             onChange={(e) => SetAddress(e.target.value)}
           />
           <button onClick={handleSubmite}>Submite Order</button>
+          <div>
+            {" "}
+            COUPON CODE{" "}
+            <input
+              type="text"
+              value={coupon}
+              onChange={(e) => setCoupon(e.target.value)}
+            />
+            <button onClick={applyCoupon}>Apply COUPON</button>
+            {couponError && <p style={{ color: "red" }}>{couponError}</p>}
+            {discount && <p>Discount Applied: {discount} SYP</p>}
+          </div>
         </div>
       )}
     </div>
