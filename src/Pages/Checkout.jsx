@@ -35,6 +35,15 @@ const Checkout = () => {
         })),
       };
     });
+
+    const feeLines = discount
+      ? [
+          {
+            name: `Discount from ${coupon}`,
+            total: `-${discount}`, // Negative value to represent a discount
+          },
+        ]
+      : [];
     const orderdata = {
       payment_method: "cod",
       payment_method_title: "Cash on Delivery",
@@ -57,7 +66,8 @@ const Checkout = () => {
         },
       ],
       line_items: lineItems, // thsi is where u have to list cart porducts
-      coupon_lines: coupon ? [{ code: coupon, discount: discount }] : [], // Add coupon code here
+      coupon_lines: coupon ? [{ code: coupon }] : [], // Add coupon code here
+      fee_lines: feeLines, // Custom discount applied here
 
       currency: "SYP",
     };
