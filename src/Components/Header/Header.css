@@ -14,11 +14,11 @@
 .header-left .logo img {
   height: 50px;
 }
+
 .header-right {
   display: flex;
   justify-content: space-between;
   gap: 25px;
-
   align-items: center;
 }
 
@@ -49,4 +49,49 @@
 }
 .cart img {
   height: 24px;
+}
+
+/* Overlay menu styles */
+.burger-style {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Hidden by default */
+  height: 100vh;
+  width: 60vw; /* Adjust width as needed */
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: left 0.3s ease-in-out; /* Slide in from the left */
+}
+
+.burger-style.show {
+  left: 0; /* Slide into view */
+}
+
+/* Hide the burger menu for larger screens */
+@media (min-width: 768px) {
+  .burger-style {
+    display: none;
+  }
+}
+
+.burger-style li {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .header-left ul {
+    color: black;
+  }
+}
+.close-menu-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  align-self: flex-end;
 }

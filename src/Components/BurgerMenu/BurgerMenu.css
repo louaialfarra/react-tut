@@ -1,0 +1,23 @@
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  width: 32px;
+}
+.burger {
+  height: 2.5px;
+  width: 100%;
+  background-color: white;
+  transform-origin: 1px;
+  transition: all 0.3s linear;
+}
+@media (max-width: 768px) {
+  .burger-menu {
+    display: flex;
+  }
+  .header-right {
+    display: none;
+  }
+}
