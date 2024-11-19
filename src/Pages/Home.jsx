@@ -9,6 +9,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Item2 from "../Components/Item/Item2";
 import FilterComponent from "../Components/Filter/Filter";
 import "../CSS/Home.css";
+import { Button } from "@mui/material";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
@@ -231,6 +232,9 @@ const Home = () => {
             <button style={{ padding: "24px", fontSize: "1.2rem" }}>
               Filter me
             </button>
+            <Button variant="contained" sx={{ backgroundColor: "red" }}>
+              Contained
+            </Button>
             {products.map((p) => (
               <li>{p.attributes[0]?.options}</li>
             ))}

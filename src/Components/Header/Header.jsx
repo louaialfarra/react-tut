@@ -55,9 +55,8 @@ function Header() {
           className={`burger-style ${isMenuOpen ? "show" : ""}`}
           ref={menuRef}
         >
-          {/* Close button */}
           <button onClick={closeMenu} className="close-menu-btn">
-            Close
+            X
           </button>
           <li onClick={() => setMenu("home")}>
             <Link style={{ textDecoration: "none", color: "unset" }} to={"/"}>
@@ -103,7 +102,40 @@ function Header() {
 
       <div className="header-right">
         <div className="menu">
-          <ul>{/* Desktop menu items */}</ul>
+          <ul>
+            <li onClick={() => setMenu("home")}>
+              <Link style={{ textDecoration: "none", color: "unset" }} to={"/"}>
+                Home
+              </Link>
+              {menu === "home" ? <hr /> : null}
+            </li>
+            <li onClick={() => setMenu("shop")}>
+              <Link
+                style={{ textDecoration: "none", color: "unset" }}
+                to={"/shopcategory"}
+              >
+                Shop
+              </Link>
+              {menu === "shop" ? <hr /> : null}
+            </li>
+            <li className="exclude">
+              <Dropdown
+                subcat={storedCategory.filter(
+                  (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
+                )}
+                allCategory={storedCategory}
+              />
+            </li>
+            <li onClick={() => setMenu("about")}>
+              <Link
+                style={{ textDecoration: "none", color: "unset" }}
+                to={"about"}
+              >
+                About Us
+              </Link>
+              {menu === "about" ? <hr /> : null}
+            </li>
+          </ul>
         </div>
         <div onClick={() => setMenu("cart")} className="cart">
           <Link to={"./cart"}>
