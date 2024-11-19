@@ -51,46 +51,7 @@ function Header() {
     <div className="header-container">
       <div className="header-left">
         <BurgerMenu Tmenu={toggleMenu} />
-        <ul
-          className={`burger-style ${isMenuOpen ? "show" : ""}`}
-          ref={menuRef}
-        >
-          <button onClick={closeMenu} className="close-menu-btn">
-            X
-          </button>
-          <li onClick={() => setMenu("home")}>
-            <Link style={{ textDecoration: "none", color: "unset" }} to={"/"}>
-              Home
-            </Link>
-            {menu === "home" ? <hr /> : null}
-          </li>
-          <li onClick={() => setMenu("shop")}>
-            <Link
-              style={{ textDecoration: "none", color: "unset" }}
-              to={"/shopcategory"}
-            >
-              Shop
-            </Link>
-            {menu === "shop" ? <hr /> : null}
-          </li>
-          <li className="exclude">
-            <Dropdown
-              subcat={storedCategory.filter(
-                (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
-              )}
-              allCategory={storedCategory}
-            />
-          </li>
-          <li onClick={() => setMenu("about")}>
-            <Link
-              style={{ textDecoration: "none", color: "unset" }}
-              to={"about"}
-            >
-              About Us
-            </Link>
-            {menu === "about" ? <hr /> : null}
-          </li>
-        </ul>
+
         <div className="logo">
           <img src={logo} alt="Logo" />
         </div>
