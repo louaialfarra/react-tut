@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
-import { Icon } from "@mui/material";
+import { Icon, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Dropdown from "../Dropdown/Dropdown";
 import { useState, useEffect } from "react";
@@ -62,12 +62,15 @@ export default function BurgerMenu() {
           </ListItem>
         ))}
         <ListItem disablePadding>
-          <Dropdown
-            subcat={storedCategory.filter(
-              (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
-            )}
-            allCategory={storedCategory}
-          />
+          <ListItemButton>
+            <ListItemIcon></ListItemIcon>
+            <Dropdown
+              subcat={storedCategory.filter(
+                (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
+              )}
+              allCategory={storedCategory}
+            />
+          </ListItemButton>
         </ListItem>
       </List>
       <Divider />

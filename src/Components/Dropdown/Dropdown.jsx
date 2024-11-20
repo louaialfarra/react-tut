@@ -1,31 +1,47 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./Dropdown.css";
 import { useNavigate } from "react-router-dom";
 
 const Dropdown = (props) => {
-  const [opend, setOpend] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
   const [subOpend, setSubOpend] = useState(null);
   const navigate = useNavigate();
+  const leaveTimeout = useRef(null);
 
   const handleNavigation = (category) => {
     navigate(`/shopcategory/${category.toLowerCase().replace(/\s+/g, "-")}`);
-    setOpend(false); // Close the dropdown after navigation
+    setOpenDropdown(false); // Close the dropdown after navigation
     setSubOpend(null);
   };
+
   const handleMouseEnter = (index) => {
+    clearTimeout(leaveTimeout.current);
     setSubOpend(index);
   };
+
   const handleMouseLeave = () => {
-    setSubOpend(null);
+    leaveTimeout.current = setTimeout(() => {
+      setSubOpend(null);
+    }, 300);
   };
+
   const getSubCat = (parentId) => {
     return props.allCategory.filter((cat, i) => cat.parent === parentId);
   };
 
   return (
-    <div className="dropdown-container">
-      <button onClick={() => setOpend(!opend)}>Categories</button>
-      {opend && (
+    <div
+      className="dropdown-container"
+      onMouseEnter={() => setOpenDropdown(true)}
+      onMouseLeave={() => setOpenDropdown(false)}
+    >
+      <span
+        style={{ fontFamily: "sans-serif", zIndex: 10 }}
+        className="dropdown-trigger"
+      >
+        Categories
+      </span>
+      {openDropdown && (
         <ul className="dropdown-menu">
           {props.subcat.map((cat, i) => (
             <li
