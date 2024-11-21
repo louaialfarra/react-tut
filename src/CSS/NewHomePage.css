@@ -1,0 +1,17 @@
+.newhome-container {
+  margin-top: 24px;
+  display: flex;
+  overflow-x: auto;
+}
+
+.list-container {
+  padding-left: 20px;
+  align-items: center;
+  text-align: center;
+}
+.cat-img {
+  height: 60px;
+  width: 60px;
+  border: 5px solid rgb(255, 0, 208);
+  border-radius: 50%;
+}

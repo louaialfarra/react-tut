@@ -11,12 +11,14 @@ import ShopContextProvider from "./Context/ShopContext";
 import Checkout from "./Pages/Checkout";
 import Footer from "./Components/Footer/Footer";
 import Category from "./Pages/Category";
+import NewHomePage from "./Pages/NewHomePage";
 function App() {
   return (
     <ShopContextProvider>
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path="newhomepage" element={<NewHomePage />} />
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/cart/checkout" element={<Checkout />} />

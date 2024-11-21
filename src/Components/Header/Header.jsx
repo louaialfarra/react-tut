@@ -70,6 +70,14 @@ function Header() {
               </Link>
               {menu === "home" ? <hr /> : null}
             </li>
+            <li>
+              <Link
+                to={"/newhomepage"}
+                style={{ textDecoration: "none", color: "unset" }}
+              >
+                NEW HOME PAGE
+              </Link>
+            </li>
             <li onClick={() => setMenu("shop")}>
               <Link
                 style={{ textDecoration: "none", color: "unset" }}
