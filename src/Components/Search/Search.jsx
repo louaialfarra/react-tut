@@ -47,7 +47,7 @@ const Search = () => {
   };
 
   return (
-    <div style={{ position: "relative", width: "300px" }}>
+    <div style={{ position: "relative", width: "100%" }}>
       <input
         style={{ width: "100%", padding: "8px" }}
         type="text"

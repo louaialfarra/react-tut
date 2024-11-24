@@ -15,6 +15,7 @@ import { Icon, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Dropdown from "../Dropdown/Dropdown";
 import { useState, useEffect } from "react";
+import MenuIcon from "@mui/icons-material/Menu"; // Import the Menu icon
 
 export default function BurgerMenu() {
   const [state, setState] = React.useState({
@@ -81,7 +82,9 @@ export default function BurgerMenu() {
     <div>
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>MENU</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon sx={{ fontSize: "x-large", color: "white" }} />
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

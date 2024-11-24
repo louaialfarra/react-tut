@@ -7,6 +7,7 @@ import cartImage from "../../assets/cart.png";
 import Dropdown from "../Dropdown/Dropdown";
 import { ProductContext } from "../../Context/ShopContext";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function Header() {
   const [menu, setMenu] = useState("home");
@@ -49,19 +50,30 @@ function Header() {
 
   return (
     <div className="header-container">
-      <div className="header-left">
-        <BurgerMenu Tmenu={toggleMenu} />
+      <div className="header-top">
+        <div className="header-left">
+          <div className="burg-menu">
+            <BurgerMenu Tmenu={toggleMenu} />
+          </div>
 
-        <div className="logo">
-          <img src={logo} alt="Logo" />
+          <div className="search-bar">
+            <Search />
+          </div>
         </div>
-        <Search />
-        <div className="Text">
-          <h3>Online Shop</h3>
+        <div className="header-mid">
+          <div className="logo">
+            <img src={logo} alt="Logo" />
+          </div>
+        </div>
+        <div className="header-right">
+          <div onClick={() => setMenu("cart")} className="cart">
+            <Link to={"./cart"}>
+              <ShoppingCartIcon sx={{ color: "white", fontSize: "x-large" }} />
+            </Link>
+          </div>
         </div>
       </div>
-
-      <div className="header-right">
+      <div className="header-bot">
         <div className="menu">
           <ul>
             <li onClick={() => setMenu("home")}>
@@ -105,11 +117,6 @@ function Header() {
               {menu === "about" ? <hr /> : null}
             </li>
           </ul>
-        </div>
-        <div onClick={() => setMenu("cart")} className="cart">
-          <Link to={"./cart"}>
-            <img src={cartImage} alt="Cart" />
-          </Link>
         </div>
       </div>
     </div>

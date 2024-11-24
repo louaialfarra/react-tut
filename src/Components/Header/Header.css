@@ -1,4 +1,4 @@
-.header-container {
+.header-top {
   background-color: black;
   display: flex;
   justify-content: space-between;
@@ -11,18 +11,30 @@
   align-items: center;
   gap: 20px;
 }
-.header-left .logo img {
+.header-left .burg-menu {
+  display: none;
+}
+.header-mid .logo img {
   height: 50px;
 }
 
-.header-right {
+.header-container .header-bot {
   display: flex;
   justify-content: space-between;
   gap: 25px;
   align-items: center;
 }
 
-.header-right .menu ul {
+.header-bot {
+  width: 100%;
+}
+.header-bot .menu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-bot .menu ul {
   list-style: none;
   display: flex;
   gap: 28px;
@@ -31,11 +43,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.header-right .menu ul li {
+.header-bot .menu ul li {
   cursor: pointer;
 }
 
-.header-right .menu hr {
+.header-bot .menu hr {
   background-color: brown;
   border: none;
   height: 3px;
@@ -95,4 +107,20 @@
   margin-bottom: 15px;
   align-self: flex-end;
   color: black;
+}
+
+@media (max-width: 768px) {
+  .header-container .header-top {
+    align-items: center;
+  }
+  .header-container .header-bot {
+    display: none;
+  }
+
+  .search-bar {
+    display: none;
+  }
+  .header-left .burg-menu {
+    display: block;
+  }
 }
