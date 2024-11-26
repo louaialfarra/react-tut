@@ -1,0 +1,32 @@
+.input {
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  background: none;
+  border: 4px solid #ffffff;
+  border-radius: 50px;
+  box-sizing: border-box;
+  font-family: Comic Sans MS;
+  font-size: 26px;
+  color: #ffffff;
+  outline: none;
+  transition: 0.5s;
+}
+.box:hover input {
+  width: 350px;
+  background: #3b3640;
+  border-radius: 10px;
+}
+.box {
+  position: relative;
+}
+.new-search {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.box:hover .search-icon {
+  opacity: 0;
+  z-index: -1;
+}

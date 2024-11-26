@@ -232,12 +232,6 @@ const Home = () => {
             <button style={{ padding: "24px", fontSize: "1.2rem" }}>
               Filter me
             </button>
-            <Button variant="contained" sx={{ backgroundColor: "red" }}>
-              Contained
-            </Button>
-            {products.map((p) => (
-              <li>{p.attributes[0]?.options}</li>
-            ))}
           </div>
           <div style={{ flex: "6" }}>
             <h1> NEW PRODUCTS</h1>
@@ -279,7 +273,6 @@ const Home = () => {
           </div>
         </div>
 
-        <h1>What Next</h1>
         <div>
           <button onClick={handlBackPage}>PREV PAGE</button>
           <span>

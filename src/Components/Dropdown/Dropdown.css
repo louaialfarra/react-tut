@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
 }
-.header-right .menu ul .dropdown-menu {
+.header-bot .menu ul .dropdown-menu {
   gap: 0px;
 }
 .dropdown-menu {
