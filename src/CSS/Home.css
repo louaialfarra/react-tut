@@ -26,3 +26,11 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
+.car-slide {
+  cursor: pointer;
+  outline: none;
+}
+.car-slide img:focus {
+  cursor: pointer;
+  outline: none;
+}

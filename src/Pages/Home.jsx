@@ -10,6 +10,11 @@ import Item2 from "../Components/Item/Item2";
 import FilterComponent from "../Components/Filter/Filter";
 import "../CSS/Home.css";
 import { Button } from "@mui/material";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+
+import car1 from "../assets/carImages/car1.jpg";
+import car2 from "../assets/carImages/car2.jpg";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
@@ -224,6 +229,19 @@ const Home = () => {
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>
+        <Carousel
+          autoPlay={true}
+          infiniteLoop={true}
+          emulateTouch={true}
+          className="car-slide"
+        >
+          <div>
+            <img src={car1} alt="doda" />
+          </div>
+          <div>
+            <img src={car2} alt="doda" />
+          </div>
+        </Carousel>
         <Hero />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ flex: "1" }}>

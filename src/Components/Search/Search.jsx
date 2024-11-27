@@ -101,8 +101,7 @@ const Search = () => {
           </ul>
         )}
       </div>
-
-      <div className="new-search">
+      {/* <div className="new-search">
         <div className="box">
           <input
             type="text"
@@ -128,7 +127,7 @@ const Search = () => {
             className="search-icon"
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
