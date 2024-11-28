@@ -235,13 +235,10 @@ const Home = () => {
           emulateTouch={true}
           className="car-slide"
         >
-          <div>
-            <img src={car1} alt="doda" />
-          </div>
-          <div>
-            <img src={car2} alt="doda" />
-          </div>
+          <img src={car1} alt="doda" />
+          <img src={car2} alt="doda" />
         </Carousel>
+
         <Hero />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ flex: "1" }}>

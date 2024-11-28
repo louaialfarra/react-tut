@@ -29,8 +29,10 @@
 .car-slide {
   cursor: pointer;
   outline: none;
+  user-select: none; /* Disable selection */
+  -webkit-user-drag: none; /* Disable dragging in WebKit browsers */
 }
-.car-slide img:focus {
-  cursor: pointer;
-  outline: none;
+
+.car-slide img {
+  display: none;
 }
