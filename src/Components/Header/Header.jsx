@@ -15,7 +15,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null); // Ref to track the menu element
 
-  const { category } = useContext(ProductContext);
+  const { category, cart } = useContext(ProductContext);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -67,7 +67,12 @@ function Header() {
         </div>
         <div className="header-right">
           <div onClick={() => setMenu("cart")} className="cart">
-            <Link to={"./cart"}>
+            <Link
+              to={"./cart"}
+              style={{ textDecoration: "none", color: "unset" }}
+            >
+              <div className="cart-num">{cart.length}</div>
+
               <ShoppingCartIcon sx={{ color: "white", fontSize: "x-large" }} />
             </Link>
           </div>

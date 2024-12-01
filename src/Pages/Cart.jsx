@@ -12,6 +12,7 @@ const Cart = () => {
     setCurrency(storedCurrency);
   }
   if (cart.length === 0) return <div>Your cart is empty.</div>;
+
   return (
     <div className="cart-container">
       <h2>Your Cart</h2>
