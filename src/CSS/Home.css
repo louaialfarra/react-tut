@@ -36,3 +36,7 @@
 .car-slide img {
   display: none;
 }
+/* This is to set the carousel heigh edit it if it needs 
+.carousel.carousel-slider {
+  height: 400px;
+}*/

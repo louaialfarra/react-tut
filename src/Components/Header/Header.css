@@ -109,12 +109,17 @@
   color: black;
 }
 .cart-num {
+  position: absolute;
+  top: 30px;
+  right: 30px;
   background-color: red;
   text-align: center;
   align-content: center;
-  height: 24px;
-  width: 24px;
+  height: 18px;
+  width: 18px;
   border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 900;
 }
 
 @media (max-width: 768px) {

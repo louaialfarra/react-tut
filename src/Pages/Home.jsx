@@ -15,12 +15,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 import car1 from "../assets/carImages/car1.jpg";
 import car2 from "../assets/carImages/car2.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
   const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
+
+  const navigate = useNavigate();
 
   const { products, setProducts } = useContext(ProductContext);
   const { currentPage, setCurrentPage } = useContext(ProductContext);
@@ -226,10 +229,23 @@ const Home = () => {
     return updatedFilters;
   });
 };new one */
+
+  const handleSlideClick = (index, slide) => {
+    switch (index) {
+      case 0:
+        navigate("/about");
+      case 1:
+        navigate("/cart");
+      default:
+      // Handle default case return null;
+    }
+  };
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>
         <Carousel
+          onClickItem={handleSlideClick}
+          showStatus={false}
           autoPlay={true}
           infiniteLoop={true}
           emulateTouch={true}
@@ -238,8 +254,8 @@ const Home = () => {
           <img src={car1} alt="doda" />
           <img src={car2} alt="doda" />
         </Carousel>
+        {/* delet hero compnent <Hero /> */}
 
-        <Hero />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ flex: "1" }}>
             this is the new filter
@@ -287,14 +303,13 @@ const Home = () => {
             )}
           </div>
         </div>
-
-        <div>
+        {/* delete pages <div>
           <button onClick={handlBackPage}>PREV PAGE</button>
           <span>
             {currentPage} of {totalPages}
           </span>
           <button onClick={handleNextPage}>NEXT PAGE</button>
-        </div>
+        </div> */}
       </div>
     </SkeletonTheme>
   );
