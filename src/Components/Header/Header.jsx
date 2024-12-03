@@ -8,6 +8,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import { ProductContext } from "../../Context/ShopContext";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [menu, setMenu] = useState("home");
@@ -15,6 +16,7 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null); // Ref to track the menu element
 
+  const navigate = useNavigate();
   const { category, cart } = useContext(ProductContext);
 
   const toggleMenu = () => {
@@ -61,7 +63,13 @@ function Header() {
           </div>
         </div>
         <div className="header-mid">
-          <div className="logo">
+          <div
+            style={{ cursor: "pointer" }}
+            className="logo"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <img src={logo} alt="Logo" />
           </div>
         </div>

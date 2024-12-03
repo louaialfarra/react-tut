@@ -110,8 +110,7 @@
 }
 .cart-num {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  transform: translate(80%, -50%);
   background-color: red;
   text-align: center;
   align-content: center;
