@@ -32,8 +32,9 @@ const Dropdown = (props) => {
   return (
     <div
       className="dropdown-container"
-      onMouseEnter={() => setOpenDropdown(true)}
-      onMouseLeave={() => setOpenDropdown(false)}
+      onClick={() => setOpenDropdown(!openDropdown)}
+      //onMouseEnter={() => setOpenDropdown(true)}
+      // onMouseLeave={() => setOpenDropdown(false)}
     >
       <span
         style={{ fontFamily: "sans-serif", zIndex: 10 }}

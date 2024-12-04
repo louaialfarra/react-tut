@@ -8,20 +8,18 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Link } from "react-router-dom";
-import { Icon, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Dropdown from "../Dropdown/Dropdown";
 import { useState, useEffect } from "react";
-import MenuIcon from "@mui/icons-material/Menu"; // Import the Menu icon
+import MenuIcon from "@mui/icons-material/Menu";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function BurgerMenu() {
   const [state, setState] = React.useState({
     left: false,
   });
   const [storedCategory, setStoredCategory] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedCategories = localStorage.getItem("categories");
@@ -41,6 +39,11 @@ export default function BurgerMenu() {
     setState({ ...state, [anchor]: open });
   };
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    setState({ ...state, left: false }); // Close the drawer
+  };
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -56,14 +59,14 @@ export default function BurgerMenu() {
           { text: "Contact", path: "/contact" },
         ].map((item, index) => (
           <ListItem key={item.text} disablePadding>
-            <ListItemButton component={Link} to={item.path}>
+            <ListItemButton onClick={() => handleNavigation(item.path)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={(event) => event.stopPropagation()}>
             <ListItemIcon></ListItemIcon>
             <Dropdown
               subcat={storedCategory.filter(
