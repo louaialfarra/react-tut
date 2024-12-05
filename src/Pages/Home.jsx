@@ -34,6 +34,7 @@ const Home = () => {
   const [continueFetch, setContinueFetch] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [selectedFilters, setSelectedFilters] = useState({});
+  const [selectedSlide, setSelectedSlide] = useState(0);
 
   useEffect(() => {
     const fetchCurrency = async () => {
@@ -140,7 +141,7 @@ const Home = () => {
   }, [totalPages]); // Runs when totalPages or continueFetch changes
 
   // here need some update or delets figure new way  write the way then ask gpt
-
+  /*
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -151,7 +152,7 @@ const Home = () => {
       setCurrentPage(currentPage - 1);
     }
   };
-
+*/
   useEffect(() => {
     // Filter products based on selectedFilters
     const filterProducts = () => {
@@ -231,11 +232,18 @@ const Home = () => {
 };new one */
 
   const handleSlideClick = (index, slide) => {
+    setSelectedSlide(index);
     switch (index) {
       case 0:
         navigate("/about");
+        console.log(index + "case 0");
+        break;
+
       case 1:
         navigate("/cart");
+        console.log(index + "case 1");
+
+        break;
       default:
       // Handle default case return null;
     }
@@ -244,6 +252,7 @@ const Home = () => {
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>
         <Carousel
+          selectedItem={selectedSlide}
           onClickItem={handleSlideClick}
           showStatus={false}
           autoPlay={true}
@@ -260,11 +269,8 @@ const Home = () => {
           <div style={{ flex: "1" }}>
             this is the new filter
             <FilterComponent onFilterChange={handleFilterChange} />
-            <button style={{ padding: "24px", fontSize: "1.2rem" }}>
-              Filter me
-            </button>
           </div>
-          <div style={{ flex: "6" }}>
+          <div style={{ flex: "6", justifyItems: "center" }}>
             <h1> NEW PRODUCTS</h1>
             {loading ? (
               <div
