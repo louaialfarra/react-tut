@@ -30,9 +30,15 @@ const Item2 = (props) => {
           <span className="product-title">
             {props.name}
             <span className="price-tag">
-              <p>{props.regularprice}</p>
-              {console.log(props.regularprice + "this is regular prce")}
-              <p>{(props.price * currency).toLocaleString()} &nbsp; S.P</p>
+              {props.onsale ? (
+                <div>
+                  <p>{props.regularprice}</p>
+                  {console.log(props.regularprice + "this is regular prce")}
+                  <p>{(props.price * currency).toLocaleString()} &nbsp; S.P</p>
+                </div>
+              ) : (
+                <p>{(props.price * currency).toLocaleString()} &nbsp; S.P</p>
+              )}
             </span>
           </span>
         </div>

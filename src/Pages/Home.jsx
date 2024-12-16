@@ -301,7 +301,7 @@ const Home = () => {
                         .map((data, index) => {
                           return (
                             <div key={index}>
-                              {(data.value * currency).toLocaleString()};
+                              {(data.value * currency).toLocaleString()}
                             </div>
                           );
                         })}
