@@ -8,8 +8,17 @@
 }
 .header-left {
   display: flex;
+  flex: 1;
   align-items: center;
   gap: 20px;
+}
+.header-mid {
+  justify-items: center;
+  flex: 1;
+}
+.header-right {
+  flex: 1;
+  justify-items: flex-end;
 }
 .header-left .burg-menu {
   display: none;
@@ -135,4 +144,7 @@
   .header-left .burg-menu {
     display: block;
   }
-}
+} /*
+.header-container {
+  display: flex;
+}*/

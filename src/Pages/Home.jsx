@@ -299,7 +299,11 @@ const Home = () => {
                       regularprice={product.meta_data
                         .filter((data) => data.key === "custom_price")
                         .map((data, index) => {
-                          return <div key={index}>{data.value * currency}</div>;
+                          return (
+                            <div key={index}>
+                              {(data.value * currency).toLocaleString()};
+                            </div>
+                          );
                         })}
                       onsale={product.on_sale ? <div>SALE</div> : null}
                     />

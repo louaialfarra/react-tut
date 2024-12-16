@@ -55,7 +55,7 @@ const Search = () => {
     <div className="search-container">
       <div style={{ position: "relative", width: "100%" }}>
         <input
-          style={{ width: "100%", padding: "8px" }}
+          style={{ padding: "8px" }}
           type="text"
           value={search}
           placeholder="Search products..."
