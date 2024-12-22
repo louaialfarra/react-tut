@@ -169,3 +169,16 @@ ul {
 .card .add-to-cart-btn button:hover {
   background-position: 100% 100%;
 }
+
+.price-tag-div {
+  display: flex;
+  justify-content: space-between;
+}
+.price-tag-div p {
+  display: flex;
+}
+
+.price-tag .price-tag-div .old-price p {
+  color: rgb(114, 114, 114);
+  text-decoration: line-through;
+}
