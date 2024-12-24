@@ -30,3 +30,7 @@
   opacity: 0;
   z-index: -1;
 }
+.search-container {
+  display: flex;
+  align-items: center;
+}

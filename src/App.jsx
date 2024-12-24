@@ -12,6 +12,8 @@ import Checkout from "./Pages/Checkout";
 import Footer from "./Components/Footer/Footer";
 import Category from "./Pages/Category";
 import NewHomePage from "./Pages/NewHomePage";
+import SearchResult from "./Pages/SearchResult";
+
 function App() {
   return (
     <ShopContextProvider>
@@ -22,7 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/cart/checkout" element={<Checkout />} />
-
+          <Route path="/searchresult" element={<SearchResult />} />
           <Route path="/shopcategory" element={<Shopcategory />} />
           <Route path="shopcategory/:category" element={<Category />} />
 

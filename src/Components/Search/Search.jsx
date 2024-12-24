@@ -22,8 +22,8 @@ const Search = () => {
   const handleSearchChange = async (e) => {
     const input = e.target.value;
     setSearch(input);
-
-    if (input.length > 2) {
+    console.log(input);
+    /*if (input.length > 2) {
       try {
         const response = await axios.get(
           `${WOO_URL}/products?search=${input}`,
@@ -43,12 +43,35 @@ const Search = () => {
       }
     } else {
       setDropDown(false);
-    }
+    }*/
   };
 
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
     setDropDown(false);
+  };
+  const handleSearchButton = async () => {
+    if (search.length > 2) {
+      try {
+        const response = await axios.get(
+          `${WOO_URL}/products?search=${search}`,
+          {
+            params: {
+              consumer_key: CONSUMER_KEY,
+              consumer_secret: CONSUMER_SECRET,
+              status: "publish",
+              per_page: 100,
+            },
+          }
+        );
+        navigate("/searchresult", { state: { results: response.data } });
+      } catch (e) {
+        console.error("Error fetching products: ", e);
+        setDropDown(false);
+      }
+    } else {
+      setDropDown(false);
+    }
   };
 
   return (
@@ -128,6 +151,11 @@ const Search = () => {
           />
         </div>
       </div> */}
+      <div onClick={handleSearchButton}>
+        <SearchIcon
+          sx={{ fontSize: "32px", marginLeft: "15px", cursor: "pointer" }}
+        />
+      </div>
     </div>
   );
 };
