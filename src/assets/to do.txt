@@ -1,3 +1,9 @@
-  1-  make search page   after i click on search 
+  1-  make search page   after i click on search  DONE!
   2-  style the filter in desktop view   and in the mobile view make it button 
-  3- configur the loading activity indicator to all the website
+  3- configur the loading activity indicator  to all the website
+  4- add animation to some buttons
+
+
+
+
+  *- recheck with mobile view 

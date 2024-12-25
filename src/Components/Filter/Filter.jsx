@@ -70,16 +70,46 @@ const FilterComponent = (props) => {
           {attributes[attributeName].map((option) => {
             const isChecked =
               selectedOptions[attributeName]?.includes(option) || false;
-            return (
-              <label key={option} className="option-label">
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => handleAttributeChange(attributeName, option)}
-                />
-                {option}
-              </label>
-            );
+            if (attributeName.toLowerCase() === "color") {
+              return (
+                <label key={option} className="option-label">
+                  {" "}
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() =>
+                      handleAttributeChange(attributeName, option)
+                    }
+                    style={{ display: "none" }}
+                  />
+                  <span
+                    className="color-box"
+                    style={{
+                      backgroundColor: option.toLowerCase(),
+                      width: "20px",
+                      height: "20px",
+                      display: "inline-block",
+                      border: "1px solid #ccc",
+                      margin: "0 5px",
+                      cursor: "pointer",
+                    }}
+                  />
+                </label>
+              );
+            } else {
+              return (
+                <label key={option} className="option-label">
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() =>
+                      handleAttributeChange(attributeName, option)
+                    }
+                  />
+                  {option}
+                </label>
+              );
+            }
           })}
         </div>
       ))}
