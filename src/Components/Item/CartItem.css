@@ -1,0 +1,41 @@
+.invoice-label {
+  display: flex;
+}
+.product-label {
+  flex: 3;
+}
+.price-label,
+.sub-label,
+.quantity-label {
+  flex: 1;
+}
+
+.image-container {
+  background-color: red;
+  height: 100px;
+  width: 100px;
+}
+.line {
+  height: 2px;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  background: rgb(141, 141, 141);
+  justify-self: center;
+}
+
+.product-name,
+.price-name,
+.quantity-name,
+.sub-name {
+  height: 100px;
+  align-content: center;
+}
+.cart-image-container img {
+  height: 100px;
+  width: 100px;
+}
+.cart-container {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}

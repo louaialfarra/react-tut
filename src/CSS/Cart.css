@@ -1,6 +1,6 @@
-.cart-container img {
+/*.cart-container img {
   width: 200px;
-}
+}*/
 .style-button {
   background-color: #4caf50; /* Green */
   border: none;
@@ -17,4 +17,9 @@
 }
 .style-button:hover {
   background-color: #45a049;
+}
+.invoice {
+  background-color: gray;
+  display: flex;
+  padding: 8px;
 }

@@ -36,10 +36,10 @@ const Item2 = (props) => {
                     <p>{props.regularprice}&nbsp;S.P</p>
                   </span>
                   {console.log(props.regularprice + "this is regular prce")}
-                  <p>{(props.price * currency).toLocaleString()}&nbsp;S.P</p>
+                  <p>{(props.price * currency).toLocaleString()}&nbsp;SYP</p>
                 </div>
               ) : (
-                <p>{(props.price * currency).toLocaleString()}&nbsp;S.P</p>
+                <p>{(props.price * currency).toLocaleString()}&nbsp;SYP</p>
               )}
             </span>
           </span>
