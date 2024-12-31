@@ -20,10 +20,29 @@ const FilterComponent = (props) => {
           });
         });
       });
+      const sizeOrder = ["XS", "S", "M", "L", "XL", "XXL"];
 
       const formatAttributes = Object.keys(attributeMap).reduce((acc, key) => {
-        acc[key] = Array.from(attributeMap[key]);
+        let sortedOptions = Array.from(attributeMap[key]);
+
+        if (key.toLowerCase() === "size") {
+          sortedOptions.sort(
+            (a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b)
+          );
+        } else {
+          sortedOptions.sort((a, b) => {
+            const aNum = parseFloat(a);
+            const bNum = parseFloat(b);
+            if (isNaN(aNum) || isNaN(bNum)) {
+              // Handle non-numeric values if necessary
+              return a.localeCompare(b);
+            }
+            return aNum - bNum;
+          });
+        }
+        acc[key] = sortedOptions;
         return acc;
+        acc;
       }, {});
 
       setAttributes(formatAttributes);
@@ -73,7 +92,6 @@ const FilterComponent = (props) => {
             if (attributeName.toLowerCase() === "color") {
               return (
                 <label key={option} className="option-label">
-                  {" "}
                   <input
                     type="checkbox"
                     checked={isChecked}

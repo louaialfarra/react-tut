@@ -62,17 +62,22 @@ const Cart = () => {
           </div>
         );
       })}
-      <div>
-        <h1>
-          TOTAL
-          <p>Total Price: {total.totalPrice.toLocaleString()}</p>{" "}
-          <p>Total Quantity: {total.totalQuantity}</p>
-        </h1>
-      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <h3 style={{ margin: "0px" }}>Total Quantity: {total.totalQuantity}</h3>
 
-      <Link className="style-button" to={"./checkout"}>
-        chckout
-      </Link>
+        <h1>Total Price: {total.totalPrice.toLocaleString()}</h1>
+      </div>
+      <div className="checkout-button">
+        <Link className="style-button" to={"./checkout"}>
+          <h4 style={{ margin: "0px" }}>Checkout</h4>
+        </Link>
+      </div>
     </div>
   );
 };
