@@ -12,6 +12,9 @@ import "../CSS/Home.css";
 import { Button } from "@mui/material";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+import FilterPopup from "../Components/FilterPopup/FilterPopup";
 
 import car1 from "../assets/carImages/car1.jpg";
 import car2 from "../assets/carImages/car2.jpg";
@@ -25,6 +28,8 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  const [opendModal, setOpendModal] = useState(false);
+
   const { products, setProducts } = useContext(ProductContext);
   const { currentPage, setCurrentPage } = useContext(ProductContext);
   const { totalPages, setTotalPages } = useContext(ProductContext);
@@ -35,6 +40,9 @@ const Home = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [selectedFilters, setSelectedFilters] = useState({});
   const [selectedSlide, setSelectedSlide] = useState(0);
+
+  const isDesktop = useMediaQuery("(min-width:1024px)");
+  const isMobile = useMediaQuery("(max-width:630px)");
 
   useEffect(() => {
     const fetchCurrency = async () => {
@@ -268,7 +276,27 @@ const Home = () => {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ flex: "1" }}>
             this is the new filter
-            <FilterComponent onFilterChange={handleFilterChange} />
+            {isDesktop && (
+              <FilterComponent onFilterChange={handleFilterChange} />
+            )}
+            {isMobile && (
+              <>
+                <button
+                  onClick={() => {
+                    setOpendModal(true);
+                  }}
+                >
+                  FILTER ME
+                </button>
+                <FilterPopup
+                  opened={opendModal}
+                  closed={() => {
+                    setOpendModal(false);
+                  }}
+                  onFilterChangeofPops={handleFilterChange}
+                />
+              </>
+            )}
           </div>
           <div style={{ flex: "6", justifyItems: "center" }}>
             <h1> NEW PRODUCTS</h1>
