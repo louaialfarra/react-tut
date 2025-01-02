@@ -1,0 +1,8 @@
+/* Style for the input (checkbox) */
+.option-label input[type="checkbox"]:checked + .color-box {
+  border: 4px solid black; /* Apply black border when checked */
+}
+
+.option-label .color-box {
+  border: 4px solid rgb(199, 199, 199);
+}

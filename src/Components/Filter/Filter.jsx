@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../Context/ShopContext";
+import "./Filter.css";
 
 const FilterComponent = (props) => {
   const { products } = useContext(ProductContext);
@@ -107,7 +108,6 @@ const FilterComponent = (props) => {
                       width: "20px",
                       height: "20px",
                       display: "inline-block",
-                      border: "1px solid #ccc",
                       margin: "0 5px",
                       cursor: "pointer",
                     }}
