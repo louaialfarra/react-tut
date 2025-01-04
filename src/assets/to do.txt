@@ -1,10 +1,20 @@
   1- make search page   after i click on search  DONE!!!!!!!!
-  2- style the filter in desktop view   and in the mobile view make it button 
+  2- style the filter in desktop view   and in the mobile view make it button  DONE !!!!!!
   3- configur the loading activity indicator  to all the website
   4- add animation to some buttons
   5- style the cart page  DONE !!!!!!!!
-  6- sort the filer 36 to 45  and xs to xxl
+  6- sort the filer 36 to 45  and xs to xxl  DONE !!!!!!
+  7-when  click on the back  go back to the same position where left 
 
+
+
+  8- create a new home page  and configure the single product page 
+  
+
+
+
+
+  MOBILE & TAB VIEW 
 
 
   *- recheck with mobile view 

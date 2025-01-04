@@ -3,6 +3,8 @@ import { ProductContext } from "../Context/ShopContext";
 import Item2 from "../Components/Item/Item2";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import NewHomePage from "./NewHomePage";
+
 const Category = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
@@ -60,6 +62,7 @@ const Category = () => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     const storedCurrency = JSON.parse(localStorage.getItem("currency"));
 
@@ -121,6 +124,7 @@ const Category = () => {
   return (
     <div>
       <h1>{category.toUpperCase()}</h1>
+      <NewHomePage />
       <div className="grid-container">
         {filteredProducts.map((product, i) => {
           return (

@@ -275,7 +275,6 @@ const Home = () => {
 
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ flex: "1" }}>
-            this is the new filter
             {isDesktop && (
               <FilterComponent onFilterChange={handleFilterChange} />
             )}

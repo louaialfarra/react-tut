@@ -83,7 +83,7 @@ const FilterComponent = (props) => {
 
   return (
     <div className="filter-component">
-      <h3>Filter by Attributes</h3>
+      <h3>Filter by</h3>
       {Object.keys(attributes).map((attributeName) => (
         <div key={attributeName} className="attribute-group">
           <h4>{attributeName}</h4>
