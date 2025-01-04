@@ -108,7 +108,7 @@ function Header() {
                 style={{ textDecoration: "none", color: "unset" }}
                 to={"/shopcategory"}
               >
-                Shop
+                Categories
               </Link>
               {menu === "shop" ? <hr /> : null}
             </li>

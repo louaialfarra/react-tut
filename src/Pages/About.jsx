@@ -1,4 +1,12 @@
 const About = () => {
-  return <div>THIS IS ABOUT</div>;
+  return (
+    <div
+      style={{
+        minHeight: "70vh",
+      }}
+    >
+      THIS IS ABOUT
+    </div>
+  );
 };
 export default About;

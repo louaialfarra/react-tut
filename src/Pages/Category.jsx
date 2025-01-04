@@ -123,8 +123,9 @@ const Category = () => {
   }, [totalPages]); // Runs when totalPages or continueFetch changes
   return (
     <div>
-      <h1>{category.toUpperCase()}</h1>
       <NewHomePage />
+      <h1>{category.toUpperCase()}</h1>
+
       <div className="grid-container">
         {filteredProducts.map((product, i) => {
           return (

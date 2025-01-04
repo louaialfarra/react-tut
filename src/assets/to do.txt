@@ -9,9 +9,9 @@
 
 
   8- create a new home page  and configure the single product page 
-  
+   style the category  page and fix it STAR TWITH IT
 
-
+ fix burger menu  category view and the color
 
 
   MOBILE & TAB VIEW 

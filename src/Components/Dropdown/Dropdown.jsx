@@ -40,7 +40,7 @@ const Dropdown = (props) => {
         style={{ fontFamily: "sans-serif", zIndex: 10 }}
         className="dropdown-trigger"
       >
-        Categories
+        Categories OLD
       </span>
       {openDropdown && (
         <ul className="dropdown-menu">

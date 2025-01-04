@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const NewHomePage = () => {
   const { category } = useContext(ProductContext);
   const [newCat, setNewCat] = useState([]);
+  const [selectedCat, setSelectedCat] = useState("");
   const navigate = useNavigate();
 
   const handleNavigation = (category) => {
@@ -15,10 +16,16 @@ const NewHomePage = () => {
   useEffect(() => {
     const savedCategory = localStorage.getItem("categories");
     if (savedCategory) {
-      setNewCat(JSON.parse(savedCategory));
+      const parsedCategories = JSON.parse(savedCategory);
+      const filteredCategories = parsedCategories.filter(
+        (cat) => cat.name !== "Uncategorized"
+      );
+      setNewCat(filteredCategories);
     } else if (category && category.length > 0) {
-      setNewCat(category);
-      localStorage.setItem("categories", JSON.stringify(category));
+      const filteredCategories = category.filter(
+        (cat) => cat.name !== "Uncategorized"
+      );
+      setNewCat(filteredCategories);
     }
   }, []);
 
@@ -26,12 +33,17 @@ const NewHomePage = () => {
     <div className="newhome-container">
       {newCat.map((cat) => (
         <div
+          key={cat.name}
           className="list-container"
           onClick={() => {
+            setSelectedCat(cat.name);
             handleNavigation(cat.name);
           }}
         >
-          <img className="cat-img" src={cat.image?.src} />
+          <img
+            className={`cat-img ${selectedCat === cat.name ? "selected" : ""}`}
+            src={cat.image?.src}
+          />
           {cat.name}
         </div>
       ))}

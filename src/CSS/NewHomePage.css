@@ -8,6 +8,7 @@
   padding-left: 20px;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 }
 .cat-img {
   height: 60px;
@@ -15,4 +16,7 @@
   border: 5px solid rgb(255, 0, 208);
   border-radius: 50%;
   padding: 4px;
+}
+.newhome-container .selected {
+  border: 8px solid rgb(14, 127, 188);
 }
