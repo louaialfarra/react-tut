@@ -9,7 +9,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Item2 from "../Components/Item/Item2";
 import FilterComponent from "../Components/Filter/Filter";
 import "../CSS/Home.css";
-import { Button } from "@mui/material";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -19,7 +18,6 @@ import FilterPopup from "../Components/FilterPopup/FilterPopup";
 import car1 from "../assets/carImages/car1.jpg";
 import car2 from "../assets/carImages/car2.jpg";
 import { useNavigate } from "react-router-dom";
-import { UpdateDisabled } from "@mui/icons-material";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;

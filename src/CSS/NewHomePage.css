@@ -9,6 +9,10 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 .cat-img {
   height: 60px;
@@ -16,7 +20,10 @@
   border: 5px solid rgb(255, 0, 208);
   border-radius: 50%;
   padding: 4px;
+  -webkit-user-drag: none; /* Chrome, Safari, and Opera */
+  -moz-user-drag: none; /* Firefox */
+  -ms-user-drag: none; /* Internet Explorer/Edge */
 }
-.newhome-container .selected {
+.list-container .selected {
   border: 8px solid rgb(14, 127, 188);
 }

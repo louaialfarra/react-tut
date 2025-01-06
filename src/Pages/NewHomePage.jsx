@@ -6,15 +6,36 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 const NewHomePage = () => {
   const { category } = useContext(ProductContext);
   const [newCat, setNewCat] = useState([]);
   const [selectedCat, setSelectedCat] = useState("All");
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
   const navigate = useNavigate();
 
   const handleNavigation = (category) => {
     navigate(`/shopcategory/${category.toLowerCase().replace(/\s+/g, "-")}`);
   };
+  const handleMouseDown = (e) => {
+    setStartX(e.clientX);
+    setIsDragging(false);
+  };
+  const handleMouseMove = (e) => {
+    if (Math.abs(e.clientX - startX) > 5) {
+      setIsDragging(true);
+    }
+  };
+  const handlClick = (cat) => {
+    if (!isDragging) {
+      setSelectedCat(cat.name);
+      handleNavigation(cat.name);
+    }
+  };
+
   const settings = {
     dots: true,
     infinite: false,
@@ -24,6 +45,21 @@ const NewHomePage = () => {
     arrows: true,
     draggable: true,
     slidesToScroll: 1,
+  };
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 10,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 8,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 4,
+    },
   };
 
   useEffect(() => {
@@ -43,15 +79,16 @@ const NewHomePage = () => {
   }, []);
 
   return (
-    <div className="">
-      <div className="newhome-container">
+    <div>
+      {/* <div className="newhome-container">
         {newCat.map((cat) => (
           <div
             key={cat.name}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
             className="list-container"
             onClick={() => {
-              setSelectedCat(cat.name);
-              handleNavigation(cat.name);
+              handlClick(cat);
             }}
           >
             <img
@@ -63,18 +100,22 @@ const NewHomePage = () => {
             {cat.name}
           </div>
         ))}
-      </div>
+      </div>*/}
 
       <div>
-        <Slider {...settings}>
+        <Carousel
+          responsive={responsive}
+          swipeable={true}
+          draggable={true}
+          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+        >
           {newCat.map((cat) => (
             <div
               key={cat.name}
               className="list-container"
-              onClick={() => {
-                setSelectedCat(cat.name);
-                handleNavigation(cat.name);
-              }}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onClick={() => handlClick(cat)}
             >
               <img
                 className={`cat-img ${
@@ -85,7 +126,7 @@ const NewHomePage = () => {
               {cat.name}
             </div>
           ))}
-        </Slider>
+        </Carousel>
       </div>
     </div>
   );
