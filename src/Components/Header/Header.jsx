@@ -106,7 +106,7 @@ function Header() {
             <li onClick={() => setMenu("shop")}>
               <Link
                 style={{ textDecoration: "none", color: "unset" }}
-                to={"/shopcategory"}
+                to={"/shopcategory/all"}
               >
                 Categories
               </Link>

@@ -19,6 +19,7 @@ import FilterPopup from "../Components/FilterPopup/FilterPopup";
 import car1 from "../assets/carImages/car1.jpg";
 import car2 from "../assets/carImages/car2.jpg";
 import { useNavigate } from "react-router-dom";
+import { UpdateDisabled } from "@mui/icons-material";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
@@ -75,8 +76,12 @@ const Home = () => {
           },
         });
 
-        setCategory(response.data);
-        localStorage.setItem("categories", JSON.stringify(response.data));
+        const allCat = { name: "All", id: "all" };
+
+        const updateCat = [allCat, ...response.data];
+
+        setCategory(updateCat);
+        localStorage.setItem("categories", JSON.stringify(updateCat));
         console.log("this is category" + response.data);
       } catch (e) {}
     };

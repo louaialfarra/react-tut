@@ -71,12 +71,16 @@ const Category = () => {
     }
     // Need to add else fetch the currency
   }, []);
+
   useEffect(() => {
     // Fetch page 1 first
     if (products.length === 0) {
       fetchProduct(1);
     } else {
       const filter = products.filter((product) => {
+        if (category === "all") {
+          return true;
+        }
         if (category === "bottoms") {
           const bottomCategory = [
             "pants",

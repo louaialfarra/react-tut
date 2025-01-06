@@ -2,15 +2,28 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../Context/ShopContext";
 import "../CSS/NewHomePage.css";
 import { useNavigate } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const NewHomePage = () => {
   const { category } = useContext(ProductContext);
   const [newCat, setNewCat] = useState([]);
-  const [selectedCat, setSelectedCat] = useState("");
+  const [selectedCat, setSelectedCat] = useState("All");
   const navigate = useNavigate();
 
   const handleNavigation = (category) => {
     navigate(`/shopcategory/${category.toLowerCase().replace(/\s+/g, "-")}`);
+  };
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 15,
+    swipeToSlide: true, // This allows the user to swipe and move slides smoothly
+    arrows: true,
+    draggable: true,
+    slidesToScroll: 1,
   };
 
   useEffect(() => {
@@ -30,23 +43,50 @@ const NewHomePage = () => {
   }, []);
 
   return (
-    <div className="newhome-container">
-      {newCat.map((cat) => (
-        <div
-          key={cat.name}
-          className="list-container"
-          onClick={() => {
-            setSelectedCat(cat.name);
-            handleNavigation(cat.name);
-          }}
-        >
-          <img
-            className={`cat-img ${selectedCat === cat.name ? "selected" : ""}`}
-            src={cat.image?.src}
-          />
-          {cat.name}
-        </div>
-      ))}
+    <div className="">
+      <div className="newhome-container">
+        {newCat.map((cat) => (
+          <div
+            key={cat.name}
+            className="list-container"
+            onClick={() => {
+              setSelectedCat(cat.name);
+              handleNavigation(cat.name);
+            }}
+          >
+            <img
+              className={`cat-img ${
+                selectedCat === cat.name ? "selected" : ""
+              }`}
+              src={cat.image?.src}
+            />
+            {cat.name}
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <Slider {...settings}>
+          {newCat.map((cat) => (
+            <div
+              key={cat.name}
+              className="list-container"
+              onClick={() => {
+                setSelectedCat(cat.name);
+                handleNavigation(cat.name);
+              }}
+            >
+              <img
+                className={`cat-img ${
+                  selectedCat === cat.name ? "selected" : ""
+                }`}
+                src={cat.image?.src}
+              />
+              {cat.name}
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
