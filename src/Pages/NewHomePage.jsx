@@ -4,7 +4,6 @@ import "../CSS/NewHomePage.css";
 import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
