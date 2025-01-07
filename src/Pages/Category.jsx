@@ -141,6 +141,15 @@ const Category = () => {
               price={product.price}
               product={product}
               saleprice={product.price}
+              regularprice={product.meta_data
+                .filter((data) => data.key === "custom_price")
+                .map((data, index) => {
+                  return (
+                    <div key={index}>
+                      {(data.value * currency).toLocaleString()}
+                    </div>
+                  );
+                })}
               onsale={product.on_sale ? <div>SALE</div> : null}
             />
           );

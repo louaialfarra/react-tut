@@ -54,7 +54,7 @@ export default function BurgerMenu() {
       <List>
         {[
           { text: "Home", path: "/", icon: <HomeIcon /> },
-          { text: "Shop", path: "/shopcategory" },
+          { text: "Categories", path: "/shopcategory/all" },
           { text: "About Us", path: "/about" },
           { text: "Contact", path: "/contact" },
         ].map((item, index) => (
@@ -65,6 +65,7 @@ export default function BurgerMenu() {
             </ListItemButton>
           </ListItem>
         ))}
+
         <ListItem disablePadding>
           <ListItemButton onClick={(event) => event.stopPropagation()}>
             <ListItemIcon></ListItemIcon>

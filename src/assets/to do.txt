@@ -11,6 +11,8 @@
   8- create a new home page  and configure the single product page 
    style the category  page and fix it STAR TWITH IT
 
+   add sesrch in mobile View
+
  fix burger menu  category view and the color
 
 

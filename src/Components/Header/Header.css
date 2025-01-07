@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px;
+  padding-block: 18px;
   box-shadow: 0px 3px 2px -2px hsla(0, 6%, 43%, 0.979);
 }
 .header-left {
@@ -148,3 +148,6 @@
 .header-container {
   display: flex;
 }*/
+.search-bar {
+  margin-left: 24px;
+}

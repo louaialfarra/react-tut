@@ -33,7 +33,7 @@ const Item2 = (props) => {
               {props.onsale ? (
                 <div className="price-tag-div">
                   <span className="old-price">
-                    <p>{props.regularprice}&nbsp;S.P</p>
+                    <p>{props.regularprice}&nbsp;SYP</p>
                   </span>
                   {console.log(props.regularprice + "this is regular prce")}
                   <p>{(props.price * currency).toLocaleString()}&nbsp;SYP</p>
