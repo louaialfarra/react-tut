@@ -19,6 +19,8 @@ import car1 from "../assets/carImages/car1.jpg";
 import car2 from "../assets/carImages/car2.jpg";
 import { useNavigate } from "react-router-dom";
 
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
@@ -276,20 +278,30 @@ const Home = () => {
         </Carousel>
         {/* delet hero compnent <Hero /> */}
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="product-container">
+          <h2 style={{ textAlign: "center" }}>All Products</h2>
+
           <div style={{ flex: "1" }}>
             {isDesktop && (
               <FilterComponent onFilterChange={handleFilterChange} />
             )}
             {isMobile && (
               <>
-                <button
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    border: "2px solid gray",
+                    borderRadius: "15px",
+                    width: "30%",
+                    marginBottom: "40px",
+                  }}
                   onClick={() => {
                     setOpendModal(true);
                   }}
                 >
-                  FILTER ME
-                </button>
+                  <FilterAltIcon /> Filter
+                </div>
                 <FilterPopup
                   opened={opendModal}
                   closed={() => {
@@ -301,7 +313,6 @@ const Home = () => {
             )}
           </div>
           <div style={{ flex: "6", justifyItems: "center" }}>
-            <h1> NEW PRODUCTS</h1>
             {loading ? (
               <div
                 style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}

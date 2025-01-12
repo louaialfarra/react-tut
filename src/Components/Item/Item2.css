@@ -151,7 +151,7 @@ ul {
   border-radius: 0 0 5px 5px;
   background: linear-gradient(#ff293b, #911937);
 }
-
+/*
 .card::before {
   position: absolute;
   content: "";
@@ -164,7 +164,7 @@ ul {
   background-color: rgb(245, 46, 255);
   filter: blur(25px);
   box-shadow: 0 0 70px 0 #f51cf1;
-}
+}*/
 
 .card .add-to-cart-btn button:hover {
   background-position: 100% 100%;
@@ -181,4 +181,17 @@ ul {
 .price-tag .price-tag-div .old-price p {
   color: rgb(114, 114, 114);
   text-decoration: line-through;
+}
+
+@media (max-width: 620px) {
+  .add-to-cart-btn button {
+    font-size: 8px;
+    padding: 6px 18px;
+  }
+  .card .card-info .left-info .product-title {
+    font-size: 12px;
+  }
+  .left-info .product-title .price-tag p {
+    font-size: 10px;
+  }
 }
