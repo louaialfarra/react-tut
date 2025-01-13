@@ -17,8 +17,9 @@
   flex: 1;
 }
 .header-right {
+  display: flex;
   flex: 1;
-  justify-items: flex-end;
+  justify-content: flex-end;
 }
 .header-left .burg-menu {
   display: none;
@@ -144,10 +145,13 @@
   .header-left .burg-menu {
     display: block;
   }
-} /*
+}
 .header-container {
   display: flex;
-}*/
+  flex-direction: column;
+}
 .search-bar {
   margin-left: 24px;
+}
+@media (max-width: 630px) {
 }
