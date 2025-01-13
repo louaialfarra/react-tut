@@ -185,13 +185,20 @@ ul {
 
 @media (max-width: 620px) {
   .add-to-cart-btn button {
-    font-size: 8px;
+    font-size: 0.8rem;
     padding: 6px 18px;
   }
   .card .card-info .left-info .product-title {
-    font-size: 12px;
+    font-size: 0.9rem;
   }
   .left-info .product-title .price-tag p {
-    font-size: 10px;
+    font-size: 0.72rem;
+  }
+  .card {
+    width: 180px;
+    height: 300px;
+  }
+  .card .card-image {
+    height: 60%;
   }
 }
