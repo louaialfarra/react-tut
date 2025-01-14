@@ -277,10 +277,8 @@ const Home = () => {
           <img src={car2} alt="doda" />
         </Carousel>
         {/* delet hero compnent <Hero /> */}
-
+        <h2 style={{ textAlign: "center" }}>All Products</h2>
         <div className="product-container">
-          <h2 style={{ textAlign: "center" }}>All Products</h2>
-
           <div style={{ flex: "1" }}>
             {isDesktop && (
               <FilterComponent onFilterChange={handleFilterChange} />

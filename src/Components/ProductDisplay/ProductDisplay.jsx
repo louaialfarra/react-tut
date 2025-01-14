@@ -7,6 +7,7 @@ const ProductDisplay = (props) => {
   const [mainImage, setMainImage] = useState(props.image);
   return (
     <div>
+      <div>{props.name}</div>
       <div style={{ display: "flex", gap: 50, marginTop: 50 }}>
         <div className="container-image">
           <div className="image-gallery-container">
@@ -22,11 +23,13 @@ const ProductDisplay = (props) => {
               </div>
             ))}
           </div>
-
           {/* this is  the big image  */}
-          <img src={mainImage} />
+
+          <div className="big-img">
+            <img src={mainImage} />
+          </div>
         </div>
-        <div>
+        <div className="product-text-container">
           <div className="product-title">{props.name}</div>
           <div className="price-container">
             <div className="new-price">
@@ -74,10 +77,6 @@ const ProductDisplay = (props) => {
           </div>
         </div>
       </div>
-      <h3> </h3>
-      <h2> this is details{props.details}</h2>
-      <h1> this is new attr</h1>
-      this is product display
     </div>
   );
 };
