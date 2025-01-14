@@ -81,9 +81,9 @@ const Product = () => {
           addtocart={handleAddtoCart}
           attnew={product.attributes}
           handleattclick={handleSelectedAttribute}
+          onsale={product.on_sale}
         />
       </div>
-      <h1>THIS IS PRODUCT PAGE</h1>
     </div>
   );
 };

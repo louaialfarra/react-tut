@@ -261,6 +261,7 @@ const Home = () => {
       // Handle default case return null;
     }
   };
+
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <div>

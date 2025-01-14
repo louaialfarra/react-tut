@@ -1,4 +1,5 @@
 .container-image {
+  margin-top: 20px;
   display: flex;
 }
 .container-image img {
@@ -27,6 +28,9 @@
   background-color: lightgray;
 }
 .price-container {
+  margin-top: 16px;
+  justify-content: space-around;
+  display: flex;
 }
 
 .price-container .old-price {
@@ -76,19 +80,26 @@
 .button-container button:hover {
   background-position: 100% 100%;
 }
-
+.att-name {
+  display: flex;
+  justify-content: space-around;
+}
 .att-container .att-name ul {
   display: flex;
   gap: 20px;
 }
 .att-container .att-name ul li button {
-  font-size: 3em;
+  font-size: 1.3em;
 }
 .big-img {
   width: 500px;
   height: 600px;
 }
-
+.single-product-container {
+  display: "flex";
+  gap: 50;
+  margin-top: 50;
+}
 @media (max-width: 630px) {
   .big-img {
     height: 300px;

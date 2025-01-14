@@ -7,8 +7,8 @@ const ProductDisplay = (props) => {
   const [mainImage, setMainImage] = useState(props.image);
   return (
     <div>
-      <div>{props.name}</div>
-      <div style={{ display: "flex", gap: 50, marginTop: 50 }}>
+      <div className="product-title">{props.name}</div>
+      <div className="single-product-container">
         <div className="container-image">
           <div className="image-gallery-container">
             {props.images.map((image, index) => (
@@ -30,22 +30,31 @@ const ProductDisplay = (props) => {
           </div>
         </div>
         <div className="product-text-container">
-          <div className="product-title">{props.name}</div>
+          {/*<div className="product-title">{props.name}</div>*/}
           <div className="price-container">
-            <div className="new-price">
-              {(props.price * currency).toLocaleString()}&nbsp; S.P
-            </div>
-            <div className="old-price">
-              {props.regularprice
-                .filter((data) => data.key === "custom_price")
-                .map((data, index) => {
-                  return (
-                    <span key={index}>
-                      {(data.value * currency).toLocaleString()} &nbsp;S.p
-                    </span>
-                  );
-                })}
-            </div>
+            {props.onsale ? (
+              <>
+                {" "}
+                <div className="old-price">
+                  {props.regularprice
+                    .filter((data) => data.key === "custom_price")
+                    .map((data, index) => {
+                      return (
+                        <span key={index}>
+                          {(data.value * currency).toLocaleString()} &nbsp;S.p
+                        </span>
+                      );
+                    })}
+                </div>
+                <div className="new-price">
+                  {(props.price * currency).toLocaleString()}&nbsp; S.P
+                </div>
+              </>
+            ) : (
+              <div className="new-price">
+                {(props.price * currency).toLocaleString()}&nbsp; S.P
+              </div>
+            )}
           </div>
           <div className="att-container">
             {props.attnew.map((att, i) => {
