@@ -15,6 +15,7 @@ const Product = () => {
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
   const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
+
   const fetchProduct = async () => {
     try {
       const response = await axios.get(`${WOO_URL}/products/${productId}`, {

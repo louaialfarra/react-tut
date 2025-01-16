@@ -45,7 +45,9 @@ ul {
   letter-spacing: 0.4px;
   font-weight: bold;
   margin-bottom: 18px;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .left-info .product-title .price-tag p {
   font-size: 18px;
@@ -182,7 +184,10 @@ ul {
   color: rgb(114, 114, 114);
   text-decoration: line-through;
 }
-
+.card-info .att-name {
+  font-size: 0.5em;
+  justify-content: space-between;
+}
 @media (max-width: 620px) {
   .add-to-cart-btn button {
     font-size: 0.8rem;
@@ -197,8 +202,10 @@ ul {
   .card {
     width: 180px;
     height: 300px;
+    margin-bottom: 20px;
   }
-  .card .card-image {
-    height: 60%;
+
+  .card .card-info {
+    max-height: 50px;
   }
 }

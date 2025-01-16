@@ -277,7 +277,9 @@ const Home = () => {
           <img src={car1} alt="doda" />
           <img src={car2} alt="doda" />
         </Carousel>
+
         {/* delet hero compnent <Hero /> */}
+
         <h2 style={{ textAlign: "center" }}>All Products</h2>
         <div className="product-container">
           <div style={{ flex: "1" }}>
@@ -346,6 +348,7 @@ const Home = () => {
                           );
                         })}
                       onsale={product.on_sale ? <div>SALE</div> : null}
+                      attnew={product.attributes}
                     />
                   );
                 })}
@@ -353,6 +356,7 @@ const Home = () => {
             )}
           </div>
         </div>
+
         {/* delete pages <div>
           <button onClick={handlBackPage}>PREV PAGE</button>
           <span>
