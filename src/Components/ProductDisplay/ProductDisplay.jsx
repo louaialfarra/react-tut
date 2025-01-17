@@ -34,7 +34,6 @@ const ProductDisplay = (props) => {
           <div className="price-container">
             {props.onsale ? (
               <>
-                {" "}
                 <div className="old-price">
                   {props.regularprice
                     .filter((data) => data.key === "custom_price")

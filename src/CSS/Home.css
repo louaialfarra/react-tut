@@ -4,12 +4,20 @@
   justify-items: center;
   gap: 14px;
 }
+.skeleton-image {
+  height: 375px;
+  width: 350px;
+}
 @media (max-width: 620px) {
   .grid-container {
     grid-template-columns: 1fr 1fr;
   }
   .product-container {
     flex-direction: column;
+  }
+  .skeleton-image {
+    height: 225px;
+    width: 162px;
   }
 }
 

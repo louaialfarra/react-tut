@@ -28,10 +28,9 @@ const Item2 = (props) => {
 
       <div className="card-info">
         <div className="left-info">
-          <span className="product-title">
-            {props.name}
+          <span className="product-title">{props.name}</span>
 
-            {/*<div className="att-container">
+          {/*<div className="att-container">
               props.attnew.map((att, i) => {
                 return (
                   <div className="att-name" key={i}>
@@ -53,21 +52,24 @@ const Item2 = (props) => {
                 );
               })
             </div>*/}
-            <span className="price-tag">
-              {props.onsale ? (
-                <div className="price-tag-div">
-                  <span className="old-price">
-                    <p>{props.regularprice}&nbsp;SYP</p>
-                  </span>
-                  {console.log(props.regularprice + "this is regular prce")}
+
+          <span className="price-tag">
+            {props.onsale ? (
+              <span className="price-tag-div">
+                <span className="old-price">
+                  <p>{props.regularprice}&nbsp;SYP </p>
+                </span>
+                <span className="new-price">
                   <p>{(props.price * currency).toLocaleString()}&nbsp;SYP</p>
-                </div>
-              ) : (
-                <>
+                </span>
+              </span>
+            ) : (
+              <span className="price-tag-div">
+                <span className="new-price">
                   <p>{(props.price * currency).toLocaleString()}&nbsp;SYP</p>
-                </>
-              )}
-            </span>
+                </span>
+              </span>
+            )}
           </span>
         </div>
       </div>

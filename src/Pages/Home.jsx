@@ -315,14 +315,20 @@ const Home = () => {
           </div>
           <div style={{ flex: "6", justifyItems: "center" }}>
             {loading ? (
-              <div
-                style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr " }}
-              >
+              <div className="grid-container">
                 {[...Array(9)].map((_, index) => (
-                  <div key={index}>
-                    <Skeleton height={200} />
-                    <Skeleton width={150} />
-                    <Skeleton width={100} />
+                  <div
+                    key={index}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: "16px",
+                    }}
+                  >
+                    <Skeleton className="skeleton-image" />
+                    <Skeleton className="skeleton-title" width={150} />
+                    <Skeleton className="skeleton-price" width={100} />
                   </div>
                 ))}
               </div>

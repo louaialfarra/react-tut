@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { ProductContext } from "../Context/ShopContext";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 import axios from "axios";
-
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const Product = () => {
   const { products, currentPage, addToCart, currency, setCurrency } =
     useContext(ProductContext);
@@ -50,7 +51,27 @@ const Product = () => {
 
   if (!product) {
     fetchProduct();
-    return <div>Loading...</div>;
+    return (
+      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+        <div>
+          {[...Array(3)].map((_, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "16px",
+              }}
+            >
+              <Skeleton height={40} />
+              <Skeleton className="skeleton-title" width={150} />
+              <Skeleton className="skeleton-price" width={100} />
+            </div>
+          ))}
+        </div>
+      </SkeletonTheme>
+    );
   }
 
   const handleSelectedAttribute = (attname, option) => {
