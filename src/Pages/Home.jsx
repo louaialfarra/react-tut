@@ -36,7 +36,7 @@ const Home = () => {
   const { totalPages, setTotalPages } = useContext(ProductContext);
   const { currency, setCurrency } = useContext(ProductContext);
   const { category, setCategory } = useContext(ProductContext);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [continueFetch, setContinueFetch] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [selectedFilters, setSelectedFilters] = useState({});

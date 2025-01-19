@@ -5,6 +5,8 @@ import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 import axios from "axios";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import "../CSS/Product.css";
+
 const Product = () => {
   const { products, currentPage, addToCart, currency, setCurrency } =
     useContext(ProductContext);
@@ -53,18 +55,18 @@ const Product = () => {
     fetchProduct();
     return (
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
-        <div>
-          {[...Array(3)].map((_, index) => (
+        <div style={{ marginTop: "20px" }}>
+          {[...Array(1)].map((_, index) => (
             <div
               key={index}
               style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "16px",
+                gap: "14px",
               }}
             >
-              <Skeleton height={40} />
+              <Skeleton className="skeleton-main-img" />
               <Skeleton className="skeleton-title" width={150} />
               <Skeleton className="skeleton-price" width={100} />
             </div>

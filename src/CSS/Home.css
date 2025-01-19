@@ -6,7 +6,7 @@
 }
 .skeleton-image {
   height: 375px;
-  width: 350px;
+  width: 300px;
 }
 @media (max-width: 620px) {
   .grid-container {

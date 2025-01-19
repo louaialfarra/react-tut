@@ -39,3 +39,16 @@
   margin-top: 24px;
   margin-bottom: 24px;
 }
+@media (max-width: 630px) {
+  .product-name,
+  .price-name,
+  .quantity-name,
+  .sub-name {
+    font-size: 0.55rem;
+  }
+  .quantity-name {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}

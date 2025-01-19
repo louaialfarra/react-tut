@@ -36,7 +36,6 @@ const Cart = () => {
         <span style={{ flex: 1 / 4 }}></span>
       </div>
       {cart.map((item, index) => {
-        console.log("this is cart ", item);
         return (
           <div key={index}>
             <CartItem
@@ -62,6 +61,7 @@ const Cart = () => {
           </div>
         );
       })}
+
       <div
         style={{
           display: "flex",
