@@ -5,18 +5,23 @@ import { ProductContext } from "../../Context/ShopContext";
 const ProductDisplay = (props) => {
   const { currency } = useContext(ProductContext);
   const [mainImage, setMainImage] = useState(props.image);
+
+  const [selectedImage, setSelectedImage] = useState(props.image);
   return (
-    <div>
+    <div className="product2-container">
       <div className="product-title">{props.name}</div>
       <div className="single-product-container">
         <div className="container-image">
           <div className="image-gallery-container">
             {props.images.map((image, index) => (
               <div
-                className="image-gallery"
+                className={`image-gallery ${
+                  selectedImage === image.src ? "selected" : ""
+                }`}
                 key={index}
                 onClick={() => {
                   setMainImage(image.src);
+                  setSelectedImage(image.src);
                 }}
               >
                 <img src={image.src} />

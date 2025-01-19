@@ -20,6 +20,7 @@ ul {
   margin: auto;
   color: #c8c8c8;
   filter: drop-shadow(0 0 5px #111111);
+  object-fit: cover;
 }
 
 .card .card-info {

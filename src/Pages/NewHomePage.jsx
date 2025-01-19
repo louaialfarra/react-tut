@@ -121,6 +121,7 @@ const NewHomePage = () => {
                   selectedCat === cat.name ? "selected" : ""
                 }`}
                 src={cat.image?.src}
+                loading="lazy"
               />
               {cat.name}
             </div>

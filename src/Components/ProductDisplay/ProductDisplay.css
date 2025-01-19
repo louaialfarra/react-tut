@@ -20,13 +20,20 @@
 */
 .image-gallery {
   display: flex;
+  border: 2px solid white;
+  padding: 5px;
 }
 .image-gallery img {
   height: 75px;
   width: 75px;
   object-fit: contain;
   background-color: lightgray;
+  object-fit: cover;
 }
+.selected {
+  border: 2px solid rgb(242, 0, 255); /* Change to the desired border color */
+}
+
 .price-container {
   margin-top: 16px;
   justify-content: space-around;
@@ -41,7 +48,7 @@
   color: gray;
 }
 .price-container .new-price {
-  color: tomato;
+  color: rgb(242, 0, 255);
   font-size: 1.5em;
 }
 .product-title {
@@ -96,10 +103,11 @@
   height: 600px;
 }
 .single-product-container {
-  display: "flex";
-  gap: 50;
-  margin-top: 50;
+  display: flex;
+  gap: 50px;
+  margin-top: 50px;
 }
+
 @media (max-width: 630px) {
   .big-img {
     height: 300px;
