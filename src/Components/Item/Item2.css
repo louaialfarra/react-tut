@@ -222,8 +222,8 @@ ul {
   .card .card-info .left-info .product-title {
     font-size: 0.9rem;
   }
-  .left-info .price-tag .price-tag-div p {
-    font-size: 0.72rem;
+  .left-info .price-tag .price-tag-div .new-price {
+    font-size: 0.8rem;
   }
   .card {
     width: 180px;

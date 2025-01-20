@@ -5,8 +5,13 @@ import { ProductContext } from "../../Context/ShopContext";
 const ProductDisplay = (props) => {
   const { currency } = useContext(ProductContext);
   const [mainImage, setMainImage] = useState(props.image);
-
+  const [selectedAttribute, setSelectedAttribute] = useState({});
   const [selectedImage, setSelectedImage] = useState(props.image);
+
+  const handleAttributeClick = (attName, op) => {
+    setSelectedAttribute({ ...selectedAttribute, [attName]: op });
+    props.handleattclick(attName, op);
+  };
   return (
     <div className="product2-container">
       <div className="product-title">{props.name}</div>
@@ -70,9 +75,15 @@ const ProductDisplay = (props) => {
                       return (
                         <li key={i}>
                           <button
-                            onClick={() => props.handleattclick(att.name, op)}
+                            onClick={() => handleAttributeClick(att.name, op)}
+                            className={
+                              selectedAttribute[att.name] === op
+                                ? "selected-attribute"
+                                : ""
+                            }
                           >
-                            {op}
+                            {" "}
+                            {op}{" "}
                           </button>
                         </li>
                       );

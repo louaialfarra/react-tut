@@ -2,6 +2,9 @@
   margin-top: 20px;
   display: flex;
 }
+.selected-attribute {
+  border: 2px solid blue; /* Customize the border color and width as needed */
+}
 .container-image img {
   height: 100%;
   width: 100%;
@@ -30,7 +33,7 @@
   background-color: lightgray;
   object-fit: cover;
 }
-.selected {
+.image-gallery-container .selected {
   border: 2px solid rgb(242, 0, 255); /* Change to the desired border color */
 }
 

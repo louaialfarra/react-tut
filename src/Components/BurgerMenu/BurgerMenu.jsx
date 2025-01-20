@@ -9,9 +9,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
+import CategoryIcon from "@mui/icons-material/Category";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import PeopleIcon from "@mui/icons-material/People";
 import Dropdown from "../Dropdown/Dropdown";
 import { useState, useEffect } from "react";
+
 import MenuIcon from "@mui/icons-material/Menu";
+
 import { useNavigate, Link } from "react-router-dom";
 
 export default function BurgerMenu() {
@@ -46,7 +51,9 @@ export default function BurgerMenu() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+      }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -54,18 +61,24 @@ export default function BurgerMenu() {
       <List>
         {[
           { text: "Home", path: "/", icon: <HomeIcon /> },
-          { text: "Categories", path: "/shopcategory/all" },
-          { text: "About Us", path: "/about" },
-          { text: "Contact", path: "/contact" },
+          {
+            text: "Categories",
+            path: "/shopcategory/all",
+            icon: <CategoryIcon />,
+          },
+          { text: "About Us", path: "/about", icon: <PeopleIcon /> },
+          { text: "Contact", path: "/contact", icon: <WhatsAppIcon /> },
         ].map((item, index) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton onClick={() => handleNavigation(item.path)}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{ color: "white" }}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
 
+        {/*
+        edit by me to dispaly the list categorys no need
         <ListItem disablePadding>
           <ListItemButton onClick={(event) => event.stopPropagation()}>
             <ListItemIcon></ListItemIcon>
@@ -76,7 +89,7 @@ export default function BurgerMenu() {
               allCategory={storedCategory}
             />
           </ListItemButton>
-        </ListItem>
+        </ListItem>*/}
       </List>
       <Divider />
     </Box>
@@ -90,6 +103,13 @@ export default function BurgerMenu() {
             <MenuIcon sx={{ fontSize: "x-large", color: "white" }} />
           </Button>
           <Drawer
+            sx={{
+              "& .MuiDrawer-paper": {
+                backgroundColor: "#242424",
+                width: 250,
+                color: "white",
+              },
+            }}
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
