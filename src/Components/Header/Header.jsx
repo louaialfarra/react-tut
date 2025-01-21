@@ -112,14 +112,15 @@ function Header() {
               </Link>
               {menu === "shop" ? <hr /> : null}
             </li>
-            <li className="exclude">
+            {/* <li className="exclude">
               <Dropdown
                 subcat={storedCategory.filter(
                   (cat) => cat.parent === 0 && cat.name !== "Uncategorized"
                 )}
                 allCategory={storedCategory}
               />
-            </li>
+            </li>*/}
+
             <li onClick={() => setMenu("about")}>
               <Link
                 style={{ textDecoration: "none", color: "unset" }}
@@ -128,6 +129,14 @@ function Header() {
                 About Us
               </Link>
               {menu === "about" ? <hr /> : null}
+            </li>
+            <li onClick={() => setMenu("test")}>
+              <Link
+                style={{ textDecoration: "none", color: "unset" }}
+                to={"test"}
+              >
+                Test Scroll
+              </Link>
             </li>
           </ul>
         </div>

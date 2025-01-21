@@ -31,6 +31,7 @@ const Product = () => {
       setProduct(result);
     } catch (e) {}
   };
+
   useEffect(() => {
     const fetchProductFromLocalStorage = () => {
       const storedCurrency = JSON.parse(localStorage.getItem("currency"));

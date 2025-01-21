@@ -13,6 +13,7 @@ import Footer from "./Components/Footer/Footer";
 import Category from "./Pages/Category";
 import NewHomePage from "./Pages/NewHomePage";
 import SearchResult from "./Pages/SearchResult";
+import Test from "./Pages/Test";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/searchresult" element={<SearchResult />} />
           <Route path="/shopcategory" element={<Shopcategory />} />
           <Route path="shopcategory/:category" element={<Category />} />
+          <Route path="/test" element={<Test />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />}>

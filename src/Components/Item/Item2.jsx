@@ -14,13 +14,9 @@ const Item2 = (props) => {
   return (
     <div className="card">
       <Link to={`/product/${props.id}`} state={props.product}>
-        <img
-          className="card-image"
-          height={70}
-          width={70}
-          src={props.image}
-          onClick={() => window.scrollTo(0, 0)}
-        />
+        <img className="card-image" height={70} width={70} src={props.image} />
+        {/**          onClick={() => window.scrollTo(0, 0)}
+         */}
       </Link>
       <div className={props.onsale ? "card-price-tag" : ""}>
         <span className="price-value">{props.onsale}</span>
