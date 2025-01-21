@@ -4,6 +4,7 @@ import Item2 from "../Components/Item/Item2";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import NewHomePage from "./NewHomePage";
+import "../CSS/Category.css";
 
 const Category = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
@@ -126,7 +127,7 @@ const Category = () => {
     setContinueFetch(false); // Stop fetching once all pages are fetched
   }, [totalPages]); // Runs when totalPages or continueFetch changes
   return (
-    <div>
+    <div className="category-container">
       <NewHomePage />
       <h1>{category.toUpperCase()}</h1>
 

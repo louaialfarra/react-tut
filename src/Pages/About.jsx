@@ -2,7 +2,7 @@ const About = () => {
   return (
     <div
       style={{
-        minHeight: "70vh",
+        minHeight: "700vh",
       }}
     >
       THIS IS ABOUT

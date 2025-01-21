@@ -1,6 +1,12 @@
-.grid-container {
+/*.grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   gap: 14px;
+}*/
+.category-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 200vh;
 }

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { ProductContext } from "../Context/ShopContext";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 import axios from "axios";
@@ -19,6 +19,10 @@ const Product = () => {
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
   const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
 
+  /**const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]); */
   const fetchProduct = async () => {
     try {
       const response = await axios.get(`${WOO_URL}/products/${productId}`, {
@@ -93,7 +97,7 @@ const Product = () => {
   };
 
   return (
-    <div>
+    <div className="prodcut-display-container">
       <div style={{ display: "flex", justifyContent: "center" }}>
         <ProductDisplay
           key={product.id}
