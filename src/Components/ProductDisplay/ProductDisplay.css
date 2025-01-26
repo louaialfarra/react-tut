@@ -3,7 +3,7 @@
   display: flex;
 }
 .selected-attribute {
-  border: 2px solid blue; /* Customize the border color and width as needed */
+  border: 2px solid rgb(195, 5, 188); /* Customize the border color and width as needed */
 }
 .container-image img {
   height: 100%;
@@ -57,6 +57,7 @@
 .product-title {
   font-size: 2em;
   font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
 }
 .button-container {
   display: flex;
@@ -108,12 +109,15 @@
 .single-product-container {
   display: flex;
   gap: 50px;
-  margin-top: 50px;
 }
 
 @media (max-width: 630px) {
   .big-img {
     height: 300px;
     width: 200px;
+  }
+  .single-product-container {
+    flex-direction: column;
+    gap: 25px;
   }
 }

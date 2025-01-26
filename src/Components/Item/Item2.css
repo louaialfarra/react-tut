@@ -49,6 +49,7 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   text-transform: capitalize;
 }
 .left-info .price-tag .new-price {
@@ -222,9 +223,12 @@ ul {
   .card .card-info .left-info .product-title {
     font-size: 0.9rem;
   }
-  .left-info .price-tag .price-tag-div .new-price {
+
+  .left-info .price-tag .price-tag-div .new-price,
+  .left-info .price-tag .price-tag-div .old-price {
     font-size: 0.8rem;
   }
+
   .card {
     width: 180px;
     height: 300px;
@@ -233,5 +237,9 @@ ul {
 
   .card .card-info {
     max-height: 50px;
+  }
+  .card .card-price-tag {
+    font-size: 0.6rem;
+    padding: 9px 18px;
   }
 }

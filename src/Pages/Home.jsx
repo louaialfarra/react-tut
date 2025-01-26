@@ -316,7 +316,7 @@ const Home = () => {
           <div style={{ flex: "6", justifyItems: "center" }}>
             {loading ? (
               <div className="grid-container">
-                {[...Array(9)].map((_, index) => (
+                {[...Array(12)].map((_, index) => (
                   <div
                     key={index}
                     style={{
@@ -348,9 +348,9 @@ const Home = () => {
                         .filter((data) => data.key === "custom_price")
                         .map((data, index) => {
                           return (
-                            <div key={index}>
+                            <span key={index}>
                               {(data.value * currency).toLocaleString()}
-                            </div>
+                            </span>
                           );
                         })}
                       onsale={product.on_sale ? <div>SALE</div> : null}

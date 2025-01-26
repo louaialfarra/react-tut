@@ -19,10 +19,11 @@ const Product = () => {
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
   const CURRENCY = import.meta.env.VITE_WOO_API_CURRENCY;
 
-  /**const { pathname } = useLocation();
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]); */
+  }, [pathname]);
+
   const fetchProduct = async () => {
     try {
       const response = await axios.get(`${WOO_URL}/products/${productId}`, {

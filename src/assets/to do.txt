@@ -1,17 +1,17 @@
   1- make search page   after i click on search  DONE!!!!!!!!
   2- style the filter in desktop view   and in the mobile view make it button  DONE !!!!!!
-  3- configur the loading activity indicator or the skeleton  to all the website
+  3- configur the loading activity indicator or the skeleton  to all the website DONE !!!
   5- style the cart page  DONE !!!!!!!!
   6- sort the filer 36 to 45  and xs to xxl  DONE !!!!!!
-  7-when  click on the back  go back to the same position where left 
+  7-when  click on the back  go back to the same position where left  DONE!!!!
 
 
 
   8- create a new home page  
-  9- configure the single product page 
-   10-style the category  page and fix i
-
-   11-add sesrch in mobile View
+  9- configure the single product page  DONE !!!!
+ 10-style the category  page and fix it
+ 
+  11-add sesrch in mobile View
 
  fix burger menu  category view and the color
 

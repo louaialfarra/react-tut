@@ -70,25 +70,54 @@ const ProductDisplay = (props) => {
               return (
                 <div className="att-name" key={i}>
                   <h2>{att.name}</h2>
-                  <ul>
-                    {att.options.map((op, i) => {
-                      return (
-                        <li key={i}>
-                          <button
-                            onClick={() => handleAttributeClick(att.name, op)}
-                            className={
-                              selectedAttribute[att.name] === op
-                                ? "selected-attribute"
-                                : ""
-                            }
-                          >
-                            {" "}
-                            {op}{" "}
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  {att.name === "Color" ? (
+                    <ul>
+                      {att.options.map((op, i) => {
+                        return (
+                          <li key={i}>
+                            <button
+                              onClick={() => handleAttributeClick(att.name, op)}
+                              style={{
+                                backgroundColor: op.toLowerCase(),
+                                height: "40px",
+                                width: "40px",
+                                cursor: "pointer",
+                              }}
+                              className={
+                                selectedAttribute[att.name] === op
+                                  ? "selected-attribute"
+                                  : ""
+                              }
+                            ></button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    <ul>
+                      {att.options.map((op, i) => {
+                        return (
+                          <li key={i}>
+                            <button
+                              onClick={() => handleAttributeClick(att.name, op)}
+                              style={{
+                                backgroundColor: op.toLowerCase(),
+
+                                cursor: "pointer",
+                              }}
+                              className={
+                                selectedAttribute[att.name] === op
+                                  ? "selected-attribute"
+                                  : ""
+                              }
+                            >
+                              {op}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
                 </div>
               );
             })}

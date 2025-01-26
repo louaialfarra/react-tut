@@ -3,7 +3,7 @@
   width: 500px;
 }
 .prodcut-display-container {
-  min-height: 70vh;
+  min-height: 200vh;
 }
 
 @media (max-width: 630px) {
