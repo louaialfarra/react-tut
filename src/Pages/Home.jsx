@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
+import Slider from "../Components/Slider/Slider";
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
@@ -277,6 +278,8 @@ const Home = () => {
           <img src={car1} alt="doda" />
           <img src={car2} alt="doda" />
         </Carousel>
+
+        <Slider />
 
         {/* delet hero compnent <Hero /> */}
 
