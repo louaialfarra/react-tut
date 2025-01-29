@@ -274,11 +274,12 @@ const Home = () => {
           infiniteLoop={true}
           emulateTouch={true}
           className="car-slide"
+          showThumbs={false}
         >
           <img src={car1} alt="doda" />
           <img src={car2} alt="doda" />
         </Carousel>
-
+        <h3 style={{ textAlign: "center" }}>Latest Products</h3>
         <Slider />
 
         {/* delet hero compnent <Hero /> */}

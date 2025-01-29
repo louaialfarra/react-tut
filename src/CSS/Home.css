@@ -50,6 +50,13 @@
 .carousel.carousel-slider {
   box-shadow: 0px 3px 2px -2px hsla(0, 6%, 43%, 0.979);
 }
+.carousel .slider-wrapper {
+  height: 25vh;
+}
+.carousel .slider-wrapper.axis-horizontal .slider,
+.carousel .slide img {
+  height: 100%;
+}
 .product-container {
   display: flex;
 }
