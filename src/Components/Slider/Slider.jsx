@@ -1,6 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useRef } from "react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation"; // Navigation styles
@@ -17,6 +17,11 @@ import "./Slider.css";
 const Slider = (props) => {
   const { products } = useContext(ProductContext);
 
+  const swiperRef = useRef(null);
+  // Ensure products are loaded
+  if (!products || products.length === 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <Swiper
       slidesPerView={5}
