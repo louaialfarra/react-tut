@@ -11,3 +11,7 @@
     object-fit: cover;
   }
 }
+.swiper-pagination {
+  margin-top: 1rem;
+  position: relative;
+}

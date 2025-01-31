@@ -7,7 +7,7 @@ import "swiper/css/navigation"; // Navigation styles
 import "swiper/css/pagination"; // Pagination styles
 
 // Import Swiper modules
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination, FreeMode } from "swiper/modules";
 
 import { useContext } from "react";
 import { ProductContext } from "../../Context/ShopContext";
@@ -17,6 +17,7 @@ import "./Slider.css";
 const Slider = (props) => {
   const { products } = useContext(ProductContext);
 
+  const firstTenProducts = products.slice(0, 10);
   const swiperRef = useRef(null);
   // Ensure products are loaded
   if (!products || products.length === 0) {
@@ -26,17 +27,18 @@ const Slider = (props) => {
     <Swiper
       slidesPerView={5}
       spaceBetween={20}
+      freeMode={true}
       autoplay={{ delay: 3000, disableOnInteraction: false }}
-      modules={[Autoplay, Navigation, Pagination]} // Register modules
+      modules={[Autoplay, Navigation, Pagination, FreeMode]} // Register modules
       navigation={false} // Enable navigation arrows
-      //pagination={{ clickable: true }} // Enable pagination dots
+      pagination={{ clickable: true }} // Enable pagination dots
       breakpoints={{
         320: { slidesPerView: 2 }, // 1 slide on small screens
         640: { slidesPerView: 3 }, // 2 slides on medium screens
         1024: { slidesPerView: 4 }, // 5 slides on large screens
       }}
     >
-      {products.map((item) => (
+      {firstTenProducts.map((item) => (
         <SwiperSlide key={item.id}>
           <Link to={`/product/${item.id}`}>
             <img
