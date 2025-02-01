@@ -15,6 +15,8 @@ import NewHomePage from "./Pages/NewHomePage";
 import SearchResult from "./Pages/SearchResult";
 import Test from "./Pages/Test";
 
+import SaleProducts from "./Pages/SaleProduct";
+
 function App() {
   return (
     <ShopContextProvider>
@@ -29,6 +31,7 @@ function App() {
           <Route path="/shopcategory" element={<Shopcategory />} />
           <Route path="shopcategory/:category" element={<Category />} />
           <Route path="/test" element={<Test />} />
+          <Route path="saleproducts" element={<SaleProducts />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/product" element={<Product />}>

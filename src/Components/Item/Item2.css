@@ -221,12 +221,12 @@ ul {
     padding: 6px 18px;
   }
   .card .card-info .left-info .product-title {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .left-info .price-tag .price-tag-div .new-price,
   .left-info .price-tag .price-tag-div .old-price {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .card {

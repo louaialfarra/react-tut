@@ -8,12 +8,14 @@
 
 
   8- create a new home page  
+
+   create sale page
   9- configure the single product page  DONE !!!!
- 10-style the category  page and fix it
+ 10-style the category  page and fix it Semi DOne!! check
  
   11-add sesrch in mobile View
-
- fix burger menu  category view and the color
+   style the filter Popup
+ fix burger menu  category view and the color Done!!!
 
 
   MOBILE & TAB VIEW 

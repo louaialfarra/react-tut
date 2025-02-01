@@ -9,7 +9,7 @@ import { ProductContext } from "../../Context/ShopContext";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
-
+import SaleProducts from "../../Pages/SaleProduct";
 function Header() {
   const [menu, setMenu] = useState("home");
   const [storedCategory, setStoredCategory] = useState([]);
@@ -110,8 +110,19 @@ function Header() {
               >
                 Categories
               </Link>
+
               {menu === "shop" ? <hr /> : null}
             </li>
+            <li onClick={() => setMenu("saleproducts")}>
+              <Link
+                style={{ textDecoration: "none", color: "unset" }}
+                to={"/saleproducts"}
+              >
+                Sale Products
+              </Link>
+              {menu === "saleproducts" ? <hr /> : null}
+            </li>
+
             {/* <li className="exclude">
               <Dropdown
                 subcat={storedCategory.filter(

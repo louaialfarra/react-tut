@@ -78,7 +78,7 @@ const NewHomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ marginTop: "16px" }}>
       {/* <div className="newhome-container">
         {newCat.map((cat) => (
           <div

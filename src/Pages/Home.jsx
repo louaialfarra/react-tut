@@ -294,6 +294,7 @@ const Home = () => {
               <>
                 <div
                   style={{
+                    marginLeft: "8px",
                     display: "flex",
                     alignItems: "center",
                     border: "2px solid gray",
