@@ -22,6 +22,9 @@ import { useNavigate } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 import Slider from "../Components/Slider/Slider";
+import useFetchCurrency from "../Hooks/useFetchCurrency";
+import useFetchCategory from "../Hooks/useFetchCategory";
+
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
@@ -46,7 +49,11 @@ const Home = () => {
   const isDesktop = useMediaQuery("(min-width:1024px)");
   const isMobile = useMediaQuery("(max-width:630px)");
 
-  useEffect(() => {
+  useFetchCurrency(CURRENCY, CONSUMER_KEY, CONSUMER_SECRET, setCurrency);
+
+  useFetchCategory(WOO_URL, CONSUMER_KEY, CONSUMER_SECRET, setCategory);
+
+  /* useEffect(() => {
     const fetchCurrency = async () => {
       try {
         const response = await axios.get(`${CURRENCY}`, {
@@ -64,9 +71,8 @@ const Home = () => {
       }
     };
     fetchCurrency();
-  }, []);
-
-  useEffect(() => {
+  }, []);*/
+  /**useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(`${WOO_URL}/products/categories`, {
@@ -87,7 +93,7 @@ const Home = () => {
       } catch (e) {}
     };
     fetchCategories();
-  }, []);
+  }, []); */
 
   const fetchProduct = async (page = 1) => {
     if (page === 1) {
