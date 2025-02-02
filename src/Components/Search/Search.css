@@ -34,3 +34,15 @@
   display: flex;
   align-items: center;
 }
+
+.search-container .search-input {
+  padding: 8px;
+}
+.custom-style {
+  width: 100%;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}

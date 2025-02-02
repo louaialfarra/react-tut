@@ -3,8 +3,8 @@ import "./Search.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
-import { Translate } from "@mui/icons-material";
-const Search = () => {
+
+const Search = (props) => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
   const CONSUMER_KEY = import.meta.env.VITE_CONSUMER_KEY;
   const CONSUMER_SECRET = import.meta.env.VITE_CONSUMER_SECRET;
@@ -75,10 +75,13 @@ const Search = () => {
   };
 
   return (
-    <div className="search-container">
+    <div
+      className={`search-container ${props.customStyle ? `custom-style` : ""}`}
+    >
       <div style={{ position: "relative", width: "100%" }}>
         <input
-          style={{ padding: "8px" }}
+          className="search-input"
+          style={props.inputStyle}
           type="text"
           value={search}
           placeholder="Search products..."

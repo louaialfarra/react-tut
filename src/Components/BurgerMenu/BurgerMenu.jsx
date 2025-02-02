@@ -18,6 +18,7 @@ import { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { useNavigate, Link } from "react-router-dom";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
 export default function BurgerMenu() {
   const [state, setState] = React.useState({
@@ -68,6 +69,7 @@ export default function BurgerMenu() {
           },
           { text: "About Us", path: "/about", icon: <PeopleIcon /> },
           { text: "Contact", path: "/contact", icon: <WhatsAppIcon /> },
+          { text: "Sale", path: "/saleproducts", icon: <LocalOfferIcon /> },
         ].map((item, index) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton onClick={() => handleNavigation(item.path)}>

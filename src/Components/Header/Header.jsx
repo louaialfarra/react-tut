@@ -3,13 +3,11 @@ import logo from "../../assets/hooboo-logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
-import cartImage from "../../assets/cart.png";
-import Dropdown from "../Dropdown/Dropdown";
 import { ProductContext } from "../../Context/ShopContext";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
-import SaleProducts from "../../Pages/SaleProduct";
+
 function Header() {
   const [menu, setMenu] = useState("home");
   const [storedCategory, setStoredCategory] = useState([]);
@@ -85,6 +83,20 @@ function Header() {
             </Link>
           </div>
         </div>
+      </div>
+      <div
+        style={{
+          backgroundColor: "black",
+          display: "flex",
+          justifyContent: "center",
+          flex: 1,
+        }}
+        className="mob-searchbar"
+      >
+        <Search
+          customStyle={true}
+          inputStyle={{ width: "90%", margin: "10px", borderRadius: "40px" }}
+        />
       </div>
       <div className="header-bot">
         <div className="menu">
