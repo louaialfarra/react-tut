@@ -27,12 +27,12 @@
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1366px) {
+@media (min-width: 1200px) and (max-width: 1367px) {
   .grid-container {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-@media (min-width: 1366px) {
+@media (min-width: 1367px) {
   .grid-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }

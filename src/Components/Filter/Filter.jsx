@@ -86,7 +86,7 @@ const FilterComponent = (props) => {
       <h3>Filter by</h3>
       {Object.keys(attributes).map((attributeName) => (
         <div key={attributeName} className="attribute-group">
-          <h4>{attributeName}</h4>
+          <h4 style={{ fontSize: "1.2rem" }}>{attributeName}</h4>
           {attributes[attributeName].map((option) => {
             const isChecked =
               selectedOptions[attributeName]?.includes(option) || false;
