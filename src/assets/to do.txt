@@ -7,6 +7,7 @@
   8-create sale page DONE !!!!!!
   9- configure the single product page  DONE !!!!
   10-fix burger menu  category view and the color Done!!!
+  11-add sesrch in mobile View Done !!!!!! 
 
 
   create a new home page  
@@ -15,10 +16,11 @@
   
  10-style the category  page and fix it Semi DOne!! check
  
-  11-add sesrch in mobile View
    style the filter Popup
  
 
+ on image click  in single prodcut maake it full scren and  zoom 
+ when click on filter then go to the product then go  back to  it remove the filter fix it 
   creat loading for the search Result   NAVIGATE TO THE RESULT PAGE  then do the loading or the skeleton 
   MOBILE & TAB VIEW 
 

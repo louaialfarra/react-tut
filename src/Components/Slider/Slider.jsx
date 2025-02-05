@@ -14,15 +14,44 @@ import { ProductContext } from "../../Context/ShopContext";
 import { Link } from "react-router-dom";
 import "./Slider.css";
 
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
 const Slider = (props) => {
   const { products } = useContext(ProductContext);
-
   const firstTenProducts = products.slice(0, 10);
   const swiperRef = useRef(null);
+
   // Ensure products are loaded
+
   if (!products || products.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            overflowY: "auto",
+            overflow: "hidden",
+            gap: "30px",
+          }}
+        >
+          {[...Array(4)].map((_, index) => (
+            <div
+              className="car-container"
+              key={index}
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Skeleton className="car-skeleton" />
+            </div>
+          ))}
+        </div>
+      </SkeletonTheme>
+    );
   }
+
   return (
     <Swiper
       slidesPerView={5}

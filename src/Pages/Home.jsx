@@ -285,7 +285,22 @@ const Home = () => {
           <img src={car1} alt="doda" />
           <img src={car2} alt="doda" />
         </Carousel>
-        <h3 style={{ textAlign: "center" }}>Latest Products</h3>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <h3 style={{ borderBottom: "1px solid gray", flex: "1" }}>
+            <span
+              style={{
+                position: "absolute",
+                lineHeight: "1rem",
+                backgroundColor: "#242424",
+                paddingRight: "8px",
+              }}
+            >
+              Latest Products
+            </span>
+          </h3>
+          <p>VIEW ALL</p>
+        </div>
+
         <Slider />
 
         {/* delet hero compnent <Hero /> */}

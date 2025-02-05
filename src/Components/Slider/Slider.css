@@ -4,11 +4,19 @@
   object-fit: cover;
   border-radius: 15px;
 }
+.car-skeleton {
+  height: 400px;
+  width: 300px;
+}
 @media (max-width: 630px) {
   .swip-img {
     height: 200px;
     width: 100%;
     object-fit: cover;
+  }
+  .car-skeleton {
+    height: 200px;
+    width: 188px;
   }
 }
 .swiper-pagination {
