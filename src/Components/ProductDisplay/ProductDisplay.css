@@ -102,9 +102,10 @@
 .att-container .att-name ul li button {
   font-size: 1.3em;
 }
-.big-img {
+.big-img .img-size {
   width: 500px;
   height: 600px;
+  object-fit: cover;
 }
 .single-product-container {
   display: flex;
@@ -112,7 +113,7 @@
 }
 
 @media (max-width: 630px) {
-  .big-img {
+  .big-img .img-size {
     height: 300px;
     width: 200px;
   }
@@ -120,4 +121,8 @@
     flex-direction: column;
     gap: 25px;
   }
+}
+
+[data-rmiz-modal-overlay="visible"] {
+  background-color: rgb(93, 92, 92) !important;
 }

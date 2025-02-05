@@ -109,16 +109,16 @@ const Home = () => {
           page,
         },
       });
+      const totalPagesFromHeader = parseInt(
+        response.headers["x-wp-totalpages"]
+      );
+      setTotalPages(totalPagesFromHeader);
 
       const products1 = response.data;
 
       /*if (!totalPages) {
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
       }*/
-      const totalPagesFromHeader = parseInt(
-        response.headers["x-wp-totalpages"]
-      );
-      setTotalPages(totalPagesFromHeader);
 
       if (page === 1) {
         setProducts(products1);

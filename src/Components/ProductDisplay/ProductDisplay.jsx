@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import "./ProductDisplay.css";
 import { ProductContext } from "../../Context/ShopContext";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 const ProductDisplay = (props) => {
   const { currency } = useContext(ProductContext);
@@ -36,7 +38,9 @@ const ProductDisplay = (props) => {
           {/* this is  the big image  */}
 
           <div className="big-img">
-            <img src={mainImage} />
+            <Zoom>
+              <img src={mainImage} className="img-size" />
+            </Zoom>
           </div>
         </div>
         <div className="product-text-container">
