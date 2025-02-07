@@ -14,23 +14,27 @@ const Test = () => {
   const [isLoading, setIsLoading] = useState(false);
   // the main problem is in the x wp header i should set it from the beginging because it is changiner depending on the  per_page
   //asloo u should ad somthing to stop it i go sleep now
-  const fetchPage = async () => {
+  const fetchPage1 = async () => {
     try {
+      setIsLoading(true);
+
       const response = await axios.get(`${WOO_URL}/products`, {
         params: {
           consumer_key: CONSUMER_KEY,
           consumer_secret: CONSUMER_SECRET,
+          per_page: 50,
         },
       });
 
       if (response.headers["x-wp-totalpages"]) {
         setTotalPages(parseInt(response.headers["x-wp-totalpages"], 10));
       }
+      setProducts(response.data);
     } catch (e) {}
   };
 
   useEffect(() => {
-    fetchPage();
+    fetchPage1();
   }, []);
 
   console.log(totalPages + "this is total pages");
@@ -50,16 +54,8 @@ const Test = () => {
       console.log(response.data + " Products");
 
       response.data.map((product) => console.log(product.name));
-      //// this line in important to not duplicat the first fetch
-      if (page === 1) {
-        setProducts(response.data);
-      } else {
-        setProducts((prevProducts) => [...prevProducts, ...response.data]);
-      }
 
-      /** if (page < parseInt(response.headers["x-wp-totalpages"], 10)) {
-        setCurrentPage(page + 1);
-      } */
+      setProducts((prevProducts) => [...prevProducts, ...response.data]);
     } catch (e) {
       console.log(e + "this is erroor");
     } finally {
@@ -88,7 +84,7 @@ const Test = () => {
 
   useEffect(() => {
     const fetchRemainingPages = async () => {
-      for (let page = 1; page <= totalPages; page++) {
+      for (let page = 2; page <= totalPages; page++) {
         await fetchProducts(page);
         console.log(page + " this is page");
       }
