@@ -112,6 +112,7 @@ const Home = () => {
       const totalPagesFromHeader = parseInt(
         response.headers["x-wp-totalpages"]
       );
+
       setTotalPages(totalPagesFromHeader);
 
       const products1 = response.data;
@@ -123,9 +124,7 @@ const Home = () => {
       if (page === 1) {
         setProducts(products1);
       } else {
-        setProducts((prevProducts) => {
-          return [...prevProducts, ...products1];
-        });
+        setProducts((prevProducts) => [...prevProducts, ...products1]);
       }
       setContinueFetch(true);
 
@@ -162,6 +161,10 @@ const Home = () => {
 
   // here need some update or delets figure new way  write the way then ask gpt
   /*
+
+
+
+  
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
