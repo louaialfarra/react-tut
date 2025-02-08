@@ -17,6 +17,8 @@ import FilterPopup from "../Components/FilterPopup/FilterPopup";
 
 import car1 from "../assets/carImages/car1.jpg";
 import car2 from "../assets/carImages/car2.jpg";
+import car3 from "../assets/carImages/val.jpg";
+
 import { useNavigate } from "react-router-dom";
 
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
@@ -24,6 +26,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Slider from "../Components/Slider/Slider";
 import useFetchCurrency from "../Hooks/useFetchCurrency";
 import useFetchCategory from "../Hooks/useFetchCategory";
+import useFetchProducts from "../Hooks/useFetchProducts";
 
 const Home = () => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
@@ -52,6 +55,14 @@ const Home = () => {
   useFetchCurrency(CURRENCY, CONSUMER_KEY, CONSUMER_SECRET, setCurrency);
 
   useFetchCategory(WOO_URL, CONSUMER_KEY, CONSUMER_SECRET, setCategory);
+  useFetchProducts(
+    WOO_URL,
+    CONSUMER_KEY,
+    CONSUMER_SECRET,
+    setProducts,
+    setTotalPages,
+    totalPages
+  );
 
   /* useEffect(() => {
     const fetchCurrency = async () => {
@@ -94,8 +105,7 @@ const Home = () => {
     };
     fetchCategories();
   }, []); */
-
-  const fetchProduct = async (page = 1) => {
+  /*  const fetchProduct = async (page = 1) => {
     if (page === 1) {
       setLoading(true);
     }
@@ -119,7 +129,7 @@ const Home = () => {
 
       /*if (!totalPages) {
         setTotalPages(parseInt(response.headers["x-wp-totalpages"]));
-      }*/
+      }
 
       if (page === 1) {
         setProducts(products1);
@@ -158,6 +168,7 @@ const Home = () => {
     }
     setContinueFetch(false); // Stop fetching once all pages are fetched
   }, [totalPages]); // Runs when totalPages or continueFetch changes
+*/
 
   // here need some update or delets figure new way  write the way then ask gpt
   /*
@@ -285,8 +296,7 @@ const Home = () => {
           className="car-slide"
           showThumbs={false}
         >
-          <img src={car1} alt="doda" />
-          <img src={car2} alt="doda" />
+          <img src={car3} />
         </Carousel>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <h3 style={{ borderBottom: "1px solid gray", flex: "1" }}>

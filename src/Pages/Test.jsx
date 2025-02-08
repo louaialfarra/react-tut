@@ -90,7 +90,7 @@ const Test = () => {
       }
     };
     fetchRemainingPages();
-  }, [totalPages]);
+  }, []);
 
   return (
     <div>
