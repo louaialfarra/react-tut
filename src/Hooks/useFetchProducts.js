@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect } from "react";
-import { ProductContext } from "../Context/ShopContext";
+import { useEffect } from "react";
 
 const useFetchProducts = (
   WOO_URL,
@@ -8,10 +7,13 @@ const useFetchProducts = (
   CONSUMER_SECRET,
   setProducts,
   setTotalPages,
-  totalpages
+  totalpages,
+  setLoading,
+  setLoading2
 ) => {
   useEffect(() => {
     const initialFetchProducts = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(`${WOO_URL}/products`, {
           params: {
@@ -26,6 +28,8 @@ const useFetchProducts = (
         setProducts(response.data);
       } catch (e) {
         console.log(e);
+      } finally {
+        setLoading(false);
       }
     };
     initialFetchProducts();
@@ -33,6 +37,7 @@ const useFetchProducts = (
 
   useEffect(() => {
     const fetchProducts = async (page) => {
+      setLoading2(true);
       try {
         const response = await axios.get(`${WOO_URL}/products`, {
           params: {
@@ -44,7 +49,10 @@ const useFetchProducts = (
           },
         });
         setProducts((prevProducts) => [...prevProducts, ...response.data]);
-      } catch (e) {}
+      } catch (e) {
+      } finally {
+        setLoading2(true);
+      }
     };
 
     const fetchRemainingPages = async () => {

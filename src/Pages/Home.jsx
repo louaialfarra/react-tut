@@ -13,6 +13,8 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import Loader from "../Components/Loader/Loader";
+
 import FilterPopup from "../Components/FilterPopup/FilterPopup";
 
 import car1 from "../assets/carImages/car1.jpg";
@@ -43,6 +45,7 @@ const Home = () => {
   const { totalPages, setTotalPages } = useContext(ProductContext);
   const { currency, setCurrency } = useContext(ProductContext);
   const { category, setCategory } = useContext(ProductContext);
+  const [loading2, setLoading2] = useState(false);
   const [loading, setLoading] = useState(false);
   const [continueFetch, setContinueFetch] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState(products);
@@ -61,7 +64,9 @@ const Home = () => {
     CONSUMER_SECRET,
     setProducts,
     setTotalPages,
-    totalPages
+    totalPages,
+    setLoading,
+    setLoading2
   );
 
   /* useEffect(() => {
@@ -401,7 +406,7 @@ const Home = () => {
             )}
           </div>
         </div>
-
+        {loading2 && <Loader />}
         {/* delete pages <div>
           <button onClick={handlBackPage}>PREV PAGE</button>
           <span>
