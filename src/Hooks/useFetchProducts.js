@@ -51,7 +51,7 @@ const useFetchProducts = (
         setProducts((prevProducts) => [...prevProducts, ...response.data]);
       } catch (e) {
       } finally {
-        setLoading2(true);
+        setLoading2(false);
       }
     };
 
