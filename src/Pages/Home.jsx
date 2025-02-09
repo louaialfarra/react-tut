@@ -66,7 +66,10 @@ const Home = () => {
     setTotalPages,
     totalPages,
     setLoading,
-    setLoading2
+    setLoading2,
+    products,
+    setContinueFetch,
+    continueFetch
   );
 
   /* useEffect(() => {

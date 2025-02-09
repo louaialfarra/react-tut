@@ -34,7 +34,9 @@ const Test = () => {
   };
 
   useEffect(() => {
-    fetchPage1();
+    if (products.length === 0) {
+      fetchPage1();
+    }
   }, []);
 
   console.log(totalPages + "this is total pages");

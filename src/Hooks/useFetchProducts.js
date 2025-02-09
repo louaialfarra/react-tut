@@ -9,7 +9,10 @@ const useFetchProducts = (
   setTotalPages,
   totalpages,
   setLoading,
-  setLoading2
+  setLoading2,
+  products,
+  setContinueFetch,
+  continueFetch
 ) => {
   useEffect(() => {
     const initialFetchProducts = async () => {
@@ -30,9 +33,13 @@ const useFetchProducts = (
         console.log(e);
       } finally {
         setLoading(false);
+        setContinueFetch(true);
       }
     };
-    initialFetchProducts();
+    if (products.length === 0) {
+      initialFetchProducts();
+    }
+    setContinueFetch(true);
   }, []);
 
   useEffect(() => {
@@ -61,7 +68,10 @@ const useFetchProducts = (
         console.log(page + " this is page");
       }
     };
-    fetchRemainingPages();
+    if (continueFetch && totalpages > 1) {
+      fetchRemainingPages();
+    }
+    setContinueFetch(false);
   }, [totalpages]);
 };
 
