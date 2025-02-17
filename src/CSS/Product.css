@@ -2,9 +2,6 @@
   height: 600px;
   width: 500px;
 }
-.prodcut-display-container {
-  min-height: 200vh;
-}
 
 @media (max-width: 630px) {
   .skeleton-main-img {
