@@ -3,6 +3,7 @@ import "./Search.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import FullScreenLoader from "../Loader/FullScreenLoader";
 
 const Search = (props) => {
   const WOO_URL = import.meta.env.VITE_WOO_API_URL;
@@ -14,6 +15,7 @@ const Search = (props) => {
   const [searchResult, setSearchResult] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleMouseOut = () => {
     setInputValue("");
@@ -46,12 +48,27 @@ const Search = (props) => {
     }*/
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSearchButton();
+  };
+
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
     setDropDown(false);
   };
+
+  const disableScroll = () => {
+    document.body.style.overflow = "hidden";
+  };
+  const enableScroll = () => {
+    document.body.style.overflow = "auto";
+  };
+
   const handleSearchButton = async () => {
     if (search.length > 2) {
+      setLoading(true);
+      disableScroll();
+
       try {
         const response = await axios.get(
           `${WOO_URL}/products?search=${search}`,
@@ -68,6 +85,9 @@ const Search = (props) => {
       } catch (e) {
         console.error("Error fetching products: ", e);
         setDropDown(false);
+      } finally {
+        setLoading(false);
+        enableScroll();
       }
     } else {
       setDropDown(false);
@@ -78,6 +98,7 @@ const Search = (props) => {
     <div
       className={`search-container ${props.customStyle ? `custom-style` : ""}`}
     >
+      {loading && <FullScreenLoader />}
       <div style={{ position: "relative", width: "100%" }}>
         <input
           className="search-input"
@@ -86,6 +107,7 @@ const Search = (props) => {
           value={search}
           placeholder="Search products..."
           onChange={handleSearchChange}
+          onKeyDown={handleKeyDown}
         />
         {dropDown && (
           <ul

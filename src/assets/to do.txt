@@ -10,6 +10,7 @@
   11-add sesrch in mobile View Done !!!!!! 
   12-style the filter Popup DONE !!!!
   13- on image click  in single prodcut maake it full scren and  zoom DONE!!!!!
+  14- creat loading for the search Result DONE!!!!!!
 
 
   create a new home page  
@@ -21,7 +22,7 @@
    
  
 
-  creat loading for the search Result   NAVIGATE TO THE RESULT PAGE  then do the loading or the skeleton 
+     NAVIGATE TO THE RESULT PAGE  then do the loading or the skeleton 
   MOBILE & TAB VIEW 
 
 
