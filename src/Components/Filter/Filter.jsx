@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../Context/ShopContext";
 import "./Filter.css";
+import { Label } from "@mui/icons-material";
 
 const FilterComponent = (props) => {
   const { products } = useContext(ProductContext);
@@ -54,6 +55,11 @@ const FilterComponent = (props) => {
     }
   }, [products]);
 
+  useEffect(() => {
+    // Trigger the filtering logic with the updated selected options
+    props.onFilterChange(selectedOptions);
+  }, [selectedOptions]);
+
   const handleAttributeChange = (attributeName, option) => {
     setSelectedOptions((prev) => {
       const updated = { ...prev };
@@ -75,10 +81,12 @@ const FilterComponent = (props) => {
         updated[attributeName].push(option);
       }
 
-      // Trigger the filtering logic with the updated selected options
-      props.onFilterChange(updated);
       return updated;
     });
+  };
+
+  const handleClearFIlter = () => {
+    setSelectedOptions({});
   };
 
   return (
@@ -90,9 +98,10 @@ const FilterComponent = (props) => {
           {attributes[attributeName].map((option) => {
             const isChecked =
               selectedOptions[attributeName]?.includes(option) || false;
+
             if (attributeName.toLowerCase() === "color") {
               return (
-                <label key={option} className="option-label">
+                /* <label key={option} className="option-label">
                   <input
                     type="checkbox"
                     checked={isChecked}
@@ -110,6 +119,26 @@ const FilterComponent = (props) => {
                       display: "inline-block",
                       margin: "0 5px",
                       cursor: "pointer",
+                    }}
+                  />
+                </label>*/
+                <label key={option} className="option-label">
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() =>
+                      handleAttributeChange(attributeName, option)
+                    }
+                    style={{ display: "none" }}
+                  />
+                  <span
+                    className="color-box"
+                    style={{
+                      backgroundColor: option.toLowerCase(),
+                      display: "inline-block",
+                      margin: "2px  5px",
+                      cursor: "pointer",
+                      padding: "10px",
                     }}
                   />
                 </label>
@@ -131,6 +160,10 @@ const FilterComponent = (props) => {
           })}
         </div>
       ))}
+
+      <div style={{ marginTop: "24px" }}>
+        <button onClick={handleClearFIlter}>Clear</button>
+      </div>
     </div>
   );
 };

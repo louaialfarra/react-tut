@@ -8,6 +8,8 @@
   9- configure the single product page  DONE !!!!
   10-fix burger menu  category view and the color Done!!!
   11-add sesrch in mobile View Done !!!!!! 
+  12-style the filter Popup DONE !!!!
+  13- on image click  in single prodcut maake it full scren and  zoom DONE!!!!!
 
 
   create a new home page  
@@ -16,11 +18,9 @@
   
  10-style the category  page and fix it Semi DOne!! check
  
-   style the filter Popup
+   
  
 
- on image click  in single prodcut maake it full scren and  zoom 
- when click on filter then go to the product then go  back to  it remove the filter fix it 
   creat loading for the search Result   NAVIGATE TO THE RESULT PAGE  then do the loading or the skeleton 
   MOBILE & TAB VIEW 
 
@@ -29,4 +29,7 @@
 
  fix the skeleton
 
-  last THING  - TEST Teh fetching with all posibe ways because somtimes its not fetching all the pages 
+ last THING  - TEST Teh fetching with all posibe ways because somtimes its not fetching all the pages Updated 
+
+  additiona feature maybe no need FOR UX
+   when click on filter then go to the product then go  back to  it remove the filter fix it 

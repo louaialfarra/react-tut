@@ -306,6 +306,7 @@ const Home = () => {
         >
           <img src={car3} />
         </Carousel>
+
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <h3 style={{ borderBottom: "1px solid gray", flex: "1" }}>
             <span
