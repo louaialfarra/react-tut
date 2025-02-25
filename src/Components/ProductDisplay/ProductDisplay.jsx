@@ -3,7 +3,11 @@ import "./ProductDisplay.css";
 import { ProductContext } from "../../Context/ShopContext";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/css";
 const ProductDisplay = (props) => {
   const { currency } = useContext(ProductContext);
   const [mainImage, setMainImage] = useState(props.image);
@@ -18,7 +22,24 @@ const ProductDisplay = (props) => {
     <div className="product2-container">
       <div className="product-title">{props.name}</div>
       <div className="single-product-container">
-        <div className="container-image">
+        <div className="swiper-style">
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={1}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          >
+            {props.images.map((image) => (
+              <SwiperSlide>
+                <img
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  src={image.src}
+                ></img>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* <div className="container-image">
           <div className="image-gallery-container">
             {props.images.map((image, index) => (
               <div
@@ -35,14 +56,15 @@ const ProductDisplay = (props) => {
               </div>
             ))}
           </div>
-          {/* this is  the big image  */}
+          {/* this is  the big image  *}
 
           <div className="big-img">
             <Zoom>
               <img src={mainImage} className="img-size" />
             </Zoom>
           </div>
-        </div>
+        </div>* */}
+
         <div className="product-text-container">
           {/*<div className="product-title">{props.name}</div>*/}
           <div className="price-container">

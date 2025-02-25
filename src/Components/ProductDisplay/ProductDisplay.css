@@ -126,3 +126,7 @@
 [data-rmiz-modal-overlay="visible"] {
   background-color: rgb(93, 92, 92) !important;
 }
+.swiper-style {
+  max-width: 40vw;
+  max-height: 80vh;
+}
