@@ -10,6 +10,7 @@ import { EffectCards } from "swiper/modules";
 import "swiper/css/effect-cards";
 // Import Swiper styles
 import "swiper/css";
+
 const ProductDisplay = (props) => {
   const { currency } = useContext(ProductContext);
   const [mainImage, setMainImage] = useState(props.image);
@@ -34,7 +35,9 @@ const ProductDisplay = (props) => {
           >
             {props.images.map((image) => (
               <SwiperSlide>
-                <img className="image-swiper" src={image.src}></img>
+                <Zoom>
+                  <img className="image-swiper" src={image.src}></img>
+                </Zoom>
               </SwiperSlide>
             ))}
           </Swiper>
