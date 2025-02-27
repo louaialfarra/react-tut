@@ -6,6 +6,8 @@ import "react-medium-image-zoom/dist/styles.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { EffectCards } from "swiper/modules";
+import "swiper/css/effect-cards";
 // Import Swiper styles
 import "swiper/css";
 const ProductDisplay = (props) => {
@@ -26,14 +28,13 @@ const ProductDisplay = (props) => {
           <Swiper
             spaceBetween={50}
             slidesPerView={1}
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            className="swiper-class"
+            modules={[EffectCards]}
+            effect="cards"
           >
             {props.images.map((image) => (
               <SwiperSlide>
-                <img
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  src={image.src}
-                ></img>
+                <img className="image-swiper" src={image.src}></img>
               </SwiperSlide>
             ))}
           </Swiper>
