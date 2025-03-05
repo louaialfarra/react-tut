@@ -15,6 +15,7 @@ const Checkout = () => {
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(null);
   const [couponError, setCouponError] = useState("");
+  const [city, setCity] = useState("");
 
   const { cart, currency } = useContext(ProductContext);
 
@@ -44,6 +45,7 @@ const Checkout = () => {
           },
         ]
       : [];
+
     const orderdata = {
       payment_method: "cod",
       payment_method_title: "Cash on Delivery",
@@ -53,11 +55,13 @@ const Checkout = () => {
         first_name: firstname,
         last_name: lastname,
         address_1: address,
+        city: city,
       },
       shipping: {
         first_name: firstname,
         last_name: lastname,
         address_1: address,
+        city: city,
       },
       shipping_lines: [
         {
@@ -71,6 +75,7 @@ const Checkout = () => {
 
       currency: "SYP",
     };
+
     try {
       setLoading(true);
       const response = await axios.post(`${WOO_URL}/orders`, orderdata, {
@@ -98,8 +103,13 @@ const Checkout = () => {
       });
 
       if (response.data.length > 0) {
+        console.log("coupond is fetched ");
         const couponData = response.data[0];
-        const discountAmount = couponData.meta_data[0].value;
+
+        const discountAmount = couponData.meta_data[0]
+          ? couponData.meta_data[0].value
+          : couponData.amount * currency;
+
         setDiscount(discountAmount);
         setCouponError("");
       } else {
@@ -114,46 +124,67 @@ const Checkout = () => {
   };
 
   console.log("this is checkout" + cart);
+
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div>
       {orderSuccess ? (
         <p>Your order was placed successfully!</p>
       ) : (
-        <div>
-          {cart.map((item) => item.price)}
-          NAME :
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {/*cart.map((item) => item.price)*/}
+          First name:
           <input
             type="text"
             value={firstname}
             onChange={(e) => Setfirstname(e.target.value)}
           />
-          last name:
+          Last name:
           <input
             type="text"
             value={lastname}
             onChange={(e) => Setlastname(e.target.value)}
           />
+          City:
+          <select value={city} onChange={(e) => setCity(e.target.value)}>
+            <option value="Damascus">Damascus</option>
+            <option value="Tartus">Tartus</option>
+            <option value="Latakia">Latakia</option>
+            <option value="Hama">Hama</option>
+            <option value="Aleppo">Aleppo</option>
+            <option value="Homs">Homs</option>
+            <option value="Sweida">Sweida</option>
+          </select>
           Address:
           <input
             type="text"
             value={address}
             onChange={(e) => SetAddress(e.target.value)}
           />
-          <button onClick={handleSubmite}>Submite Order</button>
-          <div>
-            {" "}
-            COUPON CODE{" "}
+          <div style={{ marginTop: "1rem" }}>
+            Coupon code:
             <input
               type="text"
               value={coupon}
               onChange={(e) => setCoupon(e.target.value)}
             />
-            <button onClick={applyCoupon}>Apply COUPON</button>
+            <button style={{ marginLeft: "12px" }} onClick={applyCoupon}>
+              Apply COUPON
+            </button>
             {couponError && <p style={{ color: "red" }}>{couponError}</p>}
             {discount && <p>Discount Applied: {discount} SYP</p>}
           </div>
         </div>
       )}
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
+      >
+        <button
+          style={{ padding: "0.8rem", backgroundColor: "green" }}
+          onClick={handleSubmite}
+        >
+          Submite Order
+        </button>
+      </div>
     </div>
   );
 };

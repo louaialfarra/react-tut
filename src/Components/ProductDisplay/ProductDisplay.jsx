@@ -99,7 +99,7 @@ const ProductDisplay = (props) => {
             {props.attnew.map((att, i) => {
               return (
                 <div className="att-name" key={i}>
-                  <h2>{att.name}</h2>
+                  <h2 style={{ marginRight: "8px" }}>{att.name}</h2>
                   {att.name === "Color" ? (
                     <ul>
                       {att.options.map((op, i) => {

@@ -11,8 +11,8 @@ const CartItem = (props) => {
               <img src={props.image} />
             </div>
             <div className="product-name">
-              <h3 style={{ marginLeft: "1rem" }}>{props.name}</h3>
-              <div style={{ marginLeft: "1rem" }}>{props.att}</div>
+              <h3 style={{ margin: "0px" }}>{props.name}</h3>
+              <div>{props.att}</div>
             </div>
           </div>
         </div>

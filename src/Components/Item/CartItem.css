@@ -32,23 +32,28 @@
   align-content: center;
 }
 .cart-image-container img {
-  height: 100px;
-  width: 100px;
+  height: 75px;
+  width: 75px;
 }
 .cart-container {
   margin-top: 24px;
   margin-bottom: 24px;
 }
+.product-name {
+  margin-left: 1rem;
+}
+
 @media (max-width: 630px) {
   .product-name,
   .price-name,
   .quantity-name,
   .sub-name {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
   }
   .quantity-name {
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
   }
 }

@@ -24,6 +24,7 @@ const Cart = () => {
       { totalPrice: 0, totalQuantity: 0 }
     );
   };
+
   const total = calculateTotal(cart);
 
   return (
@@ -32,7 +33,7 @@ const Cart = () => {
         <h3 style={{ flex: 3 }}>Product</h3>
         <h3 style={{ flex: 1 }}>Price</h3>
         <h3 style={{ flex: 1 }}>Quantity</h3>
-        <h3 style={{ flex: 1 }}>SubTotal</h3>
+        <h3 style={{ flex: 1 }}>Total</h3>
         <span style={{ flex: 1 / 4 }}></span>
       </div>
       {cart.map((item, index) => {
