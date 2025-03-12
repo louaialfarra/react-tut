@@ -28,7 +28,6 @@ function App() {
           <Route path="/searchresult" element={<SearchResult />} />
           <Route path="/shopcategory" element={<Shopcategory />} />
           <Route path="shopcategory/:category" element={<Category />} />
-          <Route path="/test" element={<Test />} />
           <Route path="saleproducts" element={<SaleProducts />} />
 
           <Route path="/about" element={<About />} />

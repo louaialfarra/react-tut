@@ -19,15 +19,18 @@ const NewHomePage = () => {
   const handleNavigation = (category) => {
     navigate(`/shopcategory/${category.toLowerCase().replace(/\s+/g, "-")}`);
   };
+
   const handleMouseDown = (e) => {
     setStartX(e.clientX);
     setIsDragging(false);
   };
+
   const handleMouseMove = (e) => {
     if (Math.abs(e.clientX - startX) > 5) {
       setIsDragging(true);
     }
   };
+
   const handlClick = (cat) => {
     if (!isDragging) {
       setSelectedCat(cat.name);
@@ -122,7 +125,7 @@ const NewHomePage = () => {
                 }`}
                 src={cat.image?.src}
               />
-              {cat.name}
+              <h3 style={{ margin: "0px" }}>{cat.name}</h3>
             </div>
           ))}
         </Carousel>

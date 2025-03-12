@@ -93,6 +93,16 @@ const Checkout = () => {
     }
   };
 
+  const isFormValid = () => {
+    return (
+      firstname.trim() !== "" &&
+      lastname.trim() !== "" &&
+      address.trim() !== "" &&
+      city.trim() !== "" &&
+      cart.length > 0
+    );
+  };
+
   const applyCoupon = async () => {
     try {
       const response = await axios.get(`${WOO_URL}/coupons?code=${coupon}`, {
@@ -132,20 +142,27 @@ const Checkout = () => {
       ) : (
         <div style={{ display: "flex", flexDirection: "column" }}>
           {/*cart.map((item) => item.price)*/}
-          First name:
+          <p>First name:</p>
           <input
+            style={{ padding: "8px" }}
             type="text"
             value={firstname}
             onChange={(e) => Setfirstname(e.target.value)}
           />
-          Last name:
+          <p>Last name:</p>
           <input
+            style={{ padding: "8px" }}
             type="text"
             value={lastname}
             onChange={(e) => Setlastname(e.target.value)}
           />
-          City:
-          <select value={city} onChange={(e) => setCity(e.target.value)}>
+          <p>City:</p>
+          <select
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            style={{ padding: "8px" }}
+          >
+            <option value="" disabled selected hidden></option>
             <option value="Damascus">Damascus</option>
             <option value="Tartus">Tartus</option>
             <option value="Latakia">Latakia</option>
@@ -154,11 +171,13 @@ const Checkout = () => {
             <option value="Homs">Homs</option>
             <option value="Sweida">Sweida</option>
           </select>
-          Address:
+          <p>Address:</p>
+
           <input
             type="text"
             value={address}
             onChange={(e) => SetAddress(e.target.value)}
+            style={{ padding: "8px" }}
           />
           <div style={{ marginTop: "1rem" }}>
             Coupon code:
@@ -173,18 +192,26 @@ const Checkout = () => {
             {couponError && <p style={{ color: "red" }}>{couponError}</p>}
             {discount && <p>Discount Applied: {discount} SYP</p>}
           </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "2rem",
+            }}
+          >
+            <button
+              style={{
+                padding: "0.8rem",
+                backgroundColor: isFormValid() ? "green" : "gray",
+              }}
+              onClick={handleSubmite}
+              disabled={!isFormValid()}
+            >
+              Submite Order
+            </button>
+          </div>
         </div>
       )}
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
-      >
-        <button
-          style={{ padding: "0.8rem", backgroundColor: "green" }}
-          onClick={handleSubmite}
-        >
-          Submite Order
-        </button>
-      </div>
     </div>
   );
 };

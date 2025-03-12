@@ -101,39 +101,38 @@ function Header() {
       <div className="header-bot">
         <div className="menu">
           <ul>
-            <li onClick={() => setMenu("home")}>
-              <Link style={{ textDecoration: "none", color: "unset" }} to={"/"}>
+            <Link
+              style={{ textDecoration: "none", color: "unset" }}
+              to={"/"}
+              onClick={() => setMenu("home")}
+            >
+              <li>
                 Home
-              </Link>
-              {menu === "home" ? <hr /> : null}
-            </li>
-            <li>
-              <Link
-                to={"/newhomepage"}
-                style={{ textDecoration: "none", color: "unset" }}
-              >
-                NEW HOME PAGE
-              </Link>
-            </li>
-            <li onClick={() => setMenu("shop")}>
-              <Link
-                style={{ textDecoration: "none", color: "unset" }}
-                to={"/shopcategory/all"}
-              >
-                Categories
-              </Link>
+                {menu === "home" ? <hr /> : null}
+              </li>
+            </Link>
 
-              {menu === "shop" ? <hr /> : null}
-            </li>
-            <li onClick={() => setMenu("saleproducts")}>
-              <Link
-                style={{ textDecoration: "none", color: "unset" }}
-                to={"/saleproducts"}
-              >
-                Sale Products
-              </Link>
-              {menu === "saleproducts" ? <hr /> : null}
-            </li>
+            <Link
+              style={{ textDecoration: "none", color: "unset" }}
+              to={"/shopcategory/all"}
+              onClick={() => setMenu("shop")}
+            >
+              <li>
+                Categories
+                {menu === "shop" ? <hr /> : null}
+              </li>
+            </Link>
+
+            <Link
+              style={{ textDecoration: "none", color: "unset" }}
+              to={"/saleproducts"}
+              onClick={() => setMenu("saleproducts")}
+            >
+              <li>
+                Sale
+                {menu === "saleproducts" ? <hr /> : null}
+              </li>
+            </Link>
 
             {/* <li className="exclude">
               <Dropdown
@@ -144,23 +143,16 @@ function Header() {
               />
             </li>*/}
 
-            <li onClick={() => setMenu("about")}>
-              <Link
-                style={{ textDecoration: "none", color: "unset" }}
-                to={"about"}
-              >
+            <Link
+              style={{ textDecoration: "none", color: "unset" }}
+              to={"about"}
+              onClick={() => setMenu("about")}
+            >
+              <li>
                 About Us
-              </Link>
-              {menu === "about" ? <hr /> : null}
-            </li>
-            <li onClick={() => setMenu("test")}>
-              <Link
-                style={{ textDecoration: "none", color: "unset" }}
-                to={"test"}
-              >
-                Test Scroll
-              </Link>
-            </li>
+                {menu === "about" ? <hr /> : null}
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
